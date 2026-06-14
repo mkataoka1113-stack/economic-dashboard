@@ -25,7 +25,7 @@ learning_level: "beginner"
 # 主要指数（変更不要）
 indices:
   - {code: "^N225", name: "日経平均"}
-  - {code: "^TPX", name: "TOPIX"}
+  - {code: "1306.T", name: "TOPIX"}
   - {code: "JPY=X", name: "ドル円"}
   - {code: "^GSPC", name: "S&P 500"}
   - {code: "^IXIC", name: "NASDAQ"}
