@@ -182,12 +182,19 @@ def analyze_market(data):
       "code": "銘柄コード",
       "comment": "現在の注目ポイントを1〜2文で"
     }}
+  ],
+  "news_comments": [
+    {{
+      "index": 0,
+      "comment": "このニュースから予想される値動きや影響を1〜2文で簡潔に"
+    }}
   ]
 }}
 
 注意事項:
 - テーマは固定テーマ（{themes_text}）を必ず含め、加えてトレンドテーマを2〜3個追加し、合計5〜6個にする
 - upcoming_eventsは今後1〜2週間の重要イベントを3〜5個
+- news_commentsはニュース見出しのうち重要な上位10件程度にindex（0始まり）を対応させ、予想される値動き・影響を記述する。これはAI分析であり事実ではないことが明確になるよう、推測・予想の表現を使う
 - 客観的な事実ベースで記述し、投資推奨は行わない
 - JSON形式のみ出力。```json などのマークダウン記法は不要
 """
@@ -234,5 +241,6 @@ def _fallback_analysis(data):
             "explanation": "AI分析サービス復旧後に生成されます。"
         },
         "watchlist_comments": [],
+        "news_comments": [],
         "_provider": "fallback",
     }

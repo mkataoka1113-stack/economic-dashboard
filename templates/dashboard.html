@@ -8,622 +8,186 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ============================================
-   Design System — Contemporary Dark + Glass
-   ============================================ */
 :root {
-  --bg-base: #0B0F19;
-  --bg-elevated: rgba(255,255,255,0.03);
-  --bg-glass: rgba(255,255,255,0.04);
-  --bg-glass-hover: rgba(255,255,255,0.06);
-  --glass-border: rgba(255,255,255,0.06);
-  --glass-shadow: 0 8px 32px rgba(0,0,0,0.3);
-  --glass-shadow-sm: 0 2px 12px rgba(0,0,0,0.2);
-
-  --text-primary: #F1F5F9;
-  --text-secondary: #94A3B8;
-  --text-muted: #4B5563;
-  --text-label: #6B7280;
-
+  --bg: #0B0F19;
+  --card: rgba(255,255,255,0.035);
+  --card-hover: rgba(255,255,255,0.055);
+  --border: rgba(255,255,255,0.06);
+  --text-1: #F1F5F9;
+  --text-2: #94A3B8;
+  --text-3: #4B5563;
   --positive: #34D399;
-  --positive-bg: rgba(52,211,153,0.08);
-  --positive-bg-strong: rgba(52,211,153,0.15);
   --negative: #F87171;
-  --negative-bg: rgba(248,113,113,0.08);
-  --negative-bg-strong: rgba(248,113,113,0.15);
-  --neutral-bg: rgba(255,255,255,0.03);
-
-  --accent-gold: #C9A96E;
-  --accent-blue: #60A5FA;
-  --accent-purple: #A78BFA;
-  --accent-teal: #2DD4BF;
-
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
-
-  --font-sans: 'Inter', 'Noto Sans JP', -apple-system, 'Segoe UI', sans-serif;
-  --font-num: 'Inter', -apple-system, sans-serif;
+  --gold: #C9A96E;
+  --r: 12px;
+  --font: 'Inter', 'Noto Sans JP', -apple-system, sans-serif;
 }
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
 body {
-  background: var(--bg-base);
-  color: var(--text-primary);
-  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text-1);
+  font-family: var(--font);
   line-height: 1.6;
-  min-height: 100vh;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ============================================
-   Header
-   ============================================ */
-.header {
-  padding: 2rem 2.5rem 1.5rem;
-  max-width: 1320px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
+/* Layout */
+.wrap { max-width: 1320px; margin: 0 auto; padding: 0 2.5rem 3rem; }
+.header { max-width: 1320px; margin: 0 auto; padding: 2rem 2.5rem 1.5rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; }
+.header h1 { font-size: 1.5rem; font-weight: 300; letter-spacing: -0.02em; }
+.header-rule { width: 28px; height: 2px; background: var(--gold); border: none; margin-top: 6px; }
+.header-meta { font-size: 0.75rem; color: var(--text-3); display: flex; align-items: center; gap: 0.75rem; }
+.dot { width: 5px; height: 5px; background: var(--positive); border-radius: 50%; animation: pulse 2.5s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
-.header-title {
-  font-size: 1.5rem;
-  font-weight: 300;
-  color: var(--text-primary);
-  letter-spacing: -0.02em;
-}
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.gap { margin-bottom: 14px; }
 
-.header-rule {
-  width: 32px;
-  height: 2px;
-  background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold));
-  border: none;
-  margin-top: 8px;
-}
-
-.header-meta {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.header-meta .dot {
-  width: 5px;
-  height: 5px;
-  background: var(--positive);
-  border-radius: 50%;
-  animation: pulse 2.5s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-
-/* ============================================
-   Layout
-   ============================================ */
-.container {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 0 2.5rem 3rem;
-}
-
-.grid-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
-}
-
-.section-gap {
-  margin-bottom: 1.25rem;
-}
-
-/* ============================================
-   Glass Card
-   ============================================ */
+/* Card */
 .card {
-  background: var(--bg-glass);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
   padding: 1.75rem;
-  box-shadow: var(--glass-shadow-sm);
-  transition: background 0.3s ease, box-shadow 0.3s ease;
+  transition: background 0.3s;
 }
-
-.card:hover {
-  background: var(--bg-glass-hover);
-  box-shadow: var(--glass-shadow);
-}
-
-.card-label {
+.card:hover { background: var(--card-hover); }
+.label {
   font-size: 0.6875rem;
   font-weight: 500;
-  color: var(--text-muted);
+  color: var(--text-3);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 1.25rem;
 }
 
-/* ============================================
-   Market Summary (hero)
-   ============================================ */
-.summary-card {
-  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 100%);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-xl);
+/* Summary */
+.summary {
+  background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border: 1px solid var(--border);
+  border-radius: 16px;
   padding: 2.25rem;
-  box-shadow: var(--glass-shadow);
 }
-
-.summary-text {
+.summary p {
   font-size: 1rem;
-  font-weight: 400;
   line-height: 1.85;
-  color: var(--text-secondary);
-  letter-spacing: 0.01em;
+  color: var(--text-2);
 }
 
-/* ============================================
-   Index Cards
-   ============================================ */
-.indices-row {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-}
-
-.index-card {
-  background: var(--bg-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-md);
+/* Indices */
+.indices { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.idx {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
   padding: 1.25rem;
-  text-align: left;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: background 0.3s, transform 0.2s;
 }
-
-.index-card:hover {
-  background: var(--bg-glass-hover);
-  transform: translateY(-2px);
-}
-
-.index-name {
-  font-size: 0.625rem;
-  font-weight: 500;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 0.75rem;
-}
-
-.index-price {
-  font-family: var(--font-num);
-  font-size: 1.375rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  font-feature-settings: 'tnum';
-  letter-spacing: -0.02em;
-  margin-bottom: 0.35rem;
-}
-
-.index-change {
-  font-family: var(--font-num);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  font-feature-settings: 'tnum';
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.index-change .arrow {
-  display: inline-block;
-  width: 0;
-  height: 0;
-}
-
-.index-change .arrow.up-arrow {
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-bottom: 5px solid var(--positive);
-}
-
-.index-change .arrow.down-arrow {
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 5px solid var(--negative);
-}
-
+.idx:hover { background: var(--card-hover); transform: translateY(-2px); }
+.idx-name { font-size: 0.625rem; font-weight: 500; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem; }
+.idx-price { font-size: 1.375rem; font-weight: 600; font-feature-settings: 'tnum'; letter-spacing: -0.02em; margin-bottom: 0.35rem; }
+.idx-change { font-size: 0.8125rem; font-weight: 500; font-feature-settings: 'tnum'; display: flex; align-items: center; gap: 4px; }
+.arrow-up { width:0; height:0; border-left:4px solid transparent; border-right:4px solid transparent; border-bottom:5px solid var(--positive); }
+.arrow-down { width:0; height:0; border-left:4px solid transparent; border-right:4px solid transparent; border-top:5px solid var(--negative); }
 .up { color: var(--positive); }
 .down { color: var(--negative); }
-.flat { color: var(--text-muted); }
+.flat { color: var(--text-3); }
+.sparkline { width: 100%; height: 32px; margin-top: 10px; }
 
-/* ============================================
-   Sector Heatmap
-   ============================================ */
-.heatmap-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
-  gap: 6px;
-}
+/* Heatmap */
+.heatmap { display: grid; grid-template-columns: repeat(auto-fill, minmax(105px, 1fr)); gap: 6px; }
+.hm-cell { padding: 0.75rem 0.5rem; border-radius: 8px; text-align: center; transition: transform 0.15s; cursor: default; }
+.hm-cell:hover { transform: scale(1.04); }
+.hm-name { font-size: 0.625rem; opacity: 0.85; margin-bottom: 4px; }
+.hm-val { font-weight: 600; font-size: 0.875rem; font-feature-settings: 'tnum'; }
 
-.heatmap-cell {
-  padding: 0.75rem 0.5rem;
-  border-radius: var(--radius-sm);
-  text-align: center;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-  cursor: default;
-}
+/* Macro */
+.macro-text { font-size: 0.9375rem; color: var(--text-2); line-height: 1.85; }
 
-.heatmap-cell:hover {
-  transform: scale(1.04);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
-}
-
-.heatmap-name {
-  font-size: 0.625rem;
-  font-weight: 400;
-  opacity: 0.85;
-  margin-bottom: 4px;
-  letter-spacing: 0.02em;
-}
-
-.heatmap-val {
-  font-family: var(--font-num);
-  font-weight: 600;
-  font-size: 0.875rem;
-  font-feature-settings: 'tnum';
-}
-
-/* ============================================
-   Macro Text
-   ============================================ */
-.macro-text {
-  font-size: 0.9375rem;
-  color: var(--text-secondary);
-  line-height: 1.85;
-  letter-spacing: 0.01em;
-}
-
-/* ============================================
-   Focus Themes — Card Grid
-   ============================================ */
-.themes-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 10px;
-}
-
+/* Themes */
+.themes { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
 .theme-card {
-  background: var(--bg-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-md);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
   padding: 1.5rem;
-  position: relative;
-  overflow: hidden;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: background 0.3s, transform 0.2s;
 }
+.theme-card:hover { background: var(--card-hover); transform: translateY(-2px); }
+.theme-dot { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+.theme-dot span.dot-color { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.theme-dot span.dot-label { font-size: 0.5625rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); }
+.theme-title { font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+.theme-desc { font-size: 0.8125rem; color: var(--text-2); line-height: 1.7; }
 
-.theme-card:hover {
-  background: var(--bg-glass-hover);
-  transform: translateY(-2px);
-}
+/* Events */
+.ev-item { display: flex; gap: 1.25rem; padding: 1rem 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+.ev-item:last-child { border-bottom: none; padding-bottom: 0; }
+.ev-item:first-child { padding-top: 0; }
+.ev-date { font-size: 0.75rem; font-weight: 500; color: var(--gold); min-width: 72px; flex-shrink: 0; }
+.ev-name { font-size: 0.875rem; font-weight: 500; margin-bottom: 2px; }
+.ev-impact { font-size: 0.8125rem; color: var(--text-2); }
 
-.theme-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-}
+/* Learning */
+.learn-term { font-size: 1.125rem; font-weight: 600; color: var(--gold); margin-bottom: 0.75rem; }
+.learn-text { font-size: 0.875rem; color: var(--text-2); line-height: 1.85; }
 
-.theme-card.sentiment-positive::before { background: var(--positive); }
-.theme-card.sentiment-negative::before { background: var(--negative); }
-.theme-card.sentiment-neutral::before { background: var(--text-muted); }
+/* Watchlist */
+.wl-chart { position: relative; width: 100%; height: 220px; margin-bottom: 20px; }
+.wl-table { width: 100%; border-collapse: collapse; font-size: 0.8125rem; }
+.wl-table th { text-align: left; color: var(--text-3); font-size: 0.625rem; font-weight: 500; padding: 0 0 1rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.wl-table td { padding: 0.875rem 0; border-top: 1px solid var(--border); vertical-align: middle; }
+.wl-table tr:hover td { background: rgba(255,255,255,0.02); }
+.s-name { font-weight: 500; font-size: 0.875rem; }
+.s-code { color: var(--text-3); font-size: 0.6875rem; margin-top: 1px; }
+.s-theme { font-size: 0.625rem; font-weight: 500; color: var(--text-2); background: rgba(255,255,255,0.05); padding: 3px 8px; border-radius: 4px; display: inline-block; }
+.s-price { font-weight: 600; font-feature-settings: 'tnum'; }
+.s-change { font-weight: 500; font-feature-settings: 'tnum'; }
+.s-comment { font-size: 0.8125rem; color: var(--text-2); line-height: 1.5; max-width: 320px; }
 
-.theme-sentiment {
-  display: inline-block;
-  font-size: 0.5625rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 3px 8px;
-  border-radius: 4px;
-  margin-bottom: 0.75rem;
-}
+/* News */
+.news-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-item:first-child { padding-top: 0; }
+.news-row { display: grid; grid-template-columns: 56px 1fr; row-gap: 6px; }
+.news-badge { font-size: 9px; font-weight: 500; color: var(--text-3); background: rgba(255,255,255,0.05); padding: 2px 6px; border-radius: 3px; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.05em; justify-self: start; align-self: baseline; }
+.news-badge-ai { font-size: 9px; font-weight: 500; color: var(--gold); background: rgba(201,169,110,0.1); padding: 2px 6px; border-radius: 3px; white-space: nowrap; justify-self: start; align-self: baseline; }
+.news-headline a { font-size: 13px; color: var(--text-2); text-decoration: none; line-height: 1.5; transition: color 0.2s; }
+.news-headline a:hover { color: var(--text-1); }
+.news-comment { font-size: 12px; color: var(--text-2); line-height: 1.7; }
+.news-disclaimer { margin-top: 16px; font-size: 10px; color: var(--text-3); font-style: italic; }
 
-.sentiment-positive .theme-sentiment {
-  color: var(--positive);
-  background: var(--positive-bg);
-}
+/* Footer */
+.footer { max-width: 1320px; margin: 0 auto; padding: 2rem 2.5rem; border-top: 1px solid var(--border); color: var(--text-3); font-size: 0.6875rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
 
-.sentiment-negative .theme-sentiment {
-  color: var(--negative);
-  background: var(--negative-bg);
-}
-
-.sentiment-neutral .theme-sentiment {
-  color: var(--text-muted);
-  background: var(--neutral-bg);
-}
-
-.theme-title {
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 0.5rem;
-  letter-spacing: -0.01em;
-}
-
-.theme-desc {
-  font-size: 0.8125rem;
-  color: var(--text-secondary);
-  line-height: 1.7;
-}
-
-/* ============================================
-   Events
-   ============================================ */
-.event-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.event-item {
-  display: flex;
-  gap: 1.25rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-  align-items: flex-start;
-}
-
-.event-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.event-item:first-child {
-  padding-top: 0;
-}
-
-.event-date {
-  font-family: var(--font-num);
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--accent-gold);
-  min-width: 80px;
-  flex-shrink: 0;
-  padding-top: 1px;
-}
-
-.event-name {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--text-primary);
-  margin-bottom: 2px;
-}
-
-.event-impact {
-  font-size: 0.8125rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-}
-
-/* ============================================
-   Daily Learning
-   ============================================ */
-.learning-term {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--accent-gold);
-  margin-bottom: 0.75rem;
-  letter-spacing: -0.01em;
-}
-
-.learning-text {
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-  line-height: 1.85;
-}
-
-/* ============================================
-   Watchlist Table
-   ============================================ */
-.watchlist-wrap {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.watchlist-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.8125rem;
-}
-
-.watchlist-table th {
-  text-align: left;
-  color: var(--text-muted);
-  font-size: 0.625rem;
-  font-weight: 500;
-  padding: 0 0 1rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.watchlist-table td {
-  padding: 0.875rem 0;
-  border-top: 1px solid rgba(255,255,255,0.04);
-  vertical-align: middle;
-}
-
-.watchlist-table tr:hover td {
-  background: rgba(255,255,255,0.02);
-}
-
-.stock-name {
-  font-weight: 500;
-  color: var(--text-primary);
-  font-size: 0.875rem;
-}
-
-.stock-code {
-  color: var(--text-muted);
-  font-size: 0.6875rem;
-  margin-top: 1px;
-}
-
-.stock-theme {
-  font-size: 0.625rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  background: rgba(255,255,255,0.05);
-  padding: 3px 8px;
-  border-radius: 4px;
-  display: inline-block;
-  letter-spacing: 0.02em;
-}
-
-.stock-price {
-  font-family: var(--font-num);
-  font-weight: 600;
-  font-feature-settings: 'tnum';
-  color: var(--text-primary);
-}
-
-.stock-change {
-  font-family: var(--font-num);
-  font-weight: 500;
-  font-feature-settings: 'tnum';
-}
-
-.stock-comment {
-  font-size: 0.8125rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-  max-width: 320px;
-}
-
-/* ============================================
-   News
-   ============================================ */
-.news-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.news-item {
-  display: flex;
-  gap: 1rem;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.03);
-  align-items: baseline;
-}
-
-.news-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.news-item:first-child {
-  padding-top: 0;
-}
-
-.news-source {
-  font-size: 0.5625rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  background: rgba(255,255,255,0.05);
-  padding: 2px 7px;
-  border-radius: 4px;
-  white-space: nowrap;
-  flex-shrink: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.news-title a {
-  font-size: 0.8125rem;
-  color: var(--text-secondary);
-  text-decoration: none;
-  transition: color 0.2s ease;
-  line-height: 1.5;
-}
-
-.news-title a:hover {
-  color: var(--text-primary);
-}
-
-/* ============================================
-   Footer
-   ============================================ */
-.footer {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 2rem 2.5rem;
-  border-top: 1px solid rgba(255,255,255,0.04);
-  color: var(--text-muted);
-  font-size: 0.6875rem;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-/* ============================================
-   Responsive
-   ============================================ */
-@media (max-width: 1024px) {
-  .indices-row { grid-template-columns: repeat(3, 1fr); }
-}
-
-@media (max-width: 900px) {
+/* Responsive */
+@media (max-width:1024px) { .indices { grid-template-columns: repeat(3,1fr); } }
+@media (max-width:900px) {
   .grid-2 { grid-template-columns: 1fr; }
-  .indices-row { grid-template-columns: repeat(2, 1fr); }
-  .themes-grid { grid-template-columns: 1fr; }
-  .container { padding: 0 1.5rem 2rem; }
+  .indices { grid-template-columns: repeat(2,1fr); }
+  .themes { grid-template-columns: 1fr; }
+  .wrap { padding: 0 1.5rem 2rem; }
   .header { padding: 1.5rem 1.5rem 1rem; }
   .footer { padding: 1.5rem; }
 }
-
-@media (max-width: 600px) {
-  .container { padding: 0 1rem 1.5rem; }
+@media (max-width:600px) {
+  .wrap { padding: 0 1rem 1.5rem; }
   .header { padding: 1.25rem 1rem 0.75rem; }
-  .header-title { font-size: 1.25rem; }
-  .card { padding: 1.25rem; border-radius: var(--radius-md); }
-  .summary-card { padding: 1.5rem; border-radius: var(--radius-lg); }
-  .indices-row { grid-template-columns: 1fr 1fr; gap: 8px; }
-  .index-price { font-size: 1.125rem; }
-  .heatmap-grid { grid-template-columns: repeat(auto-fill, minmax(85px, 1fr)); }
+  .header h1 { font-size: 1.25rem; }
+  .card { padding: 1.25rem; }
+  .summary { padding: 1.5rem; }
+  .indices { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .idx-price { font-size: 1.125rem; }
+  .heatmap { grid-template-columns: repeat(auto-fill, minmax(85px,1fr)); }
   .footer { padding: 1rem; flex-direction: column; }
 }
 </style>
 </head>
 <body>
 
-<!-- Header -->
 <header class="header">
   <div>
-    <h1 class="header-title">Economic Dashboard</h1>
+    <h1>Economic Dashboard</h1>
     <hr class="header-rule">
   </div>
   <div class="header-meta">
@@ -633,40 +197,52 @@ body {
   </div>
 </header>
 
-<div class="container">
+<div class="wrap">
 
   <!-- Market Summary -->
-  <section class="summary-card section-gap">
-    <div class="card-label">Market Summary</div>
-    <p class="summary-text">{{ analysis.market_summary }}</p>
+  <section class="summary gap">
+    <div class="label">Market summary</div>
+    <p>{{ analysis.market_summary }}</p>
   </section>
 
-  <!-- Major Indices -->
-  <section class="section-gap">
-    <div class="indices-row">
+  <!-- Indices with Sparklines -->
+  <section class="gap">
+    <div class="indices">
       {% for idx in indices %}
-      <div class="index-card">
-        <div class="index-name">{{ idx.name }}</div>
+      <div class="idx">
+        <div class="idx-name">{{ idx.name }}</div>
         {% if idx.price is not none %}
-        <div class="index-price">{{ "{:,.2f}".format(idx.price) }}</div>
-        <div class="index-change {% if idx.change >= 0 %}up{% else %}down{% endif %}">
-          <span class="arrow {% if idx.change >= 0 %}up-arrow{% else %}down-arrow{% endif %}"></span>
+        <div class="idx-price">{{ "{:,.2f}".format(idx.price) }}</div>
+        <div class="idx-change {% if idx.change >= 0 %}up{% else %}down{% endif %}">
+          <span class="{% if idx.change >= 0 %}arrow-up{% else %}arrow-down{% endif %}"></span>
           {% if idx.change >= 0 %}+{% endif %}{{ "{:.2f}".format(idx.change_pct) }}%
         </div>
+        {% if idx.sparkline %}
+        <svg class="sparkline" viewBox="0 0 120 32" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="sg{{ loop.index }}" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="{% if idx.change >= 0 %}{{ '#34D399' }}{% else %}{{ '#F87171' }}{% endif %}" />
+              <stop offset="100%" stop-color="{% if idx.change >= 0 %}{{ '#34D399' }}{% else %}{{ '#F87171' }}{% endif %}" stop-opacity="0" />
+            </linearGradient>
+          </defs>
+          <path d="{{ idx.sparkline }}" fill="none" stroke="{% if idx.change >= 0 %}#34D399{% else %}#F87171{% endif %}" stroke-width="1.5" stroke-linecap="round" />
+          <path d="{{ idx.sparkline }} L120,32 L0,32Z" fill="url(#sg{{ loop.index }})" opacity="0.12" />
+        </svg>
+        {% endif %}
         {% else %}
-        <div class="index-price flat">--</div>
-        <div class="index-change flat">N/A</div>
+        <div class="idx-price flat">--</div>
+        <div class="idx-change flat">N/A</div>
         {% endif %}
       </div>
       {% endfor %}
     </div>
   </section>
 
-  <!-- Sector Heatmap + Macro Environment -->
-  <div class="grid-2 section-gap">
+  <!-- Sector + Macro -->
+  <div class="grid-2 gap">
     <section class="card">
-      <div class="card-label">Sector Heatmap</div>
-      <div class="heatmap-grid">
+      <div class="label">Sector heatmap</div>
+      <div class="heatmap">
         {% for sector in sectors %}
         {% set pct = sector.change_pct %}
         {% if pct > 2.0 %}
@@ -688,27 +264,30 @@ body {
           {% set bg = "rgba(248,113,113,0.15)" %}
           {% set fg = "#f87171" %}
         {% endif %}
-        <div class="heatmap-cell" style="background:{{ bg }}; color:{{ fg }};">
-          <div class="heatmap-name">{{ sector.name }}</div>
-          <div class="heatmap-val">{% if pct >= 0 %}+{% endif %}{{ "{:.1f}".format(pct) }}%</div>
+        <div class="hm-cell" style="background:{{ bg }}; color:{{ fg }};">
+          <div class="hm-name">{{ sector.name }}</div>
+          <div class="hm-val">{% if pct >= 0 %}+{% endif %}{{ "{:.1f}".format(pct) }}%</div>
         </div>
         {% endfor %}
       </div>
     </section>
 
     <section class="card">
-      <div class="card-label">Macro Environment</div>
+      <div class="label">Macro environment</div>
       <p class="macro-text">{{ analysis.macro_environment }}</p>
     </section>
   </div>
 
   <!-- Focus Themes -->
-  <section class="section-gap">
-    <div class="card-label" style="padding: 0 0 1rem;">Focus Themes</div>
-    <div class="themes-grid">
+  <section class="gap">
+    <div class="label" style="padding:0 0 1rem;">Focus themes</div>
+    <div class="themes">
       {% for theme in analysis.themes %}
-      <div class="theme-card sentiment-{{ theme.sentiment }}">
-        <div class="theme-sentiment">{{ theme.sentiment }}</div>
+      <div class="theme-card">
+        <div class="theme-dot">
+          <span class="dot-color" style="background:{% if theme.sentiment == 'positive' %}var(--positive){% elif theme.sentiment == 'negative' %}var(--negative){% else %}var(--text-3){% endif %};"></span>
+          <span class="dot-label">{{ theme.sentiment }}</span>
+        </div>
         <div class="theme-title">{{ theme.title }}</div>
         <div class="theme-desc">{{ theme.description }}</div>
       </div>
@@ -716,45 +295,46 @@ body {
     </div>
   </section>
 
-  <!-- Events + Daily Learning -->
-  <div class="grid-2 section-gap">
+  <!-- Events + Learning -->
+  <div class="grid-2 gap">
     <section class="card">
-      <div class="card-label">Upcoming Events</div>
+      <div class="label">Upcoming events</div>
       {% if analysis.upcoming_events %}
-      <div class="event-list">
-        {% for event in analysis.upcoming_events %}
-        <div class="event-item">
-          <div class="event-date">{{ event.date }}</div>
-          <div>
-            <div class="event-name">{{ event.event }}</div>
-            <div class="event-impact">{{ event.impact }}</div>
-          </div>
+      {% for event in analysis.upcoming_events %}
+      <div class="ev-item">
+        <div class="ev-date">{{ event.date }}</div>
+        <div>
+          <div class="ev-name">{{ event.event }}</div>
+          <div class="ev-impact">{{ event.impact }}</div>
         </div>
-        {% endfor %}
       </div>
+      {% endfor %}
       {% else %}
-      <p style="color:var(--text-muted); font-size:0.875rem;">No upcoming events available.</p>
+      <p style="color:var(--text-3); font-size:0.875rem;">No upcoming events available.</p>
       {% endif %}
     </section>
 
     <section class="card">
-      <div class="card-label">Daily Learning</div>
-      <div class="learning-term">{{ analysis.daily_learning.term }}</div>
-      <div class="learning-text">{{ analysis.daily_learning.explanation }}</div>
+      <div class="label">Daily learning</div>
+      <div class="learn-term">{{ analysis.daily_learning.term }}</div>
+      <div class="learn-text">{{ analysis.daily_learning.explanation }}</div>
     </section>
   </div>
 
   <!-- Watchlist -->
-  <section class="card section-gap">
-    <div class="card-label">Watchlist</div>
-    <div class="watchlist-wrap">
-    <table class="watchlist-table">
+  <section class="card gap">
+    <div class="label">Watchlist</div>
+    <div class="wl-chart">
+      <canvas id="wlChart"></canvas>
+    </div>
+    <div style="overflow-x:auto;">
+    <table class="wl-table">
       <thead>
         <tr>
           <th style="padding-right:1.5rem;">銘柄</th>
           <th style="padding-right:1rem;">テーマ</th>
-          <th style="padding-right:1rem; text-align:right;">株価</th>
-          <th style="padding-right:1rem; text-align:right;">前日比</th>
+          <th style="padding-right:1rem;text-align:right;">株価</th>
+          <th style="padding-right:1rem;text-align:right;">前日比</th>
           <th>コメント</th>
         </tr>
       </thead>
@@ -762,24 +342,17 @@ body {
         {% for stock in watchlist %}
         <tr>
           <td style="padding-right:1.5rem;">
-            <div class="stock-name">{{ stock.name }}</div>
-            <div class="stock-code">{{ stock.code }}</div>
+            <div class="s-name">{{ stock.name }}</div>
+            <div class="s-code">{{ stock.code }}</div>
           </td>
-          <td style="padding-right:1rem;">
-            <span class="stock-theme">{{ stock.theme }}</span>
+          <td style="padding-right:1rem;"><span class="s-theme">{{ stock.theme }}</span></td>
+          <td class="s-price" style="text-align:right;padding-right:1rem;">
+            {% if stock.price is not none %}¥{{ "{:,.0f}".format(stock.price) }}{% else %}--{% endif %}
           </td>
-          <td class="stock-price" style="text-align:right; padding-right:1rem;">
-            {% if stock.price is not none %}
-            ¥{{ "{:,.0f}".format(stock.price) }}
-            {% else %}--{% endif %}
+          <td class="s-change {% if stock.change_pct is not none %}{% if stock.change_pct >= 0 %}up{% else %}down{% endif %}{% endif %}" style="text-align:right;padding-right:1rem;">
+            {% if stock.change_pct is not none %}{% if stock.change_pct >= 0 %}+{% endif %}{{ "{:.2f}".format(stock.change_pct) }}%{% else %}N/A{% endif %}
           </td>
-          <td class="stock-change {% if stock.change_pct is not none %}{% if stock.change_pct >= 0 %}up{% else %}down{% endif %}{% endif %}"
-              style="text-align:right; padding-right:1rem;">
-            {% if stock.change_pct is not none %}
-            {% if stock.change_pct >= 0 %}+{% endif %}{{ "{:.2f}".format(stock.change_pct) }}%
-            {% else %}N/A{% endif %}
-          </td>
-          <td class="stock-comment">
+          <td class="s-comment">
             {% for c in analysis.watchlist_comments %}
               {% if c.code == stock.code %}{{ c.comment }}{% endif %}
             {% endfor %}
@@ -791,19 +364,22 @@ body {
     </div>
   </section>
 
-  <!-- News -->
+  <!-- News with AI Commentary -->
   <section class="card">
-    <div class="card-label">Latest News</div>
-    <div class="news-list">
-      {% for item in news[:20] %}
-      <div class="news-item">
-        <span class="news-source">{{ item.source }}</span>
-        <div class="news-title">
-          <a href="{{ item.link }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a>
-        </div>
+    <div class="label">Latest news</div>
+    {% for item in news[:20] %}
+    <div class="news-item">
+      <div class="news-row">
+        <span class="news-badge">{{ item.source }}</span>
+        <div class="news-headline"><a href="{{ item.link }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a></div>
+        {% if item.ai_comment %}
+        <span class="news-badge-ai">AI分析</span>
+        <div class="news-comment">{{ item.ai_comment }}</div>
+        {% endif %}
       </div>
-      {% endfor %}
     </div>
+    {% endfor %}
+    <div class="news-disclaimer">AI分析はGeminiによる自動生成です。投資判断の参考情報であり、推奨ではありません。</div>
   </section>
 
 </div>
@@ -812,6 +388,51 @@ body {
   <span>Economic Dashboard — Auto-generated via GitHub Actions</span>
   <span>Data: Yahoo Finance / RSS | AI: {{ provider }} | Not investment advice</span>
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+(function(){
+  var labels = [{% for s in watchlist %}"{{ s.name }}"{% if not loop.last %},{% endif %}{% endfor %}];
+  var values = [{% for s in watchlist %}{{ s.change_pct if s.change_pct is not none else 0 }}{% if not loop.last %},{% endif %}{% endfor %}];
+  var colors = values.map(function(v){ return v >= 0 ? '#34D399' : '#F87171'; });
+  var bgColors = values.map(function(v){ return v >= 0 ? 'rgba(52,211,153,0.2)' : 'rgba(248,113,113,0.2)'; });
+
+  new Chart(document.getElementById('wlChart'), {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        data: values,
+        backgroundColor: bgColors,
+        borderColor: colors,
+        borderWidth: 1,
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: {
+          ticks: { color: 'rgba(255,255,255,0.35)', font: { size: 11 }, autoSkip: false },
+          grid: { display: false },
+          border: { display: false }
+        },
+        y: {
+          ticks: {
+            color: 'rgba(255,255,255,0.35)',
+            font: { size: 11 },
+            callback: function(v){ return (v >= 0 ? '+' : '') + v.toFixed(1) + '%'; }
+          },
+          grid: { color: 'rgba(255,255,255,0.05)' },
+          border: { display: false }
+        }
+      }
+    }
+  });
+})();
+</script>
 
 </body>
 </html>

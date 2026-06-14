@@ -46,13 +46,30 @@ def fetch_rss_feeds(config):
     return all_news
 
 
+def _make_sparkline_svg(prices):
+    """終値リストからスパークラインSVGパスを生成"""
+    if not prices or len(prices) < 2:
+        return ""
+    w, h = 120, 32
+    mn, mx = min(prices), max(prices)
+    rng = mx - mn if mx != mn else 1
+    pad = 2
+    points = []
+    for i, p in enumerate(prices):
+        x = round(i / (len(prices) - 1) * w, 1)
+        y = round(pad + (1 - (p - mn) / rng) * (h - pad * 2), 1)
+        points.append(f"{x},{y}")
+    path = "M" + " L".join(points)
+    return path
+
+
 def fetch_index_data(config):
-    """主要指数の最新データを取得"""
+    """主要指数の最新データを取得（スパークライン用履歴付き）"""
     indices = []
     for idx_info in config.get("indices", []):
         try:
             ticker = yf.Ticker(idx_info["code"])
-            hist = ticker.history(period="5d")
+            hist = ticker.history(period="1mo")
             if len(hist) < 1:
                 print(f"[WARN] 指数データなし: {idx_info['name']}")
                 indices.append({
@@ -61,6 +78,7 @@ def fetch_index_data(config):
                     "price": None,
                     "change": None,
                     "change_pct": None,
+                    "sparkline": "",
                 })
                 continue
 
@@ -75,12 +93,16 @@ def fetch_index_data(config):
                 change = 0
                 change_pct = 0
 
+            spark_prices = [float(row["Close"]) for _, row in hist.tail(20).iterrows()]
+            sparkline = _make_sparkline_svg(spark_prices)
+
             indices.append({
                 "name": idx_info["name"],
                 "code": idx_info["code"],
                 "price": round(float(price), 2),
                 "change": round(float(change), 2),
                 "change_pct": round(float(change_pct), 2),
+                "sparkline": sparkline,
             })
         except Exception as e:
             print(f"[WARN] 指数取得失敗 ({idx_info['name']}): {e}")
@@ -90,6 +112,7 @@ def fetch_index_data(config):
                 "price": None,
                 "change": None,
                 "change_pct": None,
+                "sparkline": "",
             })
     return indices
 

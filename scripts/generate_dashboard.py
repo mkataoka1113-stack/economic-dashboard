@@ -32,6 +32,11 @@ def generate():
     analysis = analyze_market(data)
     print(f"[INFO] AI分析完了 (provider: {analysis.get('_provider', 'unknown')})")
 
+    # 2.5. ニュースにAIコメントをマージ
+    news_comments = {nc["index"]: nc["comment"] for nc in analysis.get("news_comments", [])}
+    for i, item in enumerate(data["news"]):
+        item["ai_comment"] = news_comments.get(i, "")
+
     # 3. HTML生成
     print("[INFO] HTML生成中...")
     template_dir = os.path.join(project_root, "templates")
