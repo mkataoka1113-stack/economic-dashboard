@@ -5,31 +5,1082 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Economic Dashboard</title>
 <style>
+/* ============================================
+   Base / Reset
+   ============================================ */
+:root {
+  --bg-primary: #0a0e17;
+  --bg-card: #111827;
+  --bg-card-hover: #1a2332;
+  --border: #1e293b;
+  --border-accent: #0ea5e9;
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent: #0ea5e9;
+  --accent-dim: rgba(14,165,233,0.15);
+  --positive: #22c55e;
+  --negative: #ef4444;
+  --neutral: #eab308;
+  --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+  --font-sans: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
 body {
-  background: #0a0e17;
-  color: #94a3b8;
-  font-family: 'SF Mono', 'Consolas', monospace;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
   min-height: 100vh;
+}
+
+/* ============================================
+   Header
+   ============================================ */
+.header {
+  background: linear-gradient(135deg, #0a0e17 0%, #111827 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+.header-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.header h1 {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+.header h1 span {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.header-meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.pulse {
+  width: 6px;
+  height: 6px;
+  background: var(--positive);
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* ============================================
+   Layout
+   ============================================ */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.full-width { grid-column: 1 / -1; }
+
+/* ============================================
+   Cards
+   ============================================ */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  transition: border-color 0.2s;
+}
+
+.card:hover { border-color: var(--border-accent); }
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.card-header h2 {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.card-icon {
+  font-size: 1rem;
+}
+
+/* ============================================
+   Index Ticker
+   ============================================ */
+.ticker-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.ticker-item {
+  flex: 1;
+  min-width: 140px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.75rem;
   text-align: center;
+  font-family: var(--font-mono);
 }
-.init {
-  max-width: 400px;
-  padding: 2rem;
+
+.ticker-name {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.05em;
 }
-h1 { color: #0ea5e9; font-size: 1.2rem; margin-bottom: 1rem; }
-p { font-size: 0.85rem; line-height: 1.6; }
+
+.ticker-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+
+.ticker-change {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.up { color: var(--positive); }
+.down { color: var(--negative); }
+.flat { color: var(--text-muted); }
+
+/* ============================================
+   Heatmap
+   ============================================ */
+.heatmap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 4px;
+}
+
+.heatmap-cell {
+  padding: 0.5rem 0.25rem;
+  border-radius: 4px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  transition: transform 0.15s;
+}
+
+.heatmap-cell:hover { transform: scale(1.05); }
+
+.heatmap-name {
+  font-size: 0.65rem;
+  opacity: 0.9;
+  margin-bottom: 0.15rem;
+}
+
+.heatmap-val {
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+/* ============================================
+   Themes
+   ============================================ */
+.theme-item {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.theme-item.positive { border-left-color: var(--positive); }
+.theme-item.negative { border-left-color: var(--negative); }
+.theme-item.neutral { border-left-color: var(--neutral); }
+
+.theme-title {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.theme-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ============================================
+   Watchlist Table
+   ============================================ */
+.watchlist-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.watchlist-table th {
+  text-align: left;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--border);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.watchlist-table td {
+  padding: 0.6rem 0.5rem;
+  border-bottom: 1px solid rgba(30,41,59,0.5);
+}
+
+.watchlist-table tr:hover {
+  background: var(--bg-card-hover);
+}
+
+.stock-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.stock-code {
+  color: var(--text-muted);
+  font-size: 0.7rem;
+}
+
+.stock-theme {
+  font-size: 0.7rem;
+  color: var(--accent);
+  background: var(--accent-dim);
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.stock-comment {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* ============================================
+   News List
+   ============================================ */
+.news-item {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(30,41,59,0.3);
+  align-items: baseline;
+}
+
+.news-source {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--accent);
+  background: var(--accent-dim);
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.news-title {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.news-title a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.news-title a:hover { color: var(--text-primary); }
+
+/* ============================================
+   Events / Calendar
+   ============================================ */
+.event-item {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(30,41,59,0.3);
+}
+
+.event-date {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+.event-name {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.event-impact {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* ============================================
+   Learning Card
+   ============================================ */
+.learning-term {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.learning-text {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ============================================
+   Macro Card
+   ============================================ */
+.macro-text {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ============================================
+   Summary Card
+   ============================================ */
+.summary-text {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+.footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 900px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .ticker-row { flex-direction: column; }
+  .ticker-item { min-width: auto; }
+}
+
+@media (max-width: 600px) {
+  .container { padding: 0.5rem; }
+  .card { padding: 1rem; }
+  .header { padding: 0.75rem 1rem; }
+  .header h1 { font-size: 0.9rem; }
+  .heatmap-grid { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); }
+}
 </style>
 </head>
 <body>
-<div class="init">
-  <h1>ECONOMIC DASHBOARD</h1>
-  <p>初期化待ち — GitHub Actionsが初回実行されるとダッシュボードが生成されます。</p>
-  <p style="margin-top:1rem; font-size:0.75rem; color:#64748b;">
-    手動実行: Actions → Update Economic Dashboard → Run workflow
-  </p>
+
+<!-- Header -->
+<header class="header">
+  <div class="header-inner">
+    <h1>ECONOMIC <span>DASHBOARD</span></h1>
+    <div class="header-meta">
+      <span class="pulse"></span>
+      <span>2026-06-14 12:08 JST</span>
+      <span>via fallback</span>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- 市場概況 -->
+  <section class="card full-width" style="margin-bottom:1rem; border-left: 3px solid var(--accent);">
+    <div class="card-header">
+      <span class="card-icon">📊</span>
+      <h2>Market Summary</h2>
+    </div>
+    <p class="summary-text">AI分析は現在利用できません。指数データとニュース見出しをご確認ください。</p>
+  </section>
+
+  <!-- 主要指数 -->
+  <section class="card full-width" style="margin-bottom:1rem;">
+    <div class="card-header">
+      <span class="card-icon">📈</span>
+      <h2>Major Indices</h2>
+    </div>
+    <div class="ticker-row">
+      
+      <div class="ticker-item">
+        <div class="ticker-name">日経平均</div>
+        
+        <div class="ticker-price up">
+          66,020.04
+        </div>
+        <div class="ticker-change up">
+          +2.81%
+        </div>
+        
+      </div>
+      
+      <div class="ticker-item">
+        <div class="ticker-name">TOPIX</div>
+        
+        <div class="ticker-price flat">--</div>
+        <div class="ticker-change flat">N/A</div>
+        
+      </div>
+      
+      <div class="ticker-item">
+        <div class="ticker-name">ドル円</div>
+        
+        <div class="ticker-price up">
+          160.18
+        </div>
+        <div class="ticker-change up">
+          +0.03%
+        </div>
+        
+      </div>
+      
+      <div class="ticker-item">
+        <div class="ticker-name">S&P 500</div>
+        
+        <div class="ticker-price up">
+          7,431.46
+        </div>
+        <div class="ticker-change up">
+          +0.50%
+        </div>
+        
+      </div>
+      
+      <div class="ticker-item">
+        <div class="ticker-name">NASDAQ</div>
+        
+        <div class="ticker-price up">
+          25,888.84
+        </div>
+        <div class="ticker-change up">
+          +0.31%
+        </div>
+        
+      </div>
+      
+    </div>
+  </section>
+
+  <div class="grid-2" style="margin-bottom:1rem;">
+    <!-- セクターヒートマップ -->
+    <section class="card">
+      <div class="card-header">
+        <span class="card-icon">🗺️</span>
+        <h2>Sector Heatmap</h2>
+      </div>
+      <div class="heatmap-grid">
+        
+        
+        
+          
+          
+        
+        <div class="heatmap-cell" style="background:rgba(239,68,68,0.3); color:#fecaca;">
+          <div class="heatmap-name">食品</div>
+          <div class="heatmap-val">-0.7%</div>
+        </div>
+        
+        
+        
+          
+          
+        
+        <div class="heatmap-cell" style="background:rgba(239,68,68,0.3); color:#fecaca;">
+          <div class="heatmap-name">エネルギー</div>
+          <div class="heatmap-val">-1.5%</div>
+        </div>
+        
+        
+        
+          
+          
+        
+        <div class="heatmap-cell" style="background:rgba(34,197,94,0.3); color:#bbf7d0;">
+          <div class="heatmap-name">建設・資材</div>
+          <div class="heatmap-val">+1.5%</div>
+        </div>
+        
+        
+        
+          
+          
+        
+        <div class="heatmap-cell" style="background:rgba(34,197,94,0.6); color:#fff;">
+          <div class="heatmap-name">素材・化学</div>
+          <div class="heatmap-val">+2.2%</div>
+        </div>
+        
+        
+        
+          
+          
+        
+        <div class="heatmap-cell" style="background:rgba(34,197,94,0.6); color:#fff;">
+          <div class="heatmap-name">医薬品</div>
+          <div class="heatmap-val">+1.5%</div>
+        </div>
+        
+        
+        
+          
+          
+        
+        <div class="heatmap-cell" style="background:rgba(34,197,94,0.3); color:#bbf7d0;">
+          <div class="heatmap-name">自動車・輸送機</div>
+          <div class="heatmap-val">+0.7%</div>
+        </div>
+        
+        
+        
+          
+          
+        
+        <div class="heatmap-cell" style="background:rgba(34,197,94,0.6); color:#fff;">
+          <div class="heatmap-name">鉄鋼・非鉄</div>
+          <div class="heatmap-val">+5.2%</div>
+        </div>
+        
+        
+        
+          
+          
+        
+        <div class="heatmap-cell" style="background:rgba(34,197,94,0.6); color:#fff;">
+          <div class="heatmap-name">機械</div>
+          <div class="heatmap-val">+2.7%</div>
+        </div>
+        
+        
+        
+          
+          
+        
+        <div class="heatmap-cell" style="background:rgba(34,197,94,0.6); color:#fff;">
+          <div class="heatmap-name">電機・精密</div>
+          <div class="heatmap-val">+1.9%</div>
+        </div>
+        
+        
+        
+          
+          
+        
+        <div class="heatmap-cell" style="background:rgba(100,116,139,0.3); color:#94a3b8;">
+          <div class="heatmap-name">情報通信・サービス</div>
+          <div class="heatmap-val">-0.5%</div>
+        </div>
+        
+        
+        
+          
+          
+        
+        <div class="heatmap-cell" style="background:rgba(100,116,139,0.3); color:#94a3b8;">
+          <div class="heatmap-name">電力・ガス</div>
+          <div class="heatmap-val">+0.1%</div>
+        </div>
+        
+        
+        
+          
+          
+        
+        <div class="heatmap-cell" style="background:rgba(239,68,68,0.3); color:#fecaca;">
+          <div class="heatmap-name">運輸・物流</div>
+          <div class="heatmap-val">-0.6%</div>
+        </div>
+        
+        
+        
+          
+          
+        
+        <div class="heatmap-cell" style="background:rgba(34,197,94,0.3); color:#bbf7d0;">
+          <div class="heatmap-name">商社・卸売</div>
+          <div class="heatmap-val">+1.3%</div>
+        </div>
+        
+        
+        
+          
+          
+        
+        <div class="heatmap-cell" style="background:rgba(34,197,94,0.3); color:#bbf7d0;">
+          <div class="heatmap-name">小売</div>
+          <div class="heatmap-val">+1.3%</div>
+        </div>
+        
+        
+        
+          
+          
+        
+        <div class="heatmap-cell" style="background:rgba(34,197,94,0.6); color:#fff;">
+          <div class="heatmap-name">銀行</div>
+          <div class="heatmap-val">+1.9%</div>
+        </div>
+        
+        
+        
+          
+          
+        
+        <div class="heatmap-cell" style="background:rgba(100,116,139,0.3); color:#94a3b8;">
+          <div class="heatmap-name">金融（除く銀行）</div>
+          <div class="heatmap-val">-0.1%</div>
+        </div>
+        
+        
+        
+          
+          
+        
+        <div class="heatmap-cell" style="background:rgba(34,197,94,0.3); color:#bbf7d0;">
+          <div class="heatmap-name">不動産</div>
+          <div class="heatmap-val">+1.5%</div>
+        </div>
+        
+      </div>
+    </section>
+
+    <!-- マクロ環境 -->
+    <section class="card">
+      <div class="card-header">
+        <span class="card-icon">🌐</span>
+        <h2>Macro Environment</h2>
+      </div>
+      <p class="macro-text">AI分析サービスに接続できませんでした。次回更新時に再試行します。</p>
+    </section>
+  </div>
+
+  <!-- 注目テーマ -->
+  <section class="card full-width" style="margin-bottom:1rem;">
+    <div class="card-header">
+      <span class="card-icon">🔥</span>
+      <h2>Focus Themes</h2>
+    </div>
+    
+    <div class="theme-item neutral">
+      <div class="theme-title">フィジカルAI × 建設</div>
+      <div class="theme-desc">データ取得中...</div>
+    </div>
+    
+    <div class="theme-item neutral">
+      <div class="theme-title">アニメ・コンテンツ</div>
+      <div class="theme-desc">データ取得中...</div>
+    </div>
+    
+    <div class="theme-item neutral">
+      <div class="theme-title">AI全般</div>
+      <div class="theme-desc">データ取得中...</div>
+    </div>
+    
+  </section>
+
+  <div class="grid-2" style="margin-bottom:1rem;">
+    <!-- 経済カレンダー -->
+    <section class="card">
+      <div class="card-header">
+        <span class="card-icon">📅</span>
+        <h2>Upcoming Events</h2>
+      </div>
+      
+      <p style="color:var(--text-muted);font-size:0.85rem;">データ取得中...</p>
+      
+    </section>
+
+    <!-- 今日の学び -->
+    <section class="card">
+      <div class="card-header">
+        <span class="card-icon">💡</span>
+        <h2>Daily Learning</h2>
+      </div>
+      <div class="learning-term">—</div>
+      <div class="learning-text">AI分析サービス復旧後に生成されます。</div>
+    </section>
+  </div>
+
+  <!-- ウォッチリスト -->
+  <section class="card full-width" style="margin-bottom:1rem;">
+    <div class="card-header">
+      <span class="card-icon">👁️</span>
+      <h2>Watchlist</h2>
+    </div>
+    <div style="overflow-x:auto;">
+    <table class="watchlist-table">
+      <thead>
+        <tr>
+          <th>銘柄</th>
+          <th>テーマ</th>
+          <th>株価</th>
+          <th>前日比</th>
+          <th>コメント</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td>
+            <div class="stock-name">東映アニメーション</div>
+            <div class="stock-code">4816.T</div>
+          </td>
+          <td><span class="stock-theme">アニメ・IP</span></td>
+          <td style="font-family:var(--font-mono); font-weight:600;">
+            
+            ¥2,406
+            
+          </td>
+          <td class="down"
+              style="font-family:var(--font-mono); font-weight:600;">
+            
+            -0.25%
+            
+          </td>
+          <td class="stock-comment">
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            <div class="stock-name">安川電機</div>
+            <div class="stock-code">6506.T</div>
+          </td>
+          <td><span class="stock-theme">フィジカルAI・ロボット</span></td>
+          <td style="font-family:var(--font-mono); font-weight:600;">
+            
+            ¥6,335
+            
+          </td>
+          <td class="up"
+              style="font-family:var(--font-mono); font-weight:600;">
+            
+            +5.30%
+            
+          </td>
+          <td class="stock-comment">
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            <div class="stock-name">ファナック</div>
+            <div class="stock-code">6954.T</div>
+          </td>
+          <td><span class="stock-theme">産業ロボット</span></td>
+          <td style="font-family:var(--font-mono); font-weight:600;">
+            
+            ¥6,950
+            
+          </td>
+          <td class="up"
+              style="font-family:var(--font-mono); font-weight:600;">
+            
+            +2.54%
+            
+          </td>
+          <td class="stock-comment">
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            <div class="stock-name">コマツ</div>
+            <div class="stock-code">6301.T</div>
+          </td>
+          <td><span class="stock-theme">建設機械の自動化</span></td>
+          <td style="font-family:var(--font-mono); font-weight:600;">
+            
+            ¥6,525
+            
+          </td>
+          <td class="up"
+              style="font-family:var(--font-mono); font-weight:600;">
+            
+            +1.87%
+            
+          </td>
+          <td class="stock-comment">
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            <div class="stock-name">三菱UFJ</div>
+            <div class="stock-code">8306.T</div>
+          </td>
+          <td><span class="stock-theme">銀行・金利</span></td>
+          <td style="font-family:var(--font-mono); font-weight:600;">
+            
+            ¥3,162
+            
+          </td>
+          <td class="up"
+              style="font-family:var(--font-mono); font-weight:600;">
+            
+            +0.67%
+            
+          </td>
+          <td class="stock-comment">
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            <div class="stock-name">ソニーグループ</div>
+            <div class="stock-code">6758.T</div>
+          </td>
+          <td><span class="stock-theme">エンタメ・アニメ配信</span></td>
+          <td style="font-family:var(--font-mono); font-weight:600;">
+            
+            ¥3,292
+            
+          </td>
+          <td class="down"
+              style="font-family:var(--font-mono); font-weight:600;">
+            
+            -2.29%
+            
+          </td>
+          <td class="stock-comment">
+            
+          </td>
+        </tr>
+        
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <!-- ニュース -->
+  <section class="card full-width">
+    <div class="card-header">
+      <span class="card-icon">📰</span>
+      <h2>Latest News</h2>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-source">日経新聞</span>
+      <div class="news-title">
+        <a href="https://www.nikkei.com/article/DGXZQOKC141SX0U6A610C2000000/" target="_blank" rel="noopener noreferrer">マイユニバースが急性心不全で死ぬ　宝塚記念、競走を中止</a>
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-source">日経新聞</span>
+      <div class="news-title">
+        <a href="https://www.nikkei.com/article/DGXZQOUA141RS0U6A610C2000000/" target="_blank" rel="noopener noreferrer">林芳正総務相、将来の自民党総裁に意欲　「志持ち続ける」</a>
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-source">日経新聞</span>
+      <div class="news-title">
+        <a href="https://www.nikkei.com/article/DGXZQOKC141HB0U6A610C2000000/" target="_blank" rel="noopener noreferrer">柔道男子1部、旭化成が5連覇　全日本実業団体</a>
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-source">日経新聞</span>
+      <div class="news-title">
+        <a href="https://www.nikkei.com/article/DGXZQOUA12CBO0S6A610C2000000/" target="_blank" rel="noopener noreferrer">日英、洋上風力や高温ガス炉開発で協力　AI・量子も首脳合意へ</a>
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-source">日経新聞</span>
+      <div class="news-title">
+        <a href="https://www.nikkei.com/article/DGXZQOKC141F90U6A610C2000000/" target="_blank" rel="noopener noreferrer">SC軽井沢ク、男女ともに優勝　カーリング日本選手権</a>
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-source">日経新聞</span>
+      <div class="news-title">
+        <a href="https://www.nikkei.com/article/DGXZQOGM141NH0U6A610C2000000/" target="_blank" rel="noopener noreferrer">モンゴル外相「台湾統一の実現支持」　中国・王毅外相と会談</a>
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-source">日経新聞</span>
+      <div class="news-title">
+        <a href="https://www.nikkei.com/article/DGXZQODH140Y40U6A610C2000000/" target="_blank" rel="noopener noreferrer">ゴルフ桑木志帆、苦境に動じず今季2勝目　全米女子OPの自信が糧に</a>
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-source">日経新聞</span>
+      <div class="news-title">
+        <a href="https://www.nikkei.com/article/DGXZQODH140QU0U6A610C2000000/" target="_blank" rel="noopener noreferrer">ハンドボール・リーグH、香川銀行が女子初優勝　男子は刈谷7季ぶり</a>
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-source">日経新聞</span>
+      <div class="news-title">
+        <a href="https://www.nikkei.com/article/DGXZQODH140EF0U6A610C2000000/" target="_blank" rel="noopener noreferrer">宝塚記念連覇のメイショウタバル　精神面が充実、直前の豪雨も味方</a>
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-source">日経新聞</span>
+      <div class="news-title">
+        <a href="https://www.nikkei.com/article/DGXZQOKC141K00U6A610C2000000/" target="_blank" rel="noopener noreferrer">パラ陸上、吉田彩乃が日本新で2冠　日本選手権</a>
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-source">Google News 経済</span>
+      <div class="news-title">
+        <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE1kNW4ya1dVWjZKSll5d1plUWd5eFRRckItZXNQeWsxR25TbWc4YlMwTFA4S3VycXdkOHZXZ1h2bWtQS0VlU3REUlFTd1NtWnFKZEtfS3J6bnp6OTlBRk1V?oc=5" target="_blank" rel="noopener noreferrer">中東情勢不透明でも、日経平均株価2026年末60,000円見通しを維持 米国景気3つの楽観シグナルあり 野村證券・池田雄之輔 - nomura.co.jp</a>
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-source">Google News 経済</span>
+      <div class="news-title">
+        <a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTFAzZ3JfZDFIeFZLTmVjODl6dkhQV2dLOWRUU2pNRDlLUk5EWlBaVDhDT2JieEo0TzJtYnM1X1d3TFY5emhXVEd0Y3FVR1hYVnJ1Tk9ZaTB4QUtNLVU?oc=5" target="_blank" rel="noopener noreferrer">還元から投資へ 株高の原動力に注目 | 藤代 宏一 | 第一ライフ資産運用経済研究所 - 第一ライフ資産運用経済研究所</a>
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-source">Google News 経済</span>
+      <div class="news-title">
+        <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9VV1hibXhJZjdyZHdFQWctblU2ZTY2UV9xdEVfZmI2ckNRV0xwaGhPOG1ScmIyV0thRnFwZVktUlMzSUUydDdGT3VyaXJsMmpDRUM3NmZ6a0pGV3BYejBQc0J4X3J0M3BYRTBSRw?oc=5" target="_blank" rel="noopener noreferrer">株式の「大公開時代」号砲 スペースX上場、始まるバブルマネー争奪戦 - 日本経済新聞</a>
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-source">Google News 経済</span>
+      <div class="news-title">
+        <a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxOT3NzQV9qM1VhZU5mUkl3NnFZeHdDeGpaWWhld3JOLVl6a1JQbUtwNmZmRjFLcDF4M3YwMGE2M2Y5QjdtVXRFYnlGWGl5SE0tUllCT1EzS016QzJ0UUx4OGJoR3FmTlFLLTBlazBfTzV0eURzSHJpYnlQZ0ZxYVUzWWttWkJuQjA?oc=5" target="_blank" rel="noopener noreferrer">アジア株式市場サマリー：引け（12日）(ロイター) - Yahoo!ファイナンス</a>
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-source">Google News 経済</span>
+      <div class="news-title">
+        <a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE5LNDlwVFhsT1VINldsTXd3bUFuX29kNVl3Z1lSejBVdEtCQ3M4Y0cyRUdIcWxOSlRjRDdQT1RyRzlpV05KRDZtS2FsT3owY3d4eWhBbXF3V3dsU09fZmNnQw?oc=5" target="_blank" rel="noopener noreferrer">豪ドル週間見通し：弱含みか、豪経済の減速懸念や日本の介入観測で - 株探</a>
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-source">Google News 経済</span>
+      <div class="news-title">
+        <a href="https://news.google.com/rss/articles/CBMiV0FVX3lxTFAyTFBuMW1pU0Z3U0djOUVwSkNhaHRyeGpwbTN6blZtcVVPNkhRY0VrZ3RPR1RZYlZ5TVJVcThYSmFEanhjTjEwR1JPWU5qS005T1JvVlNlZw?oc=5" target="_blank" rel="noopener noreferrer">ついにスペースX上場､これから起きることを予想する - 四季報オンライン</a>
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-source">Google News 経済</span>
+      <div class="news-title">
+        <a href="https://news.google.com/rss/articles/CBMiTEFVX3lxTFBsNWQ4SjVzaUl1N04xOVNPWnlWUUhNcDRqSXAyU25mbVlPSkxYMG1BNHAwMzVMblpiY0lnYjNwdzVvdGY1dld6Yi1RTlbSAU9BVV95cUxPM0p6RFlWWjZYaVRabVBiSnVYbVVlY2l2SGN5alEtY284QzFoOFNZUzAtNkEtYUREcTNvcTFYT2ZNcWZRU0hhUTd6VEZoQWFF?oc=5" target="_blank" rel="noopener noreferrer">日経平均「26年度末7万円」も視野、ITバブル時とは大きく違う日米経済・株式市場 - ダイヤモンド・オンライン</a>
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-source">Google News 経済</span>
+      <div class="news-title">
+        <a href="https://news.google.com/rss/articles/CBMiTkFVX3lxTE9mSV81UWtKS2xYN0lLd0hqT0c1TEx3blNVUEFTOXhRems1bnI3QjdtYkhhTnpWQmtqVkVlQ1JHaEV2ZDlXeVdYanNuT2Vxdw?oc=5" target="_blank" rel="noopener noreferrer">変わる世界、揺るがないテクノロジー株の優位 - バロンズ・ダイジェスト</a>
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-source">Google News 経済</span>
+      <div class="news-title">
+        <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE40Ykd2RENleTlKZjNsRjU5eGF4UVluY3ZSdzVEYTBES3NkSGd5RVhheEtBVmhSbjhuQUNhNDlvSThjTjdRLXVJY0ZMSXJZWE8yeEFMbzRRbjFXc2VmdkRV?oc=5" target="_blank" rel="noopener noreferrer">スペースX空前のIPO！市場にもたらすものは【経済コラム】 - NHKニュース</a>
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-source">Google News 経済</span>
+      <div class="news-title">
+        <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE1rZl9DSmNxNzVSSTVLRElrOHc2N2J6anhXMUtlZ3c2QlRab1JhRXlXX3Z0OGtGUWNvUFpqczR3eW5MWEJsN24yRXZEbVJHbHBBeEx2UmMzZEdJZw?oc=5" target="_blank" rel="noopener noreferrer">【銘柄】「良品計画」に株式市場が驚いた…決算で見えた「海外で稼げる無印良品」への進化 - ニューズウィーク日本版</a>
+      </div>
+    </div>
+    
+  </section>
+
 </div>
+
+<footer class="footer">
+  <p>Economic Dashboard — Auto-generated via GitHub Actions</p>
+  <p>Data: Yahoo Finance / RSS Feeds | AI: fallback | This is not investment advice.</p>
+</footer>
+
 </body>
 </html>
