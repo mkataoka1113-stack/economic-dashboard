@@ -4,90 +4,104 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Economic Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ============================================
-   Base / Reset
+   Design System — Contemporary Dark + Glass
    ============================================ */
 :root {
-  --bg-primary: #0a0e17;
-  --bg-card: #111827;
-  --bg-card-hover: #1a2332;
-  --border: #1e293b;
-  --border-accent: #0ea5e9;
-  --text-primary: #e2e8f0;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --accent: #0ea5e9;
-  --accent-dim: rgba(14,165,233,0.15);
-  --positive: #22c55e;
-  --negative: #ef4444;
-  --neutral: #eab308;
-  --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
-  --font-sans: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+  --bg-base: #0B0F19;
+  --bg-elevated: rgba(255,255,255,0.03);
+  --bg-glass: rgba(255,255,255,0.04);
+  --bg-glass-hover: rgba(255,255,255,0.06);
+  --glass-border: rgba(255,255,255,0.06);
+  --glass-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  --glass-shadow-sm: 0 2px 12px rgba(0,0,0,0.2);
+
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --text-muted: #4B5563;
+  --text-label: #6B7280;
+
+  --positive: #34D399;
+  --positive-bg: rgba(52,211,153,0.08);
+  --positive-bg-strong: rgba(52,211,153,0.15);
+  --negative: #F87171;
+  --negative-bg: rgba(248,113,113,0.08);
+  --negative-bg-strong: rgba(248,113,113,0.15);
+  --neutral-bg: rgba(255,255,255,0.03);
+
+  --accent-gold: #C9A96E;
+  --accent-blue: #60A5FA;
+  --accent-purple: #A78BFA;
+  --accent-teal: #2DD4BF;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+
+  --font-sans: 'Inter', 'Noto Sans JP', -apple-system, 'Segoe UI', sans-serif;
+  --font-num: 'Inter', -apple-system, sans-serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  background: var(--bg-primary);
+  background: var(--bg-base);
   color: var(--text-primary);
   font-family: var(--font-sans);
   line-height: 1.6;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* ============================================
    Header
    ============================================ */
 .header {
-  background: linear-gradient(135deg, #0a0e17 0%, #111827 100%);
-  border-bottom: 1px solid var(--border);
-  padding: 1rem 1.5rem;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  backdrop-filter: blur(10px);
-}
-
-.header-inner {
-  max-width: 1400px;
+  padding: 2rem 2.5rem 1.5rem;
+  max-width: 1320px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
-.header h1 {
-  font-family: var(--font-mono);
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--accent);
-  letter-spacing: 0.05em;
+.header-title {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
 }
 
-.header h1 span {
-  color: var(--text-muted);
-  font-weight: 400;
+.header-rule {
+  width: 32px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold));
+  border: none;
+  margin-top: 8px;
 }
 
 .header-meta {
-  font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--text-muted);
   display: flex;
-  gap: 1rem;
   align-items: center;
+  gap: 0.75rem;
 }
 
-.pulse {
-  width: 6px;
-  height: 6px;
+.header-meta .dot {
+  width: 5px;
+  height: 5px;
   background: var(--positive);
   border-radius: 50%;
-  display: inline-block;
-  animation: pulse 2s infinite;
+  animation: pulse 2.5s ease-in-out infinite;
 }
 
 @keyframes pulse {
@@ -99,96 +113,140 @@ body {
    Layout
    ============================================ */
 .container {
-  max-width: 1400px;
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 0 2.5rem 3rem;
 }
 
 .grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
-.grid-3 {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 1rem;
+.section-gap {
+  margin-bottom: 1.25rem;
 }
-
-.full-width { grid-column: 1 / -1; }
 
 /* ============================================
-   Cards
+   Glass Card
    ============================================ */
 .card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 1.25rem;
-  transition: border-color 0.2s;
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: var(--glass-shadow-sm);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card:hover { border-color: var(--border-accent); }
-
-.card-header {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--border);
+.card:hover {
+  background: var(--bg-glass-hover);
+  box-shadow: var(--glass-shadow);
 }
 
-.card-header h2 {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--accent);
+.card-label {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.card-icon {
-  font-size: 1rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.25rem;
 }
 
 /* ============================================
-   Index Ticker
+   Market Summary (hero)
    ============================================ */
-.ticker-row {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
+.summary-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 100%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  padding: 2.25rem;
+  box-shadow: var(--glass-shadow);
 }
 
-.ticker-item {
-  flex: 1;
-  min-width: 140px;
-  background: var(--bg-primary);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 0.75rem;
-  text-align: center;
-  font-family: var(--font-mono);
+.summary-text {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.85;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
 }
 
-.ticker-name {
-  font-size: 0.7rem;
+/* ============================================
+   Index Cards
+   ============================================ */
+.indices-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.index-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  text-align: left;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.index-card:hover {
+  background: var(--bg-glass-hover);
+  transform: translateY(-2px);
+}
+
+.index-name {
+  font-size: 0.625rem;
+  font-weight: 500;
   color: var(--text-muted);
-  margin-bottom: 0.25rem;
-  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
 }
 
-.ticker-price {
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 0.15rem;
-}
-
-.ticker-change {
-  font-size: 0.75rem;
+.index-price {
+  font-family: var(--font-num);
+  font-size: 1.375rem;
   font-weight: 600;
+  color: var(--text-primary);
+  font-feature-settings: 'tnum';
+  letter-spacing: -0.02em;
+  margin-bottom: 0.35rem;
+}
+
+.index-change {
+  font-family: var(--font-num);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  font-feature-settings: 'tnum';
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.index-change .arrow {
+  display: inline-block;
+  width: 0;
+  height: 0;
+}
+
+.index-change .arrow.up-arrow {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 5px solid var(--positive);
+}
+
+.index-change .arrow.down-arrow {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid var(--negative);
 }
 
 .up { color: var(--positive); }
@@ -196,215 +254,322 @@ body {
 .flat { color: var(--text-muted); }
 
 /* ============================================
-   Heatmap
+   Sector Heatmap
    ============================================ */
 .heatmap-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 4px;
+  grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+  gap: 6px;
 }
 
 .heatmap-cell {
-  padding: 0.5rem 0.25rem;
-  border-radius: 4px;
+  padding: 0.75rem 0.5rem;
+  border-radius: var(--radius-sm);
   text-align: center;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  transition: transform 0.15s;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  cursor: default;
 }
 
-.heatmap-cell:hover { transform: scale(1.05); }
+.heatmap-cell:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+}
 
 .heatmap-name {
-  font-size: 0.65rem;
-  opacity: 0.9;
-  margin-bottom: 0.15rem;
+  font-size: 0.625rem;
+  font-weight: 400;
+  opacity: 0.85;
+  margin-bottom: 4px;
+  letter-spacing: 0.02em;
 }
 
 .heatmap-val {
-  font-weight: 700;
-  font-size: 0.8rem;
+  font-family: var(--font-num);
+  font-weight: 600;
+  font-size: 0.875rem;
+  font-feature-settings: 'tnum';
 }
 
 /* ============================================
-   Themes
+   Macro Text
    ============================================ */
-.theme-item {
-  background: var(--bg-primary);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--accent);
-  border-radius: 4px;
-  padding: 0.75rem 1rem;
-  margin-bottom: 0.5rem;
+.macro-text {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.85;
+  letter-spacing: 0.01em;
 }
 
-.theme-item.positive { border-left-color: var(--positive); }
-.theme-item.negative { border-left-color: var(--negative); }
-.theme-item.neutral { border-left-color: var(--neutral); }
+/* ============================================
+   Focus Themes — Card Grid
+   ============================================ */
+.themes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px;
+}
+
+.theme-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.theme-card:hover {
+  background: var(--bg-glass-hover);
+  transform: translateY(-2px);
+}
+
+.theme-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+}
+
+.theme-card.sentiment-positive::before { background: var(--positive); }
+.theme-card.sentiment-negative::before { background: var(--negative); }
+.theme-card.sentiment-neutral::before { background: var(--text-muted); }
+
+.theme-sentiment {
+  display: inline-block;
+  font-size: 0.5625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+}
+
+.sentiment-positive .theme-sentiment {
+  color: var(--positive);
+  background: var(--positive-bg);
+}
+
+.sentiment-negative .theme-sentiment {
+  color: var(--negative);
+  background: var(--negative-bg);
+}
+
+.sentiment-neutral .theme-sentiment {
+  color: var(--text-muted);
+  background: var(--neutral-bg);
+}
 
 .theme-title {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 0.9375rem;
   font-weight: 600;
-  margin-bottom: 0.25rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
 }
 
 .theme-desc {
-  font-size: 0.8rem;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ============================================
+   Events
+   ============================================ */
+.event-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.event-item {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  align-items: flex-start;
+}
+
+.event-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.event-item:first-child {
+  padding-top: 0;
+}
+
+.event-date {
+  font-family: var(--font-num);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--accent-gold);
+  min-width: 80px;
+  flex-shrink: 0;
+  padding-top: 1px;
+}
+
+.event-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.event-impact {
+  font-size: 0.8125rem;
   color: var(--text-secondary);
   line-height: 1.5;
 }
 
 /* ============================================
+   Daily Learning
+   ============================================ */
+.learning-term {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--accent-gold);
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.learning-text {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.85;
+}
+
+/* ============================================
    Watchlist Table
    ============================================ */
+.watchlist-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .watchlist-table {
   width: 100%;
   border-collapse: collapse;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.8125rem;
 }
 
 .watchlist-table th {
   text-align: left;
   color: var(--text-muted);
-  font-size: 0.7rem;
+  font-size: 0.625rem;
   font-weight: 500;
-  padding: 0.5rem;
-  border-bottom: 1px solid var(--border);
-  letter-spacing: 0.05em;
+  padding: 0 0 1rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .watchlist-table td {
-  padding: 0.6rem 0.5rem;
-  border-bottom: 1px solid rgba(30,41,59,0.5);
+  padding: 0.875rem 0;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  vertical-align: middle;
 }
 
-.watchlist-table tr:hover {
-  background: var(--bg-card-hover);
+.watchlist-table tr:hover td {
+  background: rgba(255,255,255,0.02);
 }
 
 .stock-name {
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text-primary);
+  font-size: 0.875rem;
 }
 
 .stock-code {
   color: var(--text-muted);
-  font-size: 0.7rem;
+  font-size: 0.6875rem;
+  margin-top: 1px;
 }
 
 .stock-theme {
-  font-size: 0.7rem;
-  color: var(--accent);
-  background: var(--accent-dim);
-  padding: 0.15rem 0.4rem;
-  border-radius: 3px;
+  font-size: 0.625rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: rgba(255,255,255,0.05);
+  padding: 3px 8px;
+  border-radius: 4px;
   display: inline-block;
+  letter-spacing: 0.02em;
+}
+
+.stock-price {
+  font-family: var(--font-num);
+  font-weight: 600;
+  font-feature-settings: 'tnum';
+  color: var(--text-primary);
+}
+
+.stock-change {
+  font-family: var(--font-num);
+  font-weight: 500;
+  font-feature-settings: 'tnum';
 }
 
 .stock-comment {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   color: var(--text-secondary);
+  line-height: 1.5;
+  max-width: 320px;
 }
 
 /* ============================================
-   News List
+   News
    ============================================ */
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
 .news-item {
   display: flex;
-  gap: 0.75rem;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid rgba(30,41,59,0.3);
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
   align-items: baseline;
 }
 
-.news-source {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  color: var(--accent);
-  background: var(--accent-dim);
-  padding: 0.1rem 0.4rem;
-  border-radius: 3px;
-  white-space: nowrap;
-  flex-shrink: 0;
+.news-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
-.news-title {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
+.news-item:first-child {
+  padding-top: 0;
+}
+
+.news-source {
+  font-size: 0.5625rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: rgba(255,255,255,0.05);
+  padding: 2px 7px;
+  border-radius: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .news-title a {
+  font-size: 0.8125rem;
   color: var(--text-secondary);
   text-decoration: none;
-  transition: color 0.15s;
+  transition: color 0.2s ease;
+  line-height: 1.5;
 }
 
-.news-title a:hover { color: var(--text-primary); }
-
-/* ============================================
-   Events / Calendar
-   ============================================ */
-.event-item {
-  display: flex;
-  gap: 0.75rem;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid rgba(30,41,59,0.3);
-}
-
-.event-date {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--accent);
-  min-width: 80px;
-  flex-shrink: 0;
-}
-
-.event-name {
-  font-size: 0.8rem;
-  font-weight: 500;
-}
-
-.event-impact {
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-}
-
-/* ============================================
-   Learning Card
-   ============================================ */
-.learning-term {
-  font-family: var(--font-mono);
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--accent);
-  margin-bottom: 0.5rem;
-}
-
-.learning-text {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  line-height: 1.7;
-}
-
-/* ============================================
-   Macro Card
-   ============================================ */
-.macro-text {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  line-height: 1.7;
-}
-
-/* ============================================
-   Summary Card
-   ============================================ */
-.summary-text {
-  font-size: 0.9rem;
-  line-height: 1.7;
+.news-title a:hover {
   color: var(--text-primary);
 }
 
@@ -412,30 +577,44 @@ body {
    Footer
    ============================================ */
 .footer {
-  text-align: center;
-  padding: 2rem 1rem;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 2rem 2.5rem;
+  border-top: 1px solid rgba(255,255,255,0.04);
   color: var(--text-muted);
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  border-top: 1px solid var(--border);
-  margin-top: 2rem;
+  font-size: 0.6875rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 /* ============================================
    Responsive
    ============================================ */
+@media (max-width: 1024px) {
+  .indices-row { grid-template-columns: repeat(3, 1fr); }
+}
+
 @media (max-width: 900px) {
-  .grid-2, .grid-3 { grid-template-columns: 1fr; }
-  .ticker-row { flex-direction: column; }
-  .ticker-item { min-width: auto; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .indices-row { grid-template-columns: repeat(2, 1fr); }
+  .themes-grid { grid-template-columns: 1fr; }
+  .container { padding: 0 1.5rem 2rem; }
+  .header { padding: 1.5rem 1.5rem 1rem; }
+  .footer { padding: 1.5rem; }
 }
 
 @media (max-width: 600px) {
-  .container { padding: 0.5rem; }
-  .card { padding: 1rem; }
-  .header { padding: 0.75rem 1rem; }
-  .header h1 { font-size: 0.9rem; }
-  .heatmap-grid { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); }
+  .container { padding: 0 1rem 1.5rem; }
+  .header { padding: 1.25rem 1rem 0.75rem; }
+  .header-title { font-size: 1.25rem; }
+  .card { padding: 1.25rem; border-radius: var(--radius-md); }
+  .summary-card { padding: 1.5rem; border-radius: var(--radius-lg); }
+  .indices-row { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .index-price { font-size: 1.125rem; }
+  .heatmap-grid { grid-template-columns: repeat(auto-fill, minmax(85px, 1fr)); }
+  .footer { padding: 1rem; flex-direction: column; }
 }
 </style>
 </head>
@@ -443,90 +622,79 @@ body {
 
 <!-- Header -->
 <header class="header">
-  <div class="header-inner">
-    <h1>ECONOMIC <span>DASHBOARD</span></h1>
-    <div class="header-meta">
-      <span class="pulse"></span>
-      <span>2026-06-14 12:15 JST</span>
-      <span>via Gemini</span>
-    </div>
+  <div>
+    <h1 class="header-title">Economic Dashboard</h1>
+    <hr class="header-rule">
+  </div>
+  <div class="header-meta">
+    <span class="dot"></span>
+    <span>2026-06-14 13:24 JST</span>
+    <span>fallback</span>
   </div>
 </header>
 
 <div class="container">
 
-  <!-- 市場概況 -->
-  <section class="card full-width" style="margin-bottom:1rem; border-left: 3px solid var(--accent);">
-    <div class="card-header">
-      <span class="card-icon">📊</span>
-      <h2>Market Summary</h2>
-    </div>
-    <p class="summary-text">本日の日本株式市場は、日経平均株価が大幅に2.81%上昇し66,000円台を回復、TOPIXも堅調に推移しました。米国市場もS&P 500、NASDAQ共に上昇しており、グローバルな株高基調が見られます。特に鉄鋼・非鉄や機械セクターが市場を牽引し、素材・化学、電機・精密、銀行なども大きく上昇しました。</p>
+  <!-- Market Summary -->
+  <section class="summary-card section-gap">
+    <div class="card-label">Market Summary</div>
+    <p class="summary-text">AI分析は現在利用できません。指数データとニュース見出しをご確認ください。</p>
   </section>
 
-  <!-- 主要指数 -->
-  <section class="card full-width" style="margin-bottom:1rem;">
-    <div class="card-header">
-      <span class="card-icon">📈</span>
-      <h2>Major Indices</h2>
-    </div>
-    <div class="ticker-row">
+  <!-- Major Indices -->
+  <section class="section-gap">
+    <div class="indices-row">
       
-      <div class="ticker-item">
-        <div class="ticker-name">日経平均</div>
+      <div class="index-card">
+        <div class="index-name">日経平均</div>
         
-        <div class="ticker-price up">
-          66,020.04
-        </div>
-        <div class="ticker-change up">
+        <div class="index-price">66,020.04</div>
+        <div class="index-change up">
+          <span class="arrow up-arrow"></span>
           +2.81%
         </div>
         
       </div>
       
-      <div class="ticker-item">
-        <div class="ticker-name">TOPIX</div>
+      <div class="index-card">
+        <div class="index-name">TOPIX</div>
         
-        <div class="ticker-price up">
-          412.20
-        </div>
-        <div class="ticker-change up">
+        <div class="index-price">412.20</div>
+        <div class="index-change up">
+          <span class="arrow up-arrow"></span>
           +1.45%
         </div>
         
       </div>
       
-      <div class="ticker-item">
-        <div class="ticker-name">ドル円</div>
+      <div class="index-card">
+        <div class="index-name">ドル円</div>
         
-        <div class="ticker-price up">
-          160.18
-        </div>
-        <div class="ticker-change up">
+        <div class="index-price">160.18</div>
+        <div class="index-change up">
+          <span class="arrow up-arrow"></span>
           +0.03%
         </div>
         
       </div>
       
-      <div class="ticker-item">
-        <div class="ticker-name">S&P 500</div>
+      <div class="index-card">
+        <div class="index-name">S&P 500</div>
         
-        <div class="ticker-price up">
-          7,431.46
-        </div>
-        <div class="ticker-change up">
+        <div class="index-price">7,431.46</div>
+        <div class="index-change up">
+          <span class="arrow up-arrow"></span>
           +0.50%
         </div>
         
       </div>
       
-      <div class="ticker-item">
-        <div class="ticker-name">NASDAQ</div>
+      <div class="index-card">
+        <div class="index-name">NASDAQ</div>
         
-        <div class="ticker-price up">
-          25,888.84
-        </div>
-        <div class="ticker-change up">
+        <div class="index-price">25,888.84</div>
+        <div class="index-change up">
+          <span class="arrow up-arrow"></span>
           +0.31%
         </div>
         
@@ -535,13 +703,10 @@ body {
     </div>
   </section>
 
-  <div class="grid-2" style="margin-bottom:1rem;">
-    <!-- セクターヒートマップ -->
+  <!-- Sector Heatmap + Macro Environment -->
+  <div class="grid-2 section-gap">
     <section class="card">
-      <div class="card-header">
-        <span class="card-icon">🗺️</span>
-        <h2>Sector Heatmap</h2>
-      </div>
+      <div class="card-label">Sector Heatmap</div>
       <div class="heatmap-grid">
         
         
@@ -549,7 +714,7 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(239,68,68,0.3); color:#fecaca;">
+        <div class="heatmap-cell" style="background:rgba(255,255,255,0.03); color:#6B7280;">
           <div class="heatmap-name">食品</div>
           <div class="heatmap-val">-0.7%</div>
         </div>
@@ -559,7 +724,7 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(239,68,68,0.3); color:#fecaca;">
+        <div class="heatmap-cell" style="background:rgba(248,113,113,0.08); color:#fca5a5;">
           <div class="heatmap-name">エネルギー</div>
           <div class="heatmap-val">-1.5%</div>
         </div>
@@ -569,7 +734,7 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(34,197,94,0.3); color:#bbf7d0;">
+        <div class="heatmap-cell" style="background:rgba(52,211,153,0.12); color:#6ee7b7;">
           <div class="heatmap-name">建設・資材</div>
           <div class="heatmap-val">+1.5%</div>
         </div>
@@ -579,7 +744,7 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(34,197,94,0.6); color:#fff;">
+        <div class="heatmap-cell" style="background:rgba(52,211,153,0.2); color:#6ee7b7;">
           <div class="heatmap-name">素材・化学</div>
           <div class="heatmap-val">+2.2%</div>
         </div>
@@ -589,7 +754,7 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(34,197,94,0.6); color:#fff;">
+        <div class="heatmap-cell" style="background:rgba(52,211,153,0.12); color:#6ee7b7;">
           <div class="heatmap-name">医薬品</div>
           <div class="heatmap-val">+1.5%</div>
         </div>
@@ -599,7 +764,7 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(34,197,94,0.3); color:#bbf7d0;">
+        <div class="heatmap-cell" style="background:rgba(52,211,153,0.06); color:#86efac;">
           <div class="heatmap-name">自動車・輸送機</div>
           <div class="heatmap-val">+0.7%</div>
         </div>
@@ -609,7 +774,7 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(34,197,94,0.6); color:#fff;">
+        <div class="heatmap-cell" style="background:rgba(52,211,153,0.2); color:#6ee7b7;">
           <div class="heatmap-name">鉄鋼・非鉄</div>
           <div class="heatmap-val">+5.2%</div>
         </div>
@@ -619,7 +784,7 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(34,197,94,0.6); color:#fff;">
+        <div class="heatmap-cell" style="background:rgba(52,211,153,0.2); color:#6ee7b7;">
           <div class="heatmap-name">機械</div>
           <div class="heatmap-val">+2.7%</div>
         </div>
@@ -629,7 +794,7 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(34,197,94,0.6); color:#fff;">
+        <div class="heatmap-cell" style="background:rgba(52,211,153,0.12); color:#6ee7b7;">
           <div class="heatmap-name">電機・精密</div>
           <div class="heatmap-val">+1.9%</div>
         </div>
@@ -639,7 +804,7 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(100,116,139,0.3); color:#94a3b8;">
+        <div class="heatmap-cell" style="background:rgba(255,255,255,0.03); color:#6B7280;">
           <div class="heatmap-name">情報通信・サービス</div>
           <div class="heatmap-val">-0.5%</div>
         </div>
@@ -649,7 +814,7 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(100,116,139,0.3); color:#94a3b8;">
+        <div class="heatmap-cell" style="background:rgba(52,211,153,0.06); color:#86efac;">
           <div class="heatmap-name">電力・ガス</div>
           <div class="heatmap-val">+0.1%</div>
         </div>
@@ -659,7 +824,7 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(239,68,68,0.3); color:#fecaca;">
+        <div class="heatmap-cell" style="background:rgba(255,255,255,0.03); color:#6B7280;">
           <div class="heatmap-name">運輸・物流</div>
           <div class="heatmap-val">-0.6%</div>
         </div>
@@ -669,7 +834,7 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(34,197,94,0.3); color:#bbf7d0;">
+        <div class="heatmap-cell" style="background:rgba(52,211,153,0.12); color:#6ee7b7;">
           <div class="heatmap-name">商社・卸売</div>
           <div class="heatmap-val">+1.3%</div>
         </div>
@@ -679,7 +844,7 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(34,197,94,0.3); color:#bbf7d0;">
+        <div class="heatmap-cell" style="background:rgba(52,211,153,0.12); color:#6ee7b7;">
           <div class="heatmap-name">小売</div>
           <div class="heatmap-val">+1.3%</div>
         </div>
@@ -689,7 +854,7 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(34,197,94,0.6); color:#fff;">
+        <div class="heatmap-cell" style="background:rgba(52,211,153,0.12); color:#6ee7b7;">
           <div class="heatmap-name">銀行</div>
           <div class="heatmap-val">+1.9%</div>
         </div>
@@ -699,7 +864,7 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(100,116,139,0.3); color:#94a3b8;">
+        <div class="heatmap-cell" style="background:rgba(255,255,255,0.03); color:#6B7280;">
           <div class="heatmap-name">金融（除く銀行）</div>
           <div class="heatmap-val">-0.1%</div>
         </div>
@@ -709,7 +874,7 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(34,197,94,0.3); color:#bbf7d0;">
+        <div class="heatmap-cell" style="background:rgba(52,211,153,0.12); color:#6ee7b7;">
           <div class="heatmap-name">不動産</div>
           <div class="heatmap-val">+1.5%</div>
         </div>
@@ -717,269 +882,210 @@ body {
       </div>
     </section>
 
-    <!-- マクロ環境 -->
     <section class="card">
-      <div class="card-header">
-        <span class="card-icon">🌐</span>
-        <h2>Macro Environment</h2>
-      </div>
-      <p class="macro-text">ドル円は160円台を維持し、わずかに円安方向へ推移しています。米国市場は主要指数が堅調に上昇しているものの、中東情勢の不透明感が残るほか、米国での消費減速を示す調査結果も出ており、今後の経済指標に注目が集まります。AIを巡る「バブル」への警戒感も一部で指摘されています。</p>
+      <div class="card-label">Macro Environment</div>
+      <p class="macro-text">AI分析サービスに接続できませんでした。次回更新時に再試行します。</p>
     </section>
   </div>
 
-  <!-- 注目テーマ -->
-  <section class="card full-width" style="margin-bottom:1rem;">
-    <div class="card-header">
-      <span class="card-icon">🔥</span>
-      <h2>Focus Themes</h2>
+  <!-- Focus Themes -->
+  <section class="section-gap">
+    <div class="card-label" style="padding: 0 0 1rem;">Focus Themes</div>
+    <div class="themes-grid">
+      
+      <div class="theme-card sentiment-neutral">
+        <div class="theme-sentiment">neutral</div>
+        <div class="theme-title">フィジカルAI × 建設</div>
+        <div class="theme-desc">データ取得中...</div>
+      </div>
+      
+      <div class="theme-card sentiment-neutral">
+        <div class="theme-sentiment">neutral</div>
+        <div class="theme-title">アニメ・コンテンツ</div>
+        <div class="theme-desc">データ取得中...</div>
+      </div>
+      
+      <div class="theme-card sentiment-neutral">
+        <div class="theme-sentiment">neutral</div>
+        <div class="theme-title">AI全般</div>
+        <div class="theme-desc">データ取得中...</div>
+      </div>
+      
     </div>
-    
-    <div class="theme-item positive">
-      <div class="theme-title">フィジカルAI × 建設</div>
-      <div class="theme-desc">建設・資材セクターが堅調に推移しており、インフラ投資や労働力不足を背景に、建設現場でのAI活用やロボティクス導入への期待が高まっています。DX推進による効率化や安全性向上が注目されています。</div>
-    </div>
-    
-    <div class="theme-item neutral">
-      <div class="theme-title">アニメ・コンテンツ</div>
-      <div class="theme-desc">日本のソフトパワーであるアニメやゲーム、音楽といったコンテンツ産業は、国内外での需要が根強く、関連企業の業績に注目が集まります。特に海外市場でのIP展開が成長ドライバーとなりえます。</div>
-    </div>
-    
-    <div class="theme-item positive">
-      <div class="theme-title">AI全般</div>
-      <div class="theme-desc">米国でのスペースXのIPO報道や「テクノロジー株の優位」といった見出しが示す通り、AI技術は引き続き株式市場の最大の関心事です。AIを巡る投資熱は高く、新たなイノベーションと産業構造の変化への期待が背景にあります。</div>
-    </div>
-    
-    <div class="theme-item positive">
-      <div class="theme-title">鉄鋼・非鉄 / 機械</div>
-      <div class="theme-desc">本日のセクター動向で特に鉄鋼・非鉄が5.15%、機械が2.69%と大幅に上昇しました。これはグローバルな景気回復期待やインフラ投資の需要、または特定の製品分野での受注増加が背景にあると考えられます。</div>
-    </div>
-    
-    <div class="theme-item positive">
-      <div class="theme-title">新エネルギー・先端技術協力</div>
-      <div class="theme-desc">日英首脳合意に見られるように、洋上風力や高温ガス炉といった新エネルギー開発、AI・量子技術など未来を担う先端技術分野での国際協力が進んでいます。脱炭素化と技術競争力の強化が資金流入の背景となっています。</div>
-    </div>
-    
-    <div class="theme-item positive">
-      <div class="theme-title">宇宙関連産業・テクノロジーIPO</div>
-      <div class="theme-desc">スペースXのIPOに関する報道が多数見られ、宇宙開発といった未開拓分野への資金流入や、新たなテクノロジー企業の大型上場への期待が高まっています。これは、テクノロジー株全般への関心と市場のバブルマネーの動きを示唆しています。</div>
-    </div>
-    
   </section>
 
-  <div class="grid-2" style="margin-bottom:1rem;">
-    <!-- 経済カレンダー -->
+  <!-- Events + Daily Learning -->
+  <div class="grid-2 section-gap">
     <section class="card">
-      <div class="card-header">
-        <span class="card-icon">📅</span>
-        <h2>Upcoming Events</h2>
-      </div>
+      <div class="card-label">Upcoming Events</div>
       
-      
-      <div class="event-item">
-        <div class="event-date">来週</div>
-        <div>
-          <div class="event-name">日銀金融政策決定会合</div>
-          <div class="event-impact">金融政策の据え置きか、追加利上げの示唆が円相場や日本株に影響を与える可能性があります。</div>
-        </div>
-      </div>
-      
-      <div class="event-item">
-        <div class="event-date">近日中</div>
-        <div>
-          <div class="event-name">米国消費者物価指数（CPI）発表</div>
-          <div class="event-impact">インフレ動向が米連邦準備制度理事会（FRB）の金融政策判断に直結し、世界経済に影響を及ぼします。</div>
-        </div>
-      </div>
-      
-      <div class="event-item">
-        <div class="event-date">来週〜再来週</div>
-        <div>
-          <div class="event-name">主要企業の四半期決算発表</div>
-          <div class="event-impact">企業の業績見通しやガイダンスが、個別銘柄および市場全体のセンチメントを左右します。</div>
-        </div>
-      </div>
-      
-      <div class="event-item">
-        <div class="event-date">近日中</div>
-        <div>
-          <div class="event-name">米国製造業PMI</div>
-          <div class="event-impact">製造業の景況感を示す指標であり、米国の経済成長の勢いを測る上で重要です。</div>
-        </div>
-      </div>
-      
+      <p style="color:var(--text-muted); font-size:0.875rem;">No upcoming events available.</p>
       
     </section>
 
-    <!-- 今日の学び -->
     <section class="card">
-      <div class="card-header">
-        <span class="card-icon">💡</span>
-        <h2>Daily Learning</h2>
-      </div>
-      <div class="learning-term">AIバブル</div>
-      <div class="learning-text">AIバブルとは、人工知能（AI）関連技術や企業への期待が過度に高まり、その株価が企業の実態価値以上に膨れ上がっている状態を指す言葉です。過去のITバブルのように、期待先行で価格が上昇し、その後実態との乖離が顕在化すると急落するリスクが指摘されます。例えば、まだ収益化が難しい段階にあるAI関連スタートアップの株価が、将来の成長期待だけで非常に高値で取引されているような状況がこれに当たります。</div>
+      <div class="card-label">Daily Learning</div>
+      <div class="learning-term">—</div>
+      <div class="learning-text">AI分析サービス復旧後に生成されます。</div>
     </section>
   </div>
 
-  <!-- ウォッチリスト -->
-  <section class="card full-width" style="margin-bottom:1rem;">
-    <div class="card-header">
-      <span class="card-icon">👁️</span>
-      <h2>Watchlist</h2>
-    </div>
-    <div style="overflow-x:auto;">
+  <!-- Watchlist -->
+  <section class="card section-gap">
+    <div class="card-label">Watchlist</div>
+    <div class="watchlist-wrap">
     <table class="watchlist-table">
       <thead>
         <tr>
-          <th>銘柄</th>
-          <th>テーマ</th>
-          <th>株価</th>
-          <th>前日比</th>
+          <th style="padding-right:1.5rem;">銘柄</th>
+          <th style="padding-right:1rem;">テーマ</th>
+          <th style="padding-right:1rem; text-align:right;">株価</th>
+          <th style="padding-right:1rem; text-align:right;">前日比</th>
           <th>コメント</th>
         </tr>
       </thead>
       <tbody>
         
         <tr>
-          <td>
+          <td style="padding-right:1.5rem;">
             <div class="stock-name">東映アニメーション</div>
             <div class="stock-code">4816.T</div>
           </td>
-          <td><span class="stock-theme">アニメ・IP</span></td>
-          <td style="font-family:var(--font-mono); font-weight:600;">
+          <td style="padding-right:1rem;">
+            <span class="stock-theme">アニメ・IP</span>
+          </td>
+          <td class="stock-price" style="text-align:right; padding-right:1rem;">
             
             ¥2,406
             
           </td>
-          <td class="down"
-              style="font-family:var(--font-mono); font-weight:600;">
+          <td class="stock-change down"
+              style="text-align:right; padding-right:1rem;">
             
             -0.25%
             
           </td>
           <td class="stock-comment">
             
-              
-            
           </td>
         </tr>
         
         <tr>
-          <td>
+          <td style="padding-right:1.5rem;">
             <div class="stock-name">安川電機</div>
             <div class="stock-code">6506.T</div>
           </td>
-          <td><span class="stock-theme">フィジカルAI・ロボット</span></td>
-          <td style="font-family:var(--font-mono); font-weight:600;">
+          <td style="padding-right:1rem;">
+            <span class="stock-theme">フィジカルAI・ロボット</span>
+          </td>
+          <td class="stock-price" style="text-align:right; padding-right:1rem;">
             
             ¥6,335
             
           </td>
-          <td class="up"
-              style="font-family:var(--font-mono); font-weight:600;">
+          <td class="stock-change up"
+              style="text-align:right; padding-right:1rem;">
             
             +5.30%
             
           </td>
           <td class="stock-comment">
             
-              
-            
           </td>
         </tr>
         
         <tr>
-          <td>
+          <td style="padding-right:1.5rem;">
             <div class="stock-name">ファナック</div>
             <div class="stock-code">6954.T</div>
           </td>
-          <td><span class="stock-theme">産業ロボット</span></td>
-          <td style="font-family:var(--font-mono); font-weight:600;">
+          <td style="padding-right:1rem;">
+            <span class="stock-theme">産業ロボット</span>
+          </td>
+          <td class="stock-price" style="text-align:right; padding-right:1rem;">
             
             ¥6,950
             
           </td>
-          <td class="up"
-              style="font-family:var(--font-mono); font-weight:600;">
+          <td class="stock-change up"
+              style="text-align:right; padding-right:1rem;">
             
             +2.54%
             
           </td>
           <td class="stock-comment">
             
-              
-            
           </td>
         </tr>
         
         <tr>
-          <td>
+          <td style="padding-right:1.5rem;">
             <div class="stock-name">コマツ</div>
             <div class="stock-code">6301.T</div>
           </td>
-          <td><span class="stock-theme">建設機械の自動化</span></td>
-          <td style="font-family:var(--font-mono); font-weight:600;">
+          <td style="padding-right:1rem;">
+            <span class="stock-theme">建設機械の自動化</span>
+          </td>
+          <td class="stock-price" style="text-align:right; padding-right:1rem;">
             
             ¥6,525
             
           </td>
-          <td class="up"
-              style="font-family:var(--font-mono); font-weight:600;">
+          <td class="stock-change up"
+              style="text-align:right; padding-right:1rem;">
             
             +1.87%
             
           </td>
           <td class="stock-comment">
             
-              
-            
           </td>
         </tr>
         
         <tr>
-          <td>
+          <td style="padding-right:1.5rem;">
             <div class="stock-name">三菱UFJ</div>
             <div class="stock-code">8306.T</div>
           </td>
-          <td><span class="stock-theme">銀行・金利</span></td>
-          <td style="font-family:var(--font-mono); font-weight:600;">
+          <td style="padding-right:1rem;">
+            <span class="stock-theme">銀行・金利</span>
+          </td>
+          <td class="stock-price" style="text-align:right; padding-right:1rem;">
             
             ¥3,162
             
           </td>
-          <td class="up"
-              style="font-family:var(--font-mono); font-weight:600;">
+          <td class="stock-change up"
+              style="text-align:right; padding-right:1rem;">
             
             +0.67%
             
           </td>
           <td class="stock-comment">
             
-              
-            
           </td>
         </tr>
         
         <tr>
-          <td>
+          <td style="padding-right:1.5rem;">
             <div class="stock-name">ソニーグループ</div>
             <div class="stock-code">6758.T</div>
           </td>
-          <td><span class="stock-theme">エンタメ・アニメ配信</span></td>
-          <td style="font-family:var(--font-mono); font-weight:600;">
+          <td style="padding-right:1rem;">
+            <span class="stock-theme">エンタメ・アニメ配信</span>
+          </td>
+          <td class="stock-price" style="text-align:right; padding-right:1rem;">
             
             ¥3,292
             
           </td>
-          <td class="down"
-              style="font-family:var(--font-mono); font-weight:600;">
+          <td class="stock-change down"
+              style="text-align:right; padding-right:1rem;">
             
             -2.29%
             
           </td>
           <td class="stock-comment">
-            
-              
             
           </td>
         </tr>
@@ -989,160 +1095,159 @@ body {
     </div>
   </section>
 
-  <!-- ニュース -->
-  <section class="card full-width">
-    <div class="card-header">
-      <span class="card-icon">📰</span>
-      <h2>Latest News</h2>
-    </div>
-    
-    <div class="news-item">
-      <span class="news-source">日経新聞</span>
-      <div class="news-title">
-        <a href="https://www.nikkei.com/article/DGXZQODH140Y40U6A610C2000000/" target="_blank" rel="noopener noreferrer">ゴルフ桑木志帆、苦境に動じず今季2勝目　全米女子OPの自信が糧に</a>
+  <!-- News -->
+  <section class="card">
+    <div class="card-label">Latest News</div>
+    <div class="news-list">
+      
+      <div class="news-item">
+        <span class="news-source">日経新聞</span>
+        <div class="news-title">
+          <a href="https://www.nikkei.com/article/DGXZQOCB141W10U6A610C2000000/" target="_blank" rel="noopener noreferrer">INPEX施設スト継続　オーストラリア機関、停止申し立て棄却</a>
+        </div>
       </div>
-    </div>
-    
-    <div class="news-item">
-      <span class="news-source">日経新聞</span>
-      <div class="news-title">
-        <a href="https://www.nikkei.com/article/DGXZQODH140QU0U6A610C2000000/" target="_blank" rel="noopener noreferrer">ハンドボール・リーグH、香川銀行が女子初優勝　男子は刈谷7季ぶり</a>
+      
+      <div class="news-item">
+        <span class="news-source">日経新聞</span>
+        <div class="news-title">
+          <a href="https://www.nikkei.com/article/DGXZQOUA12CBO0S6A610C2000000/" target="_blank" rel="noopener noreferrer">日英、洋上風力や高温ガス炉開発で協力　AI・防衛も首脳合意へ</a>
+        </div>
       </div>
-    </div>
-    
-    <div class="news-item">
-      <span class="news-source">日経新聞</span>
-      <div class="news-title">
-        <a href="https://www.nikkei.com/article/DGXZQODH140EF0U6A610C2000000/" target="_blank" rel="noopener noreferrer">宝塚記念連覇のメイショウタバル　精神面が充実、直前の豪雨も味方</a>
+      
+      <div class="news-item">
+        <span class="news-source">日経新聞</span>
+        <div class="news-title">
+          <a href="https://www.nikkei.com/article/DGXZQODH1418I0U6A610C2000000/" target="_blank" rel="noopener noreferrer">ヤクルト奥川恭伸、7年目での初完封　ソフトバンクに二塁を踏ませず</a>
+        </div>
       </div>
-    </div>
-    
-    <div class="news-item">
-      <span class="news-source">日経新聞</span>
-      <div class="news-title">
-        <a href="https://www.nikkei.com/article/DGXZQOKC141K00U6A610C2000000/" target="_blank" rel="noopener noreferrer">パラ陸上、吉田彩乃が日本新で2冠　日本選手権</a>
+      
+      <div class="news-item">
+        <span class="news-source">日経新聞</span>
+        <div class="news-title">
+          <a href="https://www.nikkei.com/article/DGXZQOKC141TC0U6A610C2000000/" target="_blank" rel="noopener noreferrer">陸上日本選手権、後藤大樹が男子400障害で初V　田中希実は7連覇</a>
+        </div>
       </div>
-    </div>
-    
-    <div class="news-item">
-      <span class="news-source">日経新聞</span>
-      <div class="news-title">
-        <a href="https://www.nikkei.com/article/DGXZQOGN141900U6A610C2000000/" target="_blank" rel="noopener noreferrer">米国とイラン、双方主張曲げず「合意」か　残る認識のズレ</a>
+      
+      <div class="news-item">
+        <span class="news-source">日経新聞</span>
+        <div class="news-title">
+          <a href="https://www.nikkei.com/article/DGXZQOKC141SX0U6A610C2000000/" target="_blank" rel="noopener noreferrer">マイユニバースが急性心不全で死ぬ　宝塚記念、競走を中止</a>
+        </div>
       </div>
-    </div>
-    
-    <div class="news-item">
-      <span class="news-source">日経新聞</span>
-      <div class="news-title">
-        <a href="https://www.nikkei.com/article/DGXZQOUA12CBO0S6A610C2000000/" target="_blank" rel="noopener noreferrer">日英、洋上風力や高温ガス炉開発で協力　AI・量子も首脳合意へ</a>
+      
+      <div class="news-item">
+        <span class="news-source">日経新聞</span>
+        <div class="news-title">
+          <a href="https://www.nikkei.com/article/DGXZQOUA141RS0U6A610C2000000/" target="_blank" rel="noopener noreferrer">林芳正総務相、将来の自民党総裁に意欲　「志持ち続ける」</a>
+        </div>
       </div>
-    </div>
-    
-    <div class="news-item">
-      <span class="news-source">日経新聞</span>
-      <div class="news-title">
-        <a href="https://www.nikkei.com/article/DGXZQOCC141H90U6A610C2000000/" target="_blank" rel="noopener noreferrer">京都府宮津市長選挙、城崎雅文氏が3選</a>
+      
+      <div class="news-item">
+        <span class="news-source">日経新聞</span>
+        <div class="news-title">
+          <a href="https://www.nikkei.com/article/DGXZQOKC141HB0U6A610C2000000/" target="_blank" rel="noopener noreferrer">柔道男子1部、旭化成が5連覇　全日本実業団体</a>
+        </div>
       </div>
-    </div>
-    
-    <div class="news-item">
-      <span class="news-source">日経新聞</span>
-      <div class="news-title">
-        <a href="https://www.nikkei.com/article/DGXZQOKC141HB0U6A610C2000000/" target="_blank" rel="noopener noreferrer">柔道男子1部、旭化成が5連覇　全日本実業団体</a>
+      
+      <div class="news-item">
+        <span class="news-source">日経新聞</span>
+        <div class="news-title">
+          <a href="https://www.nikkei.com/article/DGXZQOKC141F90U6A610C2000000/" target="_blank" rel="noopener noreferrer">SC軽井沢ク、男女ともに優勝　カーリング日本選手権</a>
+        </div>
       </div>
-    </div>
-    
-    <div class="news-item">
-      <span class="news-source">日経新聞</span>
-      <div class="news-title">
-        <a href="https://www.nikkei.com/article/DGXZQOKC141E20U6A610C2000000/" target="_blank" rel="noopener noreferrer">全日本大学野球、関大が優勝　54年ぶり3度目</a>
+      
+      <div class="news-item">
+        <span class="news-source">日経新聞</span>
+        <div class="news-title">
+          <a href="https://www.nikkei.com/article/DGXZQOGM141NH0U6A610C2000000/" target="_blank" rel="noopener noreferrer">モンゴル外相「台湾統一の実現支持」　中国・王毅外相と会談</a>
+        </div>
       </div>
-    </div>
-    
-    <div class="news-item">
-      <span class="news-source">日経新聞</span>
-      <div class="news-title">
-        <a href="https://www.nikkei.com/article/DGXZQOKC141630U6A610C2000000/" target="_blank" rel="noopener noreferrer">14日のプロ野球　結果と戦評</a>
+      
+      <div class="news-item">
+        <span class="news-source">日経新聞</span>
+        <div class="news-title">
+          <a href="https://www.nikkei.com/article/DGXZQODH140Y40U6A610C2000000/" target="_blank" rel="noopener noreferrer">ゴルフ桑木志帆、苦境に動じず今季2勝目　全米女子OPの自信が糧に</a>
+        </div>
       </div>
-    </div>
-    
-    <div class="news-item">
-      <span class="news-source">Google News 経済</span>
-      <div class="news-title">
-        <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE1kNW4ya1dVWjZKSll5d1plUWd5eFRRckItZXNQeWsxR25TbWc4YlMwTFA4S3VycXdkOHZXZ1h2bWtQS0VlU3REUlFTd1NtWnFKZEtfS3J6bnp6OTlBRk1V?oc=5" target="_blank" rel="noopener noreferrer">中東情勢不透明でも、日経平均株価2026年末60,000円見通しを維持 米国景気3つの楽観シグナルあり 野村證券・池田雄之輔 - nomura.co.jp</a>
+      
+      <div class="news-item">
+        <span class="news-source">Google News 経済</span>
+        <div class="news-title">
+          <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE1kNW4ya1dVWjZKSll5d1plUWd5eFRRckItZXNQeWsxR25TbWc4YlMwTFA4S3VycXdkOHZXZ1h2bWtQS0VlU3REUlFTd1NtWnFKZEtfS3J6bnp6OTlBRk1V?oc=5" target="_blank" rel="noopener noreferrer">中東情勢不透明でも、日経平均株価2026年末60,000円見通しを維持 米国景気3つの楽観シグナルあり 野村證券・池田雄之輔 - nomura.co.jp</a>
+        </div>
       </div>
-    </div>
-    
-    <div class="news-item">
-      <span class="news-source">Google News 経済</span>
-      <div class="news-title">
-        <a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTFAzZ3JfZDFIeFZLTmVjODl6dkhQV2dLOWRUU2pNRDlLUk5EWlBaVDhDT2JieEo0TzJtYnM1X1d3TFY5emhXVEd0Y3FVR1hYVnJ1Tk9ZaTB4QUtNLVU?oc=5" target="_blank" rel="noopener noreferrer">還元から投資へ 株高の原動力に注目 | 藤代 宏一 | 第一ライフ資産運用経済研究所 - 第一ライフ資産運用経済研究所</a>
+      
+      <div class="news-item">
+        <span class="news-source">Google News 経済</span>
+        <div class="news-title">
+          <a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTFAzZ3JfZDFIeFZLTmVjODl6dkhQV2dLOWRUU2pNRDlLUk5EWlBaVDhDT2JieEo0TzJtYnM1X1d3TFY5emhXVEd0Y3FVR1hYVnJ1Tk9ZaTB4QUtNLVU?oc=5" target="_blank" rel="noopener noreferrer">還元から投資へ 株高の原動力に注目 | 藤代 宏一 | 第一ライフ資産運用経済研究所 - 第一ライフ資産運用経済研究所</a>
+        </div>
       </div>
-    </div>
-    
-    <div class="news-item">
-      <span class="news-source">Google News 経済</span>
-      <div class="news-title">
-        <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9VV1hibXhJZjdyZHdFQWctblU2ZTY2UV9xdEVfZmI2ckNRV0xwaGhPOG1ScmIyV0thRnFwZVktUlMzSUUydDdGT3VyaXJsMmpDRUM3NmZ6a0pGV3BYejBQc0J4X3J0M3BYRTBSRw?oc=5" target="_blank" rel="noopener noreferrer">株式の「大公開時代」号砲 スペースX上場、始まるバブルマネー争奪戦 - 日本経済新聞</a>
+      
+      <div class="news-item">
+        <span class="news-source">Google News 経済</span>
+        <div class="news-title">
+          <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9VV1hibXhJZjdyZHdFQWctblU2ZTY2UV9xdEVfZmI2ckNRV0xwaGhPOG1ScmIyV0thRnFwZVktUlMzSUUydDdGT3VyaXJsMmpDRUM3NmZ6a0pGV3BYejBQc0J4X3J0M3BYRTBSRw?oc=5" target="_blank" rel="noopener noreferrer">株式の「大公開時代」号砲 スペースX上場、始まるバブルマネー争奪戦 - 日本経済新聞</a>
+        </div>
       </div>
-    </div>
-    
-    <div class="news-item">
-      <span class="news-source">Google News 経済</span>
-      <div class="news-title">
-        <a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxOT3NzQV9qM1VhZU5mUkl3NnFZeHdDeGpaWWhld3JOLVl6a1JQbUtwNmZmRjFLcDF4M3YwMGE2M2Y5QjdtVXRFYnlGWGl5SE0tUllCT1EzS016QzJ0UUx4OGJoR3FmTlFLLTBlazBfTzV0eURzSHJpYnlQZ0ZxYVUzWWttWkJuQjA?oc=5" target="_blank" rel="noopener noreferrer">アジア株式市場サマリー：引け（12日）(ロイター) - Yahoo!ファイナンス</a>
+      
+      <div class="news-item">
+        <span class="news-source">Google News 経済</span>
+        <div class="news-title">
+          <a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxOT3NzQV9qM1VhZU5mUkl3NnFZeHdDeGpaWWhld3JOLVl6a1JQbUtwNmZmRjFLcDF4M3YwMGE2M2Y5QjdtVXRFYnlGWGl5SE0tUllCT1EzS016QzJ0UUx4OGJoR3FmTlFLLTBlazBfTzV0eURzSHJpYnlQZ0ZxYVUzWWttWkJuQjA?oc=5" target="_blank" rel="noopener noreferrer">アジア株式市場サマリー：引け（12日）(ロイター) - Yahoo!ファイナンス</a>
+        </div>
       </div>
-    </div>
-    
-    <div class="news-item">
-      <span class="news-source">Google News 経済</span>
-      <div class="news-title">
-        <a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE5LNDlwVFhsT1VINldsTXd3bUFuX29kNVl3Z1lSejBVdEtCQ3M4Y0cyRUdIcWxOSlRjRDdQT1RyRzlpV05KRDZtS2FsT3owY3d4eWhBbXF3V3dsU09fZmNnQw?oc=5" target="_blank" rel="noopener noreferrer">豪ドル週間見通し：弱含みか、豪経済の減速懸念や日本の介入観測で - 株探</a>
+      
+      <div class="news-item">
+        <span class="news-source">Google News 経済</span>
+        <div class="news-title">
+          <a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE5LNDlwVFhsT1VINldsTXd3bUFuX29kNVl3Z1lSejBVdEtCQ3M4Y0cyRUdIcWxOSlRjRDdQT1RyRzlpV05KRDZtS2FsT3owY3d4eWhBbXF3V3dsU09fZmNnQw?oc=5" target="_blank" rel="noopener noreferrer">豪ドル週間見通し：弱含みか、豪経済の減速懸念や日本の介入観測で - 株探</a>
+        </div>
       </div>
-    </div>
-    
-    <div class="news-item">
-      <span class="news-source">Google News 経済</span>
-      <div class="news-title">
-        <a href="https://news.google.com/rss/articles/CBMiTEFVX3lxTFBsNWQ4SjVzaUl1N04xOVNPWnlWUUhNcDRqSXAyU25mbVlPSkxYMG1BNHAwMzVMblpiY0lnYjNwdzVvdGY1dld6Yi1RTlbSAU9BVV95cUxPM0p6RFlWWjZYaVRabVBiSnVYbVVlY2l2SGN5alEtY284QzFoOFNZUzAtNkEtYUREcTNvcTFYT2ZNcWZRU0hhUTd6VEZoQWFF?oc=5" target="_blank" rel="noopener noreferrer">日経平均「26年度末7万円」も視野、ITバブル時とは大きく違う日米経済・株式市場 - ダイヤモンド・オンライン</a>
+      
+      <div class="news-item">
+        <span class="news-source">Google News 経済</span>
+        <div class="news-title">
+          <a href="https://news.google.com/rss/articles/CBMiV0FVX3lxTFAyTFBuMW1pU0Z3U0djOUVwSkNhaHRyeGpwbTN6blZtcVVPNkhRY0VrZ3RPR1RZYlZ5TVJVcThYSmFEanhjTjEwR1JPWU5qS005T1JvVlNlZw?oc=5" target="_blank" rel="noopener noreferrer">ついにスペースX上場､これから起きることを予想する - 四季報オンライン</a>
+        </div>
       </div>
-    </div>
-    
-    <div class="news-item">
-      <span class="news-source">Google News 経済</span>
-      <div class="news-title">
-        <a href="https://news.google.com/rss/articles/CBMiV0FVX3lxTFAyTFBuMW1pU0Z3U0djOUVwSkNhaHRyeGpwbTN6blZtcVVPNkhRY0VrZ3RPR1RZYlZ5TVJVcThYSmFEanhjTjEwR1JPWU5qS005T1JvVlNlZw?oc=5" target="_blank" rel="noopener noreferrer">ついにスペースX上場､これから起きることを予想する - 四季報オンライン</a>
+      
+      <div class="news-item">
+        <span class="news-source">Google News 経済</span>
+        <div class="news-title">
+          <a href="https://news.google.com/rss/articles/CBMiTEFVX3lxTFBsNWQ4SjVzaUl1N04xOVNPWnlWUUhNcDRqSXAyU25mbVlPSkxYMG1BNHAwMzVMblpiY0lnYjNwdzVvdGY1dld6Yi1RTlbSAU9BVV95cUxPM0p6RFlWWjZYaVRabVBiSnVYbVVlY2l2SGN5alEtY284QzFoOFNZUzAtNkEtYUREcTNvcTFYT2ZNcWZRU0hhUTd6VEZoQWFF?oc=5" target="_blank" rel="noopener noreferrer">日経平均「26年度末7万円」も視野、ITバブル時とは大きく違う日米経済・株式市場 - ダイヤモンド・オンライン</a>
+        </div>
       </div>
-    </div>
-    
-    <div class="news-item">
-      <span class="news-source">Google News 経済</span>
-      <div class="news-title">
-        <a href="https://news.google.com/rss/articles/CBMiTkFVX3lxTE9mSV81UWtKS2xYN0lLd0hqT0c1TEx3blNVUEFTOXhRems1bnI3QjdtYkhhTnpWQmtqVkVlQ1JHaEV2ZDlXeVdYanNuT2Vxdw?oc=5" target="_blank" rel="noopener noreferrer">変わる世界、揺るがないテクノロジー株の優位 - バロンズ・ダイジェスト</a>
+      
+      <div class="news-item">
+        <span class="news-source">Google News 経済</span>
+        <div class="news-title">
+          <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE40Ykd2RENleTlKZjNsRjU5eGF4UVluY3ZSdzVEYTBES3NkSGd5RVhheEtBVmhSbjhuQUNhNDlvSThjTjdRLXVJY0ZMSXJZWE8yeEFMbzRRbjFXc2VmdkRV?oc=5" target="_blank" rel="noopener noreferrer">スペースX空前のIPO！市場にもたらすものは【経済コラム】 - NHKニュース</a>
+        </div>
       </div>
-    </div>
-    
-    <div class="news-item">
-      <span class="news-source">Google News 経済</span>
-      <div class="news-title">
-        <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE40Ykd2RENleTlKZjNsRjU5eGF4UVluY3ZSdzVEYTBES3NkSGd5RVhheEtBVmhSbjhuQUNhNDlvSThjTjdRLXVJY0ZMSXJZWE8yeEFMbzRRbjFXc2VmdkRV?oc=5" target="_blank" rel="noopener noreferrer">スペースX空前のIPO！市場にもたらすものは【経済コラム】 - NHKニュース</a>
+      
+      <div class="news-item">
+        <span class="news-source">Google News 経済</span>
+        <div class="news-title">
+          <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE1rZl9DSmNxNzVSSTVLRElrOHc2N2J6anhXMUtlZ3c2QlRab1JhRXlXX3Z0OGtGUWNvUFpqczR3eW5MWEJsN24yRXZEbVJHbHBBeEx2UmMzZEdJZw?oc=5" target="_blank" rel="noopener noreferrer">【銘柄】「良品計画」に株式市場が驚いた…決算で見えた「海外で稼げる無印良品」への進化 - ニューズウィーク日本版</a>
+        </div>
       </div>
-    </div>
-    
-    <div class="news-item">
-      <span class="news-source">Google News 経済</span>
-      <div class="news-title">
-        <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE1rZl9DSmNxNzVSSTVLRElrOHc2N2J6anhXMUtlZ3c2QlRab1JhRXlXX3Z0OGtGUWNvUFpqczR3eW5MWEJsN24yRXZEbVJHbHBBeEx2UmMzZEdJZw?oc=5" target="_blank" rel="noopener noreferrer">【銘柄】「良品計画」に株式市場が驚いた…決算で見えた「海外で稼げる無印良品」への進化 - ニューズウィーク日本版</a>
+      
+      <div class="news-item">
+        <span class="news-source">Google News 経済</span>
+        <div class="news-title">
+          <a href="https://news.google.com/rss/articles/CBMiV0FVX3lxTE1vdmx0MGdickd4UExJZkRSQ3F3MGg0VkpHM3lLM040S1daT2VRUXdBNXQ1WEdaSmxZbjE1UXJ2X1p6R1I4WUYyRmc0LW9PMzNHbzhtbmhPQQ?oc=5" target="_blank" rel="noopener noreferrer">高橋洋一・政治経済ホントのところ【高市政権下の株高】成長後押し円安の副産物｜政治｜石川のニュース - 北國新聞</a>
+        </div>
       </div>
+      
     </div>
-    
   </section>
 
 </div>
 
 <footer class="footer">
-  <p>Economic Dashboard — Auto-generated via GitHub Actions</p>
-  <p>Data: Yahoo Finance / RSS Feeds | AI: Gemini | This is not investment advice.</p>
+  <span>Economic Dashboard — Auto-generated via GitHub Actions</span>
+  <span>Data: Yahoo Finance / RSS | AI: fallback | Not investment advice</span>
 </footer>
 
 </body>
