@@ -8,715 +8,339 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ============================================
-   Design System — Contemporary Dark + Glass
-   ============================================ */
 :root {
-  --bg-base: #0B0F19;
-  --bg-elevated: rgba(255,255,255,0.03);
-  --bg-glass: rgba(255,255,255,0.04);
-  --bg-glass-hover: rgba(255,255,255,0.06);
-  --glass-border: rgba(255,255,255,0.06);
-  --glass-shadow: 0 8px 32px rgba(0,0,0,0.3);
-  --glass-shadow-sm: 0 2px 12px rgba(0,0,0,0.2);
-
-  --text-primary: #F1F5F9;
-  --text-secondary: #94A3B8;
-  --text-muted: #4B5563;
-  --text-label: #6B7280;
-
+  --bg: #0B0F19;
+  --card: rgba(255,255,255,0.035);
+  --card-hover: rgba(255,255,255,0.055);
+  --border: rgba(255,255,255,0.06);
+  --text-1: #F1F5F9;
+  --text-2: #94A3B8;
+  --text-3: #4B5563;
   --positive: #34D399;
-  --positive-bg: rgba(52,211,153,0.08);
-  --positive-bg-strong: rgba(52,211,153,0.15);
   --negative: #F87171;
-  --negative-bg: rgba(248,113,113,0.08);
-  --negative-bg-strong: rgba(248,113,113,0.15);
-  --neutral-bg: rgba(255,255,255,0.03);
-
-  --accent-gold: #C9A96E;
-  --accent-blue: #60A5FA;
-  --accent-purple: #A78BFA;
-  --accent-teal: #2DD4BF;
-
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
-
-  --font-sans: 'Inter', 'Noto Sans JP', -apple-system, 'Segoe UI', sans-serif;
-  --font-num: 'Inter', -apple-system, sans-serif;
+  --gold: #C9A96E;
+  --r: 12px;
+  --font: 'Inter', 'Noto Sans JP', -apple-system, sans-serif;
 }
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
 body {
-  background: var(--bg-base);
-  color: var(--text-primary);
-  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text-1);
+  font-family: var(--font);
   line-height: 1.6;
-  min-height: 100vh;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ============================================
-   Header
-   ============================================ */
-.header {
-  padding: 2rem 2.5rem 1.5rem;
-  max-width: 1320px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
+/* Layout */
+.wrap { max-width: 1320px; margin: 0 auto; padding: 0 2.5rem 3rem; }
+.header { max-width: 1320px; margin: 0 auto; padding: 2rem 2.5rem 1.5rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; }
+.header h1 { font-size: 1.5rem; font-weight: 300; letter-spacing: -0.02em; }
+.header-rule { width: 28px; height: 2px; background: var(--gold); border: none; margin-top: 6px; }
+.header-meta { font-size: 0.75rem; color: var(--text-3); display: flex; align-items: center; gap: 0.75rem; }
+.dot { width: 5px; height: 5px; background: var(--positive); border-radius: 50%; animation: pulse 2.5s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
-.header-title {
-  font-size: 1.5rem;
-  font-weight: 300;
-  color: var(--text-primary);
-  letter-spacing: -0.02em;
-}
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.gap { margin-bottom: 14px; }
 
-.header-rule {
-  width: 32px;
-  height: 2px;
-  background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold));
-  border: none;
-  margin-top: 8px;
-}
-
-.header-meta {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.header-meta .dot {
-  width: 5px;
-  height: 5px;
-  background: var(--positive);
-  border-radius: 50%;
-  animation: pulse 2.5s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-
-/* ============================================
-   Layout
-   ============================================ */
-.container {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 0 2.5rem 3rem;
-}
-
-.grid-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
-}
-
-.section-gap {
-  margin-bottom: 1.25rem;
-}
-
-/* ============================================
-   Glass Card
-   ============================================ */
+/* Card */
 .card {
-  background: var(--bg-glass);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
   padding: 1.75rem;
-  box-shadow: var(--glass-shadow-sm);
-  transition: background 0.3s ease, box-shadow 0.3s ease;
+  transition: background 0.3s;
 }
-
-.card:hover {
-  background: var(--bg-glass-hover);
-  box-shadow: var(--glass-shadow);
-}
-
-.card-label {
+.card:hover { background: var(--card-hover); }
+.label {
   font-size: 0.6875rem;
   font-weight: 500;
-  color: var(--text-muted);
+  color: var(--text-3);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 1.25rem;
 }
 
-/* ============================================
-   Market Summary (hero)
-   ============================================ */
-.summary-card {
-  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 100%);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-xl);
+/* Summary */
+.summary {
+  background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border: 1px solid var(--border);
+  border-radius: 16px;
   padding: 2.25rem;
-  box-shadow: var(--glass-shadow);
 }
-
-.summary-text {
+.summary p {
   font-size: 1rem;
-  font-weight: 400;
   line-height: 1.85;
-  color: var(--text-secondary);
-  letter-spacing: 0.01em;
+  color: var(--text-2);
 }
 
-/* ============================================
-   Index Cards
-   ============================================ */
-.indices-row {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-}
-
-.index-card {
-  background: var(--bg-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-md);
+/* Indices */
+.indices { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.idx {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
   padding: 1.25rem;
-  text-align: left;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: background 0.3s, transform 0.2s;
 }
-
-.index-card:hover {
-  background: var(--bg-glass-hover);
-  transform: translateY(-2px);
-}
-
-.index-name {
-  font-size: 0.625rem;
-  font-weight: 500;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 0.75rem;
-}
-
-.index-price {
-  font-family: var(--font-num);
-  font-size: 1.375rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  font-feature-settings: 'tnum';
-  letter-spacing: -0.02em;
-  margin-bottom: 0.35rem;
-}
-
-.index-change {
-  font-family: var(--font-num);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  font-feature-settings: 'tnum';
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.index-change .arrow {
-  display: inline-block;
-  width: 0;
-  height: 0;
-}
-
-.index-change .arrow.up-arrow {
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-bottom: 5px solid var(--positive);
-}
-
-.index-change .arrow.down-arrow {
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 5px solid var(--negative);
-}
-
+.idx:hover { background: var(--card-hover); transform: translateY(-2px); }
+.idx-name { font-size: 0.625rem; font-weight: 500; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem; }
+.idx-price { font-size: 1.375rem; font-weight: 600; font-feature-settings: 'tnum'; letter-spacing: -0.02em; margin-bottom: 0.35rem; }
+.idx-change { font-size: 0.8125rem; font-weight: 500; font-feature-settings: 'tnum'; display: flex; align-items: center; gap: 4px; }
+.arrow-up { width:0; height:0; border-left:4px solid transparent; border-right:4px solid transparent; border-bottom:5px solid var(--positive); }
+.arrow-down { width:0; height:0; border-left:4px solid transparent; border-right:4px solid transparent; border-top:5px solid var(--negative); }
 .up { color: var(--positive); }
 .down { color: var(--negative); }
-.flat { color: var(--text-muted); }
+.flat { color: var(--text-3); }
+.sparkline { width: 100%; height: 32px; margin-top: 10px; }
 
-/* ============================================
-   Sector Heatmap
-   ============================================ */
-.heatmap-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
-  gap: 6px;
-}
+/* Heatmap */
+.heatmap { display: grid; grid-template-columns: repeat(auto-fill, minmax(105px, 1fr)); gap: 6px; }
+.hm-cell { padding: 0.75rem 0.5rem; border-radius: 8px; text-align: center; transition: transform 0.15s; cursor: default; }
+.hm-cell:hover { transform: scale(1.04); }
+.hm-name { font-size: 0.625rem; opacity: 0.85; margin-bottom: 4px; }
+.hm-val { font-weight: 600; font-size: 0.875rem; font-feature-settings: 'tnum'; }
 
-.heatmap-cell {
-  padding: 0.75rem 0.5rem;
-  border-radius: var(--radius-sm);
-  text-align: center;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-  cursor: default;
-}
+/* Macro */
+.macro-text { font-size: 0.9375rem; color: var(--text-2); line-height: 1.85; }
 
-.heatmap-cell:hover {
-  transform: scale(1.04);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
-}
-
-.heatmap-name {
-  font-size: 0.625rem;
-  font-weight: 400;
-  opacity: 0.85;
-  margin-bottom: 4px;
-  letter-spacing: 0.02em;
-}
-
-.heatmap-val {
-  font-family: var(--font-num);
-  font-weight: 600;
-  font-size: 0.875rem;
-  font-feature-settings: 'tnum';
-}
-
-/* ============================================
-   Macro Text
-   ============================================ */
-.macro-text {
-  font-size: 0.9375rem;
-  color: var(--text-secondary);
-  line-height: 1.85;
-  letter-spacing: 0.01em;
-}
-
-/* ============================================
-   Focus Themes — Card Grid
-   ============================================ */
-.themes-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 10px;
-}
-
+/* Themes */
+.themes { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
 .theme-card {
-  background: var(--bg-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-md);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
   padding: 1.5rem;
-  position: relative;
-  overflow: hidden;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: background 0.3s, transform 0.2s;
 }
+.theme-card:hover { background: var(--card-hover); transform: translateY(-2px); }
+.theme-dot { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+.theme-dot span.dot-color { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.theme-dot span.dot-label { font-size: 0.5625rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); }
+.theme-title { font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+.theme-desc { font-size: 0.8125rem; color: var(--text-2); line-height: 1.7; }
 
-.theme-card:hover {
-  background: var(--bg-glass-hover);
-  transform: translateY(-2px);
-}
+/* Events */
+.ev-item { display: flex; gap: 1.25rem; padding: 1rem 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+.ev-item:last-child { border-bottom: none; padding-bottom: 0; }
+.ev-item:first-child { padding-top: 0; }
+.ev-date { font-size: 0.75rem; font-weight: 500; color: var(--gold); min-width: 72px; flex-shrink: 0; }
+.ev-name { font-size: 0.875rem; font-weight: 500; margin-bottom: 2px; }
+.ev-impact { font-size: 0.8125rem; color: var(--text-2); }
 
-.theme-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-}
+/* Learning */
+.learn-term { font-size: 1.125rem; font-weight: 600; color: var(--gold); margin-bottom: 0.75rem; }
+.learn-text { font-size: 0.875rem; color: var(--text-2); line-height: 1.85; }
 
-.theme-card.sentiment-positive::before { background: var(--positive); }
-.theme-card.sentiment-negative::before { background: var(--negative); }
-.theme-card.sentiment-neutral::before { background: var(--text-muted); }
+/* Watchlist */
+.wl-chart { position: relative; width: 100%; height: 220px; margin-bottom: 20px; }
+.wl-table { width: 100%; border-collapse: collapse; font-size: 0.8125rem; }
+.wl-table th { text-align: left; color: var(--text-3); font-size: 0.625rem; font-weight: 500; padding: 0 0 1rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.wl-table td { padding: 0.875rem 0; border-top: 1px solid var(--border); vertical-align: middle; }
+.wl-table tr:hover td { background: rgba(255,255,255,0.02); }
+.s-name { font-weight: 500; font-size: 0.875rem; }
+.s-code { color: var(--text-3); font-size: 0.6875rem; margin-top: 1px; }
+.s-theme { font-size: 0.625rem; font-weight: 500; color: var(--text-2); background: rgba(255,255,255,0.05); padding: 3px 8px; border-radius: 4px; display: inline-block; }
+.s-price { font-weight: 600; font-feature-settings: 'tnum'; }
+.s-change { font-weight: 500; font-feature-settings: 'tnum'; }
+.s-comment { font-size: 0.8125rem; color: var(--text-2); line-height: 1.5; max-width: 320px; }
 
-.theme-sentiment {
-  display: inline-block;
-  font-size: 0.5625rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 3px 8px;
-  border-radius: 4px;
-  margin-bottom: 0.75rem;
-}
+/* News */
+.news-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-item:first-child { padding-top: 0; }
+.news-row { display: grid; grid-template-columns: 56px 1fr; row-gap: 6px; }
+.news-badge { font-size: 9px; font-weight: 500; color: var(--text-3); background: rgba(255,255,255,0.05); padding: 2px 6px; border-radius: 3px; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.05em; justify-self: start; align-self: baseline; }
+.news-badge-ai { font-size: 9px; font-weight: 500; color: var(--gold); background: rgba(201,169,110,0.1); padding: 2px 6px; border-radius: 3px; white-space: nowrap; justify-self: start; align-self: baseline; }
+.news-headline a { font-size: 13px; color: var(--text-2); text-decoration: none; line-height: 1.5; transition: color 0.2s; }
+.news-headline a:hover { color: var(--text-1); }
+.news-comment { font-size: 12px; color: var(--text-2); line-height: 1.7; }
+.news-disclaimer { margin-top: 16px; font-size: 10px; color: var(--text-3); font-style: italic; }
 
-.sentiment-positive .theme-sentiment {
-  color: var(--positive);
-  background: var(--positive-bg);
-}
+/* Footer */
+.footer { max-width: 1320px; margin: 0 auto; padding: 2rem 2.5rem; border-top: 1px solid var(--border); color: var(--text-3); font-size: 0.6875rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
 
-.sentiment-negative .theme-sentiment {
-  color: var(--negative);
-  background: var(--negative-bg);
-}
-
-.sentiment-neutral .theme-sentiment {
-  color: var(--text-muted);
-  background: var(--neutral-bg);
-}
-
-.theme-title {
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 0.5rem;
-  letter-spacing: -0.01em;
-}
-
-.theme-desc {
-  font-size: 0.8125rem;
-  color: var(--text-secondary);
-  line-height: 1.7;
-}
-
-/* ============================================
-   Events
-   ============================================ */
-.event-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.event-item {
-  display: flex;
-  gap: 1.25rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-  align-items: flex-start;
-}
-
-.event-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.event-item:first-child {
-  padding-top: 0;
-}
-
-.event-date {
-  font-family: var(--font-num);
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--accent-gold);
-  min-width: 80px;
-  flex-shrink: 0;
-  padding-top: 1px;
-}
-
-.event-name {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--text-primary);
-  margin-bottom: 2px;
-}
-
-.event-impact {
-  font-size: 0.8125rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-}
-
-/* ============================================
-   Daily Learning
-   ============================================ */
-.learning-term {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--accent-gold);
-  margin-bottom: 0.75rem;
-  letter-spacing: -0.01em;
-}
-
-.learning-text {
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-  line-height: 1.85;
-}
-
-/* ============================================
-   Watchlist Table
-   ============================================ */
-.watchlist-wrap {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.watchlist-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.8125rem;
-}
-
-.watchlist-table th {
-  text-align: left;
-  color: var(--text-muted);
-  font-size: 0.625rem;
-  font-weight: 500;
-  padding: 0 0 1rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.watchlist-table td {
-  padding: 0.875rem 0;
-  border-top: 1px solid rgba(255,255,255,0.04);
-  vertical-align: middle;
-}
-
-.watchlist-table tr:hover td {
-  background: rgba(255,255,255,0.02);
-}
-
-.stock-name {
-  font-weight: 500;
-  color: var(--text-primary);
-  font-size: 0.875rem;
-}
-
-.stock-code {
-  color: var(--text-muted);
-  font-size: 0.6875rem;
-  margin-top: 1px;
-}
-
-.stock-theme {
-  font-size: 0.625rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  background: rgba(255,255,255,0.05);
-  padding: 3px 8px;
-  border-radius: 4px;
-  display: inline-block;
-  letter-spacing: 0.02em;
-}
-
-.stock-price {
-  font-family: var(--font-num);
-  font-weight: 600;
-  font-feature-settings: 'tnum';
-  color: var(--text-primary);
-}
-
-.stock-change {
-  font-family: var(--font-num);
-  font-weight: 500;
-  font-feature-settings: 'tnum';
-}
-
-.stock-comment {
-  font-size: 0.8125rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-  max-width: 320px;
-}
-
-/* ============================================
-   News
-   ============================================ */
-.news-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.news-item {
-  display: flex;
-  gap: 1rem;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.03);
-  align-items: baseline;
-}
-
-.news-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.news-item:first-child {
-  padding-top: 0;
-}
-
-.news-source {
-  font-size: 0.5625rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  background: rgba(255,255,255,0.05);
-  padding: 2px 7px;
-  border-radius: 4px;
-  white-space: nowrap;
-  flex-shrink: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.news-title a {
-  font-size: 0.8125rem;
-  color: var(--text-secondary);
-  text-decoration: none;
-  transition: color 0.2s ease;
-  line-height: 1.5;
-}
-
-.news-title a:hover {
-  color: var(--text-primary);
-}
-
-/* ============================================
-   Footer
-   ============================================ */
-.footer {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 2rem 2.5rem;
-  border-top: 1px solid rgba(255,255,255,0.04);
-  color: var(--text-muted);
-  font-size: 0.6875rem;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-/* ============================================
-   Responsive
-   ============================================ */
-@media (max-width: 1024px) {
-  .indices-row { grid-template-columns: repeat(3, 1fr); }
-}
-
-@media (max-width: 900px) {
+/* Responsive */
+@media (max-width:1024px) { .indices { grid-template-columns: repeat(3,1fr); } }
+@media (max-width:900px) {
   .grid-2 { grid-template-columns: 1fr; }
-  .indices-row { grid-template-columns: repeat(2, 1fr); }
-  .themes-grid { grid-template-columns: 1fr; }
-  .container { padding: 0 1.5rem 2rem; }
+  .indices { grid-template-columns: repeat(2,1fr); }
+  .themes { grid-template-columns: 1fr; }
+  .wrap { padding: 0 1.5rem 2rem; }
   .header { padding: 1.5rem 1.5rem 1rem; }
   .footer { padding: 1.5rem; }
 }
-
-@media (max-width: 600px) {
-  .container { padding: 0 1rem 1.5rem; }
+@media (max-width:600px) {
+  .wrap { padding: 0 1rem 1.5rem; }
   .header { padding: 1.25rem 1rem 0.75rem; }
-  .header-title { font-size: 1.25rem; }
-  .card { padding: 1.25rem; border-radius: var(--radius-md); }
-  .summary-card { padding: 1.5rem; border-radius: var(--radius-lg); }
-  .indices-row { grid-template-columns: 1fr 1fr; gap: 8px; }
-  .index-price { font-size: 1.125rem; }
-  .heatmap-grid { grid-template-columns: repeat(auto-fill, minmax(85px, 1fr)); }
+  .header h1 { font-size: 1.25rem; }
+  .card { padding: 1.25rem; }
+  .summary { padding: 1.5rem; }
+  .indices { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .idx-price { font-size: 1.125rem; }
+  .heatmap { grid-template-columns: repeat(auto-fill, minmax(85px,1fr)); }
   .footer { padding: 1rem; flex-direction: column; }
 }
 </style>
 </head>
 <body>
 
-<!-- Header -->
 <header class="header">
   <div>
-    <h1 class="header-title">Economic Dashboard</h1>
+    <h1>Economic Dashboard</h1>
     <hr class="header-rule">
   </div>
   <div class="header-meta">
     <span class="dot"></span>
-    <span>2026-06-14 13:24 JST</span>
-    <span>fallback</span>
+    <span>2026-06-14 14:05 JST</span>
+    <span>Gemini</span>
   </div>
 </header>
 
-<div class="container">
+<div class="wrap">
 
   <!-- Market Summary -->
-  <section class="summary-card section-gap">
-    <div class="card-label">Market Summary</div>
-    <p class="summary-text">AI分析は現在利用できません。指数データとニュース見出しをご確認ください。</p>
+  <section class="summary gap">
+    <div class="label">Market summary</div>
+    <p>本日の日本市場は、日経平均株価が2.81%の大幅高、TOPIXも1.45%上昇と堅調に推移しました。特に鉄鋼・非鉄や機械、素材・化学といった景気敏感セクターが市場を牽引し、景気回復への期待感が伺えます。一方、エネルギーや情報通信・サービスの一部は軟調でした。海外市場もS&P 500、NASDAQともに上昇し、グローバルなリスクオンムードが継続しています。</p>
   </section>
 
-  <!-- Major Indices -->
-  <section class="section-gap">
-    <div class="indices-row">
+  <!-- Indices with Sparklines -->
+  <section class="gap">
+    <div class="indices">
       
-      <div class="index-card">
-        <div class="index-name">日経平均</div>
+      <div class="idx">
+        <div class="idx-name">日経平均</div>
         
-        <div class="index-price">66,020.04</div>
-        <div class="index-change up">
-          <span class="arrow up-arrow"></span>
+        <div class="idx-price">66,020.04</div>
+        <div class="idx-change up">
+          <span class="arrow-up"></span>
           +2.81%
         </div>
         
+        <svg class="sparkline" viewBox="0 0 120 32" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="sg1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#34D399" />
+              <stop offset="100%" stop-color="#34D399" stop-opacity="0" />
+            </linearGradient>
+          </defs>
+          <path d="M0.0,26.7 L6.3,27.6 L12.6,30.0 L18.9,23.9 L25.3,18.5 L31.6,12.6 L37.9,13.1 L44.2,13.1 L50.5,14.1 L56.8,8.7 L63.2,6.8 L69.5,7.4 L75.8,2.0 L82.1,5.0 L88.4,7.9 L94.7,16.3 L101.1,11.7 L107.4,15.8 L113.7,15.6 L120.0,9.8" fill="none" stroke="#34D399" stroke-width="1.5" stroke-linecap="round" />
+          <path d="M0.0,26.7 L6.3,27.6 L12.6,30.0 L18.9,23.9 L25.3,18.5 L31.6,12.6 L37.9,13.1 L44.2,13.1 L50.5,14.1 L56.8,8.7 L63.2,6.8 L69.5,7.4 L75.8,2.0 L82.1,5.0 L88.4,7.9 L94.7,16.3 L101.1,11.7 L107.4,15.8 L113.7,15.6 L120.0,9.8 L120,32 L0,32Z" fill="url(#sg1)" opacity="0.12" />
+        </svg>
+        
+        
       </div>
       
-      <div class="index-card">
-        <div class="index-name">TOPIX</div>
+      <div class="idx">
+        <div class="idx-name">TOPIX</div>
         
-        <div class="index-price">412.20</div>
-        <div class="index-change up">
-          <span class="arrow up-arrow"></span>
+        <div class="idx-price">412.20</div>
+        <div class="idx-change up">
+          <span class="arrow-up"></span>
           +1.45%
         </div>
         
+        <svg class="sparkline" viewBox="0 0 120 32" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="sg2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#34D399" />
+              <stop offset="100%" stop-color="#34D399" stop-opacity="0" />
+            </linearGradient>
+          </defs>
+          <path d="M0.0,25.2 L6.3,22.1 L12.6,30.0 L18.9,21.4 L25.3,16.8 L31.6,9.5 L37.9,10.3 L44.2,12.6 L50.5,15.4 L56.8,9.6 L63.2,10.2 L69.5,12.4 L75.8,2.0 L82.1,8.7 L88.4,8.7 L94.7,21.4 L101.1,15.7 L107.4,22.7 L113.7,24.7 L120.0,17.0" fill="none" stroke="#34D399" stroke-width="1.5" stroke-linecap="round" />
+          <path d="M0.0,25.2 L6.3,22.1 L12.6,30.0 L18.9,21.4 L25.3,16.8 L31.6,9.5 L37.9,10.3 L44.2,12.6 L50.5,15.4 L56.8,9.6 L63.2,10.2 L69.5,12.4 L75.8,2.0 L82.1,8.7 L88.4,8.7 L94.7,21.4 L101.1,15.7 L107.4,22.7 L113.7,24.7 L120.0,17.0 L120,32 L0,32Z" fill="url(#sg2)" opacity="0.12" />
+        </svg>
+        
+        
       </div>
       
-      <div class="index-card">
-        <div class="index-name">ドル円</div>
+      <div class="idx">
+        <div class="idx-name">ドル円</div>
         
-        <div class="index-price">160.18</div>
-        <div class="index-change up">
-          <span class="arrow up-arrow"></span>
+        <div class="idx-price">160.18</div>
+        <div class="idx-change up">
+          <span class="arrow-up"></span>
           +0.03%
         </div>
         
+        <svg class="sparkline" viewBox="0 0 120 32" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="sg3" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#34D399" />
+              <stop offset="100%" stop-color="#34D399" stop-opacity="0" />
+            </linearGradient>
+          </defs>
+          <path d="M0.0,30.0 L6.3,27.1 L12.6,29.5 L18.9,27.4 L25.3,28.6 L31.6,28.4 L37.9,23.6 L44.2,18.1 L50.5,23.1 L56.8,21.7 L63.2,17.0 L69.5,11.4 L75.8,11.9 L82.1,11.0 L88.4,5.4 L94.7,7.9 L101.1,4.4 L107.4,2.0 L113.7,8.7 L120.0,7.7" fill="none" stroke="#34D399" stroke-width="1.5" stroke-linecap="round" />
+          <path d="M0.0,30.0 L6.3,27.1 L12.6,29.5 L18.9,27.4 L25.3,28.6 L31.6,28.4 L37.9,23.6 L44.2,18.1 L50.5,23.1 L56.8,21.7 L63.2,17.0 L69.5,11.4 L75.8,11.9 L82.1,11.0 L88.4,5.4 L94.7,7.9 L101.1,4.4 L107.4,2.0 L113.7,8.7 L120.0,7.7 L120,32 L0,32Z" fill="url(#sg3)" opacity="0.12" />
+        </svg>
+        
+        
       </div>
       
-      <div class="index-card">
-        <div class="index-name">S&P 500</div>
+      <div class="idx">
+        <div class="idx-name">S&P 500</div>
         
-        <div class="index-price">7,431.46</div>
-        <div class="index-change up">
-          <span class="arrow up-arrow"></span>
+        <div class="idx-price">7,431.46</div>
+        <div class="idx-change up">
+          <span class="arrow-up"></span>
           +0.50%
         </div>
         
+        <svg class="sparkline" viewBox="0 0 120 32" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="sg4" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#34D399" />
+              <stop offset="100%" stop-color="#34D399" stop-opacity="0" />
+            </linearGradient>
+          </defs>
+          <path d="M0.0,18.4 L6.3,18.9 L12.6,22.9 L18.9,16.4 L25.3,15.4 L31.6,13.1 L37.9,9.4 L44.2,9.3 L50.5,5.8 L56.8,4.4 L63.2,2.8 L69.5,2.0 L75.8,6.6 L82.1,4.1 L88.4,20.5 L94.7,18.7 L101.1,20.2 L107.4,30.0 L113.7,19.6 L120.0,16.6" fill="none" stroke="#34D399" stroke-width="1.5" stroke-linecap="round" />
+          <path d="M0.0,18.4 L6.3,18.9 L12.6,22.9 L18.9,16.4 L25.3,15.4 L31.6,13.1 L37.9,9.4 L44.2,9.3 L50.5,5.8 L56.8,4.4 L63.2,2.8 L69.5,2.0 L75.8,6.6 L82.1,4.1 L88.4,20.5 L94.7,18.7 L101.1,20.2 L107.4,30.0 L113.7,19.6 L120.0,16.6 L120,32 L0,32Z" fill="url(#sg4)" opacity="0.12" />
+        </svg>
+        
+        
       </div>
       
-      <div class="index-card">
-        <div class="index-name">NASDAQ</div>
+      <div class="idx">
+        <div class="idx-name">NASDAQ</div>
         
-        <div class="index-price">25,888.84</div>
-        <div class="index-change up">
-          <span class="arrow up-arrow"></span>
+        <div class="idx-price">25,888.84</div>
+        <div class="idx-change up">
+          <span class="arrow-up"></span>
           +0.31%
         </div>
+        
+        <svg class="sparkline" viewBox="0 0 120 32" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="sg5" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#34D399" />
+              <stop offset="100%" stop-color="#34D399" stop-opacity="0" />
+            </linearGradient>
+          </defs>
+          <path d="M0.0,14.6 L6.3,16.6 L12.6,19.8 L18.9,14.0 L25.3,13.7 L31.6,12.9 L37.9,8.4 L44.2,8.1 L50.5,4.6 L56.8,3.8 L63.2,2.1 L69.5,2.0 L75.8,5.5 L82.1,5.8 L88.4,22.1 L94.7,18.9 L101.1,22.6 L107.4,30.0 L113.7,20.7 L120.0,19.5" fill="none" stroke="#34D399" stroke-width="1.5" stroke-linecap="round" />
+          <path d="M0.0,14.6 L6.3,16.6 L12.6,19.8 L18.9,14.0 L25.3,13.7 L31.6,12.9 L37.9,8.4 L44.2,8.1 L50.5,4.6 L56.8,3.8 L63.2,2.1 L69.5,2.0 L75.8,5.5 L82.1,5.8 L88.4,22.1 L94.7,18.9 L101.1,22.6 L107.4,30.0 L113.7,20.7 L120.0,19.5 L120,32 L0,32Z" fill="url(#sg5)" opacity="0.12" />
+        </svg>
+        
         
       </div>
       
     </div>
   </section>
 
-  <!-- Sector Heatmap + Macro Environment -->
-  <div class="grid-2 section-gap">
+  <!-- Sector + Macro -->
+  <div class="grid-2 gap">
     <section class="card">
-      <div class="card-label">Sector Heatmap</div>
-      <div class="heatmap-grid">
+      <div class="label">Sector heatmap</div>
+      <div class="heatmap">
         
         
         
           
           
         
-        <div class="heatmap-cell" style="background:rgba(255,255,255,0.03); color:#6B7280;">
-          <div class="heatmap-name">食品</div>
-          <div class="heatmap-val">-0.7%</div>
+        <div class="hm-cell" style="background:rgba(255,255,255,0.03); color:#6B7280;">
+          <div class="hm-name">食品</div>
+          <div class="hm-val">-0.7%</div>
         </div>
         
         
@@ -724,9 +348,9 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(248,113,113,0.08); color:#fca5a5;">
-          <div class="heatmap-name">エネルギー</div>
-          <div class="heatmap-val">-1.5%</div>
+        <div class="hm-cell" style="background:rgba(248,113,113,0.08); color:#fca5a5;">
+          <div class="hm-name">エネルギー</div>
+          <div class="hm-val">-1.5%</div>
         </div>
         
         
@@ -734,9 +358,9 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(52,211,153,0.12); color:#6ee7b7;">
-          <div class="heatmap-name">建設・資材</div>
-          <div class="heatmap-val">+1.5%</div>
+        <div class="hm-cell" style="background:rgba(52,211,153,0.12); color:#6ee7b7;">
+          <div class="hm-name">建設・資材</div>
+          <div class="hm-val">+1.5%</div>
         </div>
         
         
@@ -744,9 +368,9 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(52,211,153,0.2); color:#6ee7b7;">
-          <div class="heatmap-name">素材・化学</div>
-          <div class="heatmap-val">+2.2%</div>
+        <div class="hm-cell" style="background:rgba(52,211,153,0.2); color:#6ee7b7;">
+          <div class="hm-name">素材・化学</div>
+          <div class="hm-val">+2.2%</div>
         </div>
         
         
@@ -754,9 +378,9 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(52,211,153,0.12); color:#6ee7b7;">
-          <div class="heatmap-name">医薬品</div>
-          <div class="heatmap-val">+1.5%</div>
+        <div class="hm-cell" style="background:rgba(52,211,153,0.12); color:#6ee7b7;">
+          <div class="hm-name">医薬品</div>
+          <div class="hm-val">+1.5%</div>
         </div>
         
         
@@ -764,9 +388,9 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(52,211,153,0.06); color:#86efac;">
-          <div class="heatmap-name">自動車・輸送機</div>
-          <div class="heatmap-val">+0.7%</div>
+        <div class="hm-cell" style="background:rgba(52,211,153,0.06); color:#86efac;">
+          <div class="hm-name">自動車・輸送機</div>
+          <div class="hm-val">+0.7%</div>
         </div>
         
         
@@ -774,9 +398,9 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(52,211,153,0.2); color:#6ee7b7;">
-          <div class="heatmap-name">鉄鋼・非鉄</div>
-          <div class="heatmap-val">+5.2%</div>
+        <div class="hm-cell" style="background:rgba(52,211,153,0.2); color:#6ee7b7;">
+          <div class="hm-name">鉄鋼・非鉄</div>
+          <div class="hm-val">+5.2%</div>
         </div>
         
         
@@ -784,9 +408,9 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(52,211,153,0.2); color:#6ee7b7;">
-          <div class="heatmap-name">機械</div>
-          <div class="heatmap-val">+2.7%</div>
+        <div class="hm-cell" style="background:rgba(52,211,153,0.2); color:#6ee7b7;">
+          <div class="hm-name">機械</div>
+          <div class="hm-val">+2.7%</div>
         </div>
         
         
@@ -794,9 +418,9 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(52,211,153,0.12); color:#6ee7b7;">
-          <div class="heatmap-name">電機・精密</div>
-          <div class="heatmap-val">+1.9%</div>
+        <div class="hm-cell" style="background:rgba(52,211,153,0.12); color:#6ee7b7;">
+          <div class="hm-name">電機・精密</div>
+          <div class="hm-val">+1.9%</div>
         </div>
         
         
@@ -804,9 +428,9 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(255,255,255,0.03); color:#6B7280;">
-          <div class="heatmap-name">情報通信・サービス</div>
-          <div class="heatmap-val">-0.5%</div>
+        <div class="hm-cell" style="background:rgba(255,255,255,0.03); color:#6B7280;">
+          <div class="hm-name">情報通信・サービス</div>
+          <div class="hm-val">-0.5%</div>
         </div>
         
         
@@ -814,9 +438,9 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(52,211,153,0.06); color:#86efac;">
-          <div class="heatmap-name">電力・ガス</div>
-          <div class="heatmap-val">+0.1%</div>
+        <div class="hm-cell" style="background:rgba(52,211,153,0.06); color:#86efac;">
+          <div class="hm-name">電力・ガス</div>
+          <div class="hm-val">+0.1%</div>
         </div>
         
         
@@ -824,9 +448,9 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(255,255,255,0.03); color:#6B7280;">
-          <div class="heatmap-name">運輸・物流</div>
-          <div class="heatmap-val">-0.6%</div>
+        <div class="hm-cell" style="background:rgba(255,255,255,0.03); color:#6B7280;">
+          <div class="hm-name">運輸・物流</div>
+          <div class="hm-val">-0.6%</div>
         </div>
         
         
@@ -834,9 +458,9 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(52,211,153,0.12); color:#6ee7b7;">
-          <div class="heatmap-name">商社・卸売</div>
-          <div class="heatmap-val">+1.3%</div>
+        <div class="hm-cell" style="background:rgba(52,211,153,0.12); color:#6ee7b7;">
+          <div class="hm-name">商社・卸売</div>
+          <div class="hm-val">+1.3%</div>
         </div>
         
         
@@ -844,9 +468,9 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(52,211,153,0.12); color:#6ee7b7;">
-          <div class="heatmap-name">小売</div>
-          <div class="heatmap-val">+1.3%</div>
+        <div class="hm-cell" style="background:rgba(52,211,153,0.12); color:#6ee7b7;">
+          <div class="hm-name">小売</div>
+          <div class="hm-val">+1.3%</div>
         </div>
         
         
@@ -854,9 +478,9 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(52,211,153,0.12); color:#6ee7b7;">
-          <div class="heatmap-name">銀行</div>
-          <div class="heatmap-val">+1.9%</div>
+        <div class="hm-cell" style="background:rgba(52,211,153,0.12); color:#6ee7b7;">
+          <div class="hm-name">銀行</div>
+          <div class="hm-val">+1.9%</div>
         </div>
         
         
@@ -864,9 +488,9 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(255,255,255,0.03); color:#6B7280;">
-          <div class="heatmap-name">金融（除く銀行）</div>
-          <div class="heatmap-val">-0.1%</div>
+        <div class="hm-cell" style="background:rgba(255,255,255,0.03); color:#6B7280;">
+          <div class="hm-name">金融（除く銀行）</div>
+          <div class="hm-val">-0.1%</div>
         </div>
         
         
@@ -874,73 +498,144 @@ body {
           
           
         
-        <div class="heatmap-cell" style="background:rgba(52,211,153,0.12); color:#6ee7b7;">
-          <div class="heatmap-name">不動産</div>
-          <div class="heatmap-val">+1.5%</div>
+        <div class="hm-cell" style="background:rgba(52,211,153,0.12); color:#6ee7b7;">
+          <div class="hm-name">不動産</div>
+          <div class="hm-val">+1.5%</div>
         </div>
         
       </div>
     </section>
 
     <section class="card">
-      <div class="card-label">Macro Environment</div>
-      <p class="macro-text">AI分析サービスに接続できませんでした。次回更新時に再試行します。</p>
+      <div class="label">Macro environment</div>
+      <p class="macro-text">日米ともに主要株価指数は堅調に推移し、グローバルなリスク選好ムードが続いています。ドル円は小幅な変動に留まるものの、日本の金融政策正常化観測と米国の利下げ時期への思惑が綱引き状態にあります。中東情勢の緊迫化は原油価格の変動や地政学的なリスク要因として注視が必要であり、今後の市場のボラティリティを高める可能性を秘めています。</p>
     </section>
   </div>
 
   <!-- Focus Themes -->
-  <section class="section-gap">
-    <div class="card-label" style="padding: 0 0 1rem;">Focus Themes</div>
-    <div class="themes-grid">
+  <section class="gap">
+    <div class="label" style="padding:0 0 1rem;">Focus themes</div>
+    <div class="themes">
       
-      <div class="theme-card sentiment-neutral">
-        <div class="theme-sentiment">neutral</div>
+      <div class="theme-card">
+        <div class="theme-dot">
+          <span class="dot-color" style="background:var(--positive);"></span>
+          <span class="dot-label">positive</span>
+        </div>
         <div class="theme-title">フィジカルAI × 建設</div>
-        <div class="theme-desc">データ取得中...</div>
+        <div class="theme-desc">建設業界では人手不足が深刻化しており、その解決策としてフィジカルAI（ロボット）の導入が加速しています。自動化による生産性向上や安全性の確保は、長期的な成長ドライバーとして期待されており、関連技術への投資が活発化すると見られます。</div>
       </div>
       
-      <div class="theme-card sentiment-neutral">
-        <div class="theme-sentiment">neutral</div>
+      <div class="theme-card">
+        <div class="theme-dot">
+          <span class="dot-color" style="background:var(--positive);"></span>
+          <span class="dot-label">positive</span>
+        </div>
         <div class="theme-title">アニメ・コンテンツ</div>
-        <div class="theme-desc">データ取得中...</div>
+        <div class="theme-desc">日本のアニメやゲーム、キャラクターといったコンテンツは世界的な人気を誇り、そのIP（知的財産）を活用したビジネスモデルが拡大しています。海外での収益機会の増加や多様なメディア展開は、今後も高い成長性を維持する要因となるでしょう。</div>
       </div>
       
-      <div class="theme-card sentiment-neutral">
-        <div class="theme-sentiment">neutral</div>
+      <div class="theme-card">
+        <div class="theme-dot">
+          <span class="dot-color" style="background:var(--positive);"></span>
+          <span class="dot-label">positive</span>
+        </div>
         <div class="theme-title">AI全般</div>
-        <div class="theme-desc">データ取得中...</div>
+        <div class="theme-desc">生成AI技術の飛躍的な進化は、あらゆる産業に変革をもたらし、新たな需要を創出しています。特にAIを支える半導体産業やソフトウェア開発、データセンター関連企業への投資が継続しており、市場の主要なテーマとして注目されています。</div>
+      </div>
+      
+      <div class="theme-card">
+        <div class="theme-dot">
+          <span class="dot-color" style="background:var(--positive);"></span>
+          <span class="dot-label">positive</span>
+        </div>
+        <div class="theme-title">宇宙産業・新規テクノロジー</div>
+        <div class="theme-desc">スペースXのIPOに関する報道が相次ぐなど、宇宙産業への関心が世界的に高まっています。衛星通信、宇宙旅行、資源探査といった分野での技術革新は、新たな市場を創造し、関連するハイテク企業に資金が向かうと予想されます。</div>
+      </div>
+      
+      <div class="theme-card">
+        <div class="theme-dot">
+          <span class="dot-color" style="background:var(--positive);"></span>
+          <span class="dot-label">positive</span>
+        </div>
+        <div class="theme-title">素材・機械・重厚長大産業</div>
+        <div class="theme-desc">本日のセクター動向では鉄鋼・非鉄が突出して上昇するなど、素材や機械といった基幹産業の好調が目立ちます。世界的な景気回復期待やインフラ投資の増加が、これらのセクターの業績改善と株価上昇の背景にあると考えられます。</div>
+      </div>
+      
+      <div class="theme-card">
+        <div class="theme-dot">
+          <span class="dot-color" style="background:var(--text-3);"></span>
+          <span class="dot-label">neutral</span>
+        </div>
+        <div class="theme-title">地政学リスクと経済安保</div>
+        <div class="theme-desc">中東情勢の緊迫化が報じられる一方で、日英間の経済安保や防衛分野での協力強化が合意されつつあります。不安定な国際情勢の中で、サプライチェーンの強靭化や防衛関連技術への投資が国家レベルで推進され、関連企業への注目度が高まる可能性があります。</div>
       </div>
       
     </div>
   </section>
 
-  <!-- Events + Daily Learning -->
-  <div class="grid-2 section-gap">
+  <!-- Events + Learning -->
+  <div class="grid-2 gap">
     <section class="card">
-      <div class="card-label">Upcoming Events</div>
+      <div class="label">Upcoming events</div>
       
-      <p style="color:var(--text-muted); font-size:0.875rem;">No upcoming events available.</p>
+      
+      <div class="ev-item">
+        <div class="ev-date">次週</div>
+        <div>
+          <div class="ev-name">米国消費者物価指数 (CPI) 発表</div>
+          <div class="ev-impact">米国のインフレ動向が示され、FRBの金融政策判断に影響を与え、金利や為替市場に変動をもたらす可能性があります。</div>
+        </div>
+      </div>
+      
+      <div class="ev-item">
+        <div class="ev-date">次週</div>
+        <div>
+          <div class="ev-name">日銀金融政策決定会合議事要旨公表</div>
+          <div class="ev-impact">日本銀行の金融政策に関する追加的な手掛かりが提供され、円相場や日本株の動向に影響を与える可能性があります。</div>
+        </div>
+      </div>
+      
+      <div class="ev-item">
+        <div class="ev-date">来週中</div>
+        <div>
+          <div class="ev-name">主要国製造業PMI発表</div>
+          <div class="ev-impact">グローバルな景気動向を示す重要な指標であり、特に素材や機械セクターの業績見通しに影響を与える可能性があります。</div>
+        </div>
+      </div>
+      
+      <div class="ev-item">
+        <div class="ev-date">来週</div>
+        <div>
+          <div class="ev-name">中国経済指標（小売売上高、鉱工業生産など）発表</div>
+          <div class="ev-impact">世界経済の成長エンジンである中国の景気動向は、特にアジア市場や景気敏感セクターに影響を及ぼす可能性があります。</div>
+        </div>
+      </div>
+      
       
     </section>
 
     <section class="card">
-      <div class="card-label">Daily Learning</div>
-      <div class="learning-term">—</div>
-      <div class="learning-text">AI分析サービス復旧後に生成されます。</div>
+      <div class="label">Daily learning</div>
+      <div class="learn-term">IPO (Initial Public Offering)</div>
+      <div class="learn-text">IPOとは、未上場の企業が初めて自社の株式を証券取引所に上場し、一般の投資家に対して株式を公開・売却することです。これにより企業は事業に必要な資金を調達でき、投資家は成長が期待される企業の株式を市場で購入できるようになります。一般的には、IPOによって企業は大規模な資金調達が可能になり、知名度も向上します。</div>
     </section>
   </div>
 
   <!-- Watchlist -->
-  <section class="card section-gap">
-    <div class="card-label">Watchlist</div>
-    <div class="watchlist-wrap">
-    <table class="watchlist-table">
+  <section class="card gap">
+    <div class="label">Watchlist</div>
+    <div class="wl-chart">
+      <canvas id="wlChart"></canvas>
+    </div>
+    <div style="overflow-x:auto;">
+    <table class="wl-table">
       <thead>
         <tr>
           <th style="padding-right:1.5rem;">銘柄</th>
           <th style="padding-right:1rem;">テーマ</th>
-          <th style="padding-right:1rem; text-align:right;">株価</th>
-          <th style="padding-right:1rem; text-align:right;">前日比</th>
+          <th style="padding-right:1rem;text-align:right;">株価</th>
+          <th style="padding-right:1rem;text-align:right;">前日比</th>
           <th>コメント</th>
         </tr>
       </thead>
@@ -948,144 +643,102 @@ body {
         
         <tr>
           <td style="padding-right:1.5rem;">
-            <div class="stock-name">東映アニメーション</div>
-            <div class="stock-code">4816.T</div>
+            <div class="s-name">東映アニメーション</div>
+            <div class="s-code">4816.T</div>
           </td>
-          <td style="padding-right:1rem;">
-            <span class="stock-theme">アニメ・IP</span>
-          </td>
-          <td class="stock-price" style="text-align:right; padding-right:1rem;">
-            
+          <td style="padding-right:1rem;"><span class="s-theme">アニメ・IP</span></td>
+          <td class="s-price" style="text-align:right;padding-right:1rem;">
             ¥2,406
-            
           </td>
-          <td class="stock-change down"
-              style="text-align:right; padding-right:1rem;">
-            
+          <td class="s-change down" style="text-align:right;padding-right:1rem;">
             -0.25%
-            
           </td>
-          <td class="stock-comment">
+          <td class="s-comment">
             
           </td>
         </tr>
         
         <tr>
           <td style="padding-right:1.5rem;">
-            <div class="stock-name">安川電機</div>
-            <div class="stock-code">6506.T</div>
+            <div class="s-name">安川電機</div>
+            <div class="s-code">6506.T</div>
           </td>
-          <td style="padding-right:1rem;">
-            <span class="stock-theme">フィジカルAI・ロボット</span>
-          </td>
-          <td class="stock-price" style="text-align:right; padding-right:1rem;">
-            
+          <td style="padding-right:1rem;"><span class="s-theme">フィジカルAI・ロボット</span></td>
+          <td class="s-price" style="text-align:right;padding-right:1rem;">
             ¥6,335
-            
           </td>
-          <td class="stock-change up"
-              style="text-align:right; padding-right:1rem;">
-            
+          <td class="s-change up" style="text-align:right;padding-right:1rem;">
             +5.30%
-            
           </td>
-          <td class="stock-comment">
+          <td class="s-comment">
             
           </td>
         </tr>
         
         <tr>
           <td style="padding-right:1.5rem;">
-            <div class="stock-name">ファナック</div>
-            <div class="stock-code">6954.T</div>
+            <div class="s-name">ファナック</div>
+            <div class="s-code">6954.T</div>
           </td>
-          <td style="padding-right:1rem;">
-            <span class="stock-theme">産業ロボット</span>
-          </td>
-          <td class="stock-price" style="text-align:right; padding-right:1rem;">
-            
+          <td style="padding-right:1rem;"><span class="s-theme">産業ロボット</span></td>
+          <td class="s-price" style="text-align:right;padding-right:1rem;">
             ¥6,950
-            
           </td>
-          <td class="stock-change up"
-              style="text-align:right; padding-right:1rem;">
-            
+          <td class="s-change up" style="text-align:right;padding-right:1rem;">
             +2.54%
-            
           </td>
-          <td class="stock-comment">
+          <td class="s-comment">
             
           </td>
         </tr>
         
         <tr>
           <td style="padding-right:1.5rem;">
-            <div class="stock-name">コマツ</div>
-            <div class="stock-code">6301.T</div>
+            <div class="s-name">コマツ</div>
+            <div class="s-code">6301.T</div>
           </td>
-          <td style="padding-right:1rem;">
-            <span class="stock-theme">建設機械の自動化</span>
-          </td>
-          <td class="stock-price" style="text-align:right; padding-right:1rem;">
-            
+          <td style="padding-right:1rem;"><span class="s-theme">建設機械の自動化</span></td>
+          <td class="s-price" style="text-align:right;padding-right:1rem;">
             ¥6,525
-            
           </td>
-          <td class="stock-change up"
-              style="text-align:right; padding-right:1rem;">
-            
+          <td class="s-change up" style="text-align:right;padding-right:1rem;">
             +1.87%
-            
           </td>
-          <td class="stock-comment">
+          <td class="s-comment">
             
           </td>
         </tr>
         
         <tr>
           <td style="padding-right:1.5rem;">
-            <div class="stock-name">三菱UFJ</div>
-            <div class="stock-code">8306.T</div>
+            <div class="s-name">三菱UFJ</div>
+            <div class="s-code">8306.T</div>
           </td>
-          <td style="padding-right:1rem;">
-            <span class="stock-theme">銀行・金利</span>
-          </td>
-          <td class="stock-price" style="text-align:right; padding-right:1rem;">
-            
+          <td style="padding-right:1rem;"><span class="s-theme">銀行・金利</span></td>
+          <td class="s-price" style="text-align:right;padding-right:1rem;">
             ¥3,162
-            
           </td>
-          <td class="stock-change up"
-              style="text-align:right; padding-right:1rem;">
-            
+          <td class="s-change up" style="text-align:right;padding-right:1rem;">
             +0.67%
-            
           </td>
-          <td class="stock-comment">
+          <td class="s-comment">
             
           </td>
         </tr>
         
         <tr>
           <td style="padding-right:1.5rem;">
-            <div class="stock-name">ソニーグループ</div>
-            <div class="stock-code">6758.T</div>
+            <div class="s-name">ソニーグループ</div>
+            <div class="s-code">6758.T</div>
           </td>
-          <td style="padding-right:1rem;">
-            <span class="stock-theme">エンタメ・アニメ配信</span>
-          </td>
-          <td class="stock-price" style="text-align:right; padding-right:1rem;">
-            
+          <td style="padding-right:1rem;"><span class="s-theme">エンタメ・アニメ配信</span></td>
+          <td class="s-price" style="text-align:right;padding-right:1rem;">
             ¥3,292
-            
           </td>
-          <td class="stock-change down"
-              style="text-align:right; padding-right:1rem;">
-            
+          <td class="s-change down" style="text-align:right;padding-right:1rem;">
             -2.29%
-            
           </td>
-          <td class="stock-comment">
+          <td class="s-comment">
             
           </td>
         </tr>
@@ -1095,160 +748,257 @@ body {
     </div>
   </section>
 
-  <!-- News -->
+  <!-- News with AI Commentary -->
   <section class="card">
-    <div class="card-label">Latest News</div>
-    <div class="news-list">
-      
-      <div class="news-item">
-        <span class="news-source">日経新聞</span>
-        <div class="news-title">
-          <a href="https://www.nikkei.com/article/DGXZQOCB141W10U6A610C2000000/" target="_blank" rel="noopener noreferrer">INPEX施設スト継続　オーストラリア機関、停止申し立て棄却</a>
-        </div>
+    <div class="label">Latest news</div>
+    
+    <div class="news-item">
+      <div class="news-row">
+        <span class="news-badge">日経新聞</span>
+        <div class="news-headline"><a href="https://www.nikkei.com/article/DGXZQOGR1409P0U6A610C2000000/" target="_blank" rel="noopener noreferrer">スターマー英首相寄稿　日英協力の新時代、経済安保や防衛で相互補完</a></div>
+        
+        <span class="news-badge-ai">AI分析</span>
+        <div class="news-comment">日英間の経済安保や防衛における協力強化は、防衛産業やサイバーセキュリティ関連企業など、日本の特定産業セクターへの投資機会を創出する可能性があると予想されます。</div>
+        
       </div>
-      
-      <div class="news-item">
-        <span class="news-source">日経新聞</span>
-        <div class="news-title">
-          <a href="https://www.nikkei.com/article/DGXZQOUA12CBO0S6A610C2000000/" target="_blank" rel="noopener noreferrer">日英、洋上風力や高温ガス炉開発で協力　AI・防衛も首脳合意へ</a>
-        </div>
-      </div>
-      
-      <div class="news-item">
-        <span class="news-source">日経新聞</span>
-        <div class="news-title">
-          <a href="https://www.nikkei.com/article/DGXZQODH1418I0U6A610C2000000/" target="_blank" rel="noopener noreferrer">ヤクルト奥川恭伸、7年目での初完封　ソフトバンクに二塁を踏ませず</a>
-        </div>
-      </div>
-      
-      <div class="news-item">
-        <span class="news-source">日経新聞</span>
-        <div class="news-title">
-          <a href="https://www.nikkei.com/article/DGXZQOKC141TC0U6A610C2000000/" target="_blank" rel="noopener noreferrer">陸上日本選手権、後藤大樹が男子400障害で初V　田中希実は7連覇</a>
-        </div>
-      </div>
-      
-      <div class="news-item">
-        <span class="news-source">日経新聞</span>
-        <div class="news-title">
-          <a href="https://www.nikkei.com/article/DGXZQOKC141SX0U6A610C2000000/" target="_blank" rel="noopener noreferrer">マイユニバースが急性心不全で死ぬ　宝塚記念、競走を中止</a>
-        </div>
-      </div>
-      
-      <div class="news-item">
-        <span class="news-source">日経新聞</span>
-        <div class="news-title">
-          <a href="https://www.nikkei.com/article/DGXZQOUA141RS0U6A610C2000000/" target="_blank" rel="noopener noreferrer">林芳正総務相、将来の自民党総裁に意欲　「志持ち続ける」</a>
-        </div>
-      </div>
-      
-      <div class="news-item">
-        <span class="news-source">日経新聞</span>
-        <div class="news-title">
-          <a href="https://www.nikkei.com/article/DGXZQOKC141HB0U6A610C2000000/" target="_blank" rel="noopener noreferrer">柔道男子1部、旭化成が5連覇　全日本実業団体</a>
-        </div>
-      </div>
-      
-      <div class="news-item">
-        <span class="news-source">日経新聞</span>
-        <div class="news-title">
-          <a href="https://www.nikkei.com/article/DGXZQOKC141F90U6A610C2000000/" target="_blank" rel="noopener noreferrer">SC軽井沢ク、男女ともに優勝　カーリング日本選手権</a>
-        </div>
-      </div>
-      
-      <div class="news-item">
-        <span class="news-source">日経新聞</span>
-        <div class="news-title">
-          <a href="https://www.nikkei.com/article/DGXZQOGM141NH0U6A610C2000000/" target="_blank" rel="noopener noreferrer">モンゴル外相「台湾統一の実現支持」　中国・王毅外相と会談</a>
-        </div>
-      </div>
-      
-      <div class="news-item">
-        <span class="news-source">日経新聞</span>
-        <div class="news-title">
-          <a href="https://www.nikkei.com/article/DGXZQODH140Y40U6A610C2000000/" target="_blank" rel="noopener noreferrer">ゴルフ桑木志帆、苦境に動じず今季2勝目　全米女子OPの自信が糧に</a>
-        </div>
-      </div>
-      
-      <div class="news-item">
-        <span class="news-source">Google News 経済</span>
-        <div class="news-title">
-          <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE1kNW4ya1dVWjZKSll5d1plUWd5eFRRckItZXNQeWsxR25TbWc4YlMwTFA4S3VycXdkOHZXZ1h2bWtQS0VlU3REUlFTd1NtWnFKZEtfS3J6bnp6OTlBRk1V?oc=5" target="_blank" rel="noopener noreferrer">中東情勢不透明でも、日経平均株価2026年末60,000円見通しを維持 米国景気3つの楽観シグナルあり 野村證券・池田雄之輔 - nomura.co.jp</a>
-        </div>
-      </div>
-      
-      <div class="news-item">
-        <span class="news-source">Google News 経済</span>
-        <div class="news-title">
-          <a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTFAzZ3JfZDFIeFZLTmVjODl6dkhQV2dLOWRUU2pNRDlLUk5EWlBaVDhDT2JieEo0TzJtYnM1X1d3TFY5emhXVEd0Y3FVR1hYVnJ1Tk9ZaTB4QUtNLVU?oc=5" target="_blank" rel="noopener noreferrer">還元から投資へ 株高の原動力に注目 | 藤代 宏一 | 第一ライフ資産運用経済研究所 - 第一ライフ資産運用経済研究所</a>
-        </div>
-      </div>
-      
-      <div class="news-item">
-        <span class="news-source">Google News 経済</span>
-        <div class="news-title">
-          <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9VV1hibXhJZjdyZHdFQWctblU2ZTY2UV9xdEVfZmI2ckNRV0xwaGhPOG1ScmIyV0thRnFwZVktUlMzSUUydDdGT3VyaXJsMmpDRUM3NmZ6a0pGV3BYejBQc0J4X3J0M3BYRTBSRw?oc=5" target="_blank" rel="noopener noreferrer">株式の「大公開時代」号砲 スペースX上場、始まるバブルマネー争奪戦 - 日本経済新聞</a>
-        </div>
-      </div>
-      
-      <div class="news-item">
-        <span class="news-source">Google News 経済</span>
-        <div class="news-title">
-          <a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxOT3NzQV9qM1VhZU5mUkl3NnFZeHdDeGpaWWhld3JOLVl6a1JQbUtwNmZmRjFLcDF4M3YwMGE2M2Y5QjdtVXRFYnlGWGl5SE0tUllCT1EzS016QzJ0UUx4OGJoR3FmTlFLLTBlazBfTzV0eURzSHJpYnlQZ0ZxYVUzWWttWkJuQjA?oc=5" target="_blank" rel="noopener noreferrer">アジア株式市場サマリー：引け（12日）(ロイター) - Yahoo!ファイナンス</a>
-        </div>
-      </div>
-      
-      <div class="news-item">
-        <span class="news-source">Google News 経済</span>
-        <div class="news-title">
-          <a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE5LNDlwVFhsT1VINldsTXd3bUFuX29kNVl3Z1lSejBVdEtCQ3M4Y0cyRUdIcWxOSlRjRDdQT1RyRzlpV05KRDZtS2FsT3owY3d4eWhBbXF3V3dsU09fZmNnQw?oc=5" target="_blank" rel="noopener noreferrer">豪ドル週間見通し：弱含みか、豪経済の減速懸念や日本の介入観測で - 株探</a>
-        </div>
-      </div>
-      
-      <div class="news-item">
-        <span class="news-source">Google News 経済</span>
-        <div class="news-title">
-          <a href="https://news.google.com/rss/articles/CBMiV0FVX3lxTFAyTFBuMW1pU0Z3U0djOUVwSkNhaHRyeGpwbTN6blZtcVVPNkhRY0VrZ3RPR1RZYlZ5TVJVcThYSmFEanhjTjEwR1JPWU5qS005T1JvVlNlZw?oc=5" target="_blank" rel="noopener noreferrer">ついにスペースX上場､これから起きることを予想する - 四季報オンライン</a>
-        </div>
-      </div>
-      
-      <div class="news-item">
-        <span class="news-source">Google News 経済</span>
-        <div class="news-title">
-          <a href="https://news.google.com/rss/articles/CBMiTEFVX3lxTFBsNWQ4SjVzaUl1N04xOVNPWnlWUUhNcDRqSXAyU25mbVlPSkxYMG1BNHAwMzVMblpiY0lnYjNwdzVvdGY1dld6Yi1RTlbSAU9BVV95cUxPM0p6RFlWWjZYaVRabVBiSnVYbVVlY2l2SGN5alEtY284QzFoOFNZUzAtNkEtYUREcTNvcTFYT2ZNcWZRU0hhUTd6VEZoQWFF?oc=5" target="_blank" rel="noopener noreferrer">日経平均「26年度末7万円」も視野、ITバブル時とは大きく違う日米経済・株式市場 - ダイヤモンド・オンライン</a>
-        </div>
-      </div>
-      
-      <div class="news-item">
-        <span class="news-source">Google News 経済</span>
-        <div class="news-title">
-          <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE40Ykd2RENleTlKZjNsRjU5eGF4UVluY3ZSdzVEYTBES3NkSGd5RVhheEtBVmhSbjhuQUNhNDlvSThjTjdRLXVJY0ZMSXJZWE8yeEFMbzRRbjFXc2VmdkRV?oc=5" target="_blank" rel="noopener noreferrer">スペースX空前のIPO！市場にもたらすものは【経済コラム】 - NHKニュース</a>
-        </div>
-      </div>
-      
-      <div class="news-item">
-        <span class="news-source">Google News 経済</span>
-        <div class="news-title">
-          <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE1rZl9DSmNxNzVSSTVLRElrOHc2N2J6anhXMUtlZ3c2QlRab1JhRXlXX3Z0OGtGUWNvUFpqczR3eW5MWEJsN24yRXZEbVJHbHBBeEx2UmMzZEdJZw?oc=5" target="_blank" rel="noopener noreferrer">【銘柄】「良品計画」に株式市場が驚いた…決算で見えた「海外で稼げる無印良品」への進化 - ニューズウィーク日本版</a>
-        </div>
-      </div>
-      
-      <div class="news-item">
-        <span class="news-source">Google News 経済</span>
-        <div class="news-title">
-          <a href="https://news.google.com/rss/articles/CBMiV0FVX3lxTE1vdmx0MGdickd4UExJZkRSQ3F3MGg0VkpHM3lLM040S1daT2VRUXdBNXQ1WEdaSmxZbjE1UXJ2X1p6R1I4WUYyRmc0LW9PMzNHbzhtbmhPQQ?oc=5" target="_blank" rel="noopener noreferrer">高橋洋一・政治経済ホントのところ【高市政権下の株高】成長後押し円安の副産物｜政治｜石川のニュース - 北國新聞</a>
-        </div>
-      </div>
-      
     </div>
+    
+    <div class="news-item">
+      <div class="news-row">
+        <span class="news-badge">日経新聞</span>
+        <div class="news-headline"><a href="https://www.nikkei.com/article/DGXZQOGR141TN0U6A610C2000000/" target="_blank" rel="noopener noreferrer">イスラエル軍、レバノン首都を攻撃　ヒズボラの司令機能標的</a></div>
+        
+        <span class="news-badge-ai">AI分析</span>
+        <div class="news-comment">中東情勢の緊迫化は、原油価格の変動や地政学リスクの高まりを通じて、投資家のリスク回避姿勢を強め、株式市場全体に短期的な調整圧力がかかる可能性があるでしょう。</div>
+        
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <div class="news-row">
+        <span class="news-badge">日経新聞</span>
+        <div class="news-headline"><a href="https://www.nikkei.com/article/DGXZQOKC141W00U6A610C2000000/" target="_blank" rel="noopener noreferrer">宮野隼人・田中沙季らが代表に　世界トランポリン選考会</a></div>
+        
+        <span class="news-badge-ai">AI分析</span>
+        <div class="news-comment">INPEX施設のスト継続は、エネルギー供給不安を増幅させ、同社の業績に影響を与えることで、関連銘柄の株価に下押し圧力がかかる可能性があると推測されます。</div>
+        
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <div class="news-row">
+        <span class="news-badge">日経新聞</span>
+        <div class="news-headline"><a href="https://www.nikkei.com/article/DGXZQOCB141W10U6A610C2000000/" target="_blank" rel="noopener noreferrer">INPEX施設スト継続　オーストラリア機関、停止申し立て棄却</a></div>
+        
+        <span class="news-badge-ai">AI分析</span>
+        <div class="news-comment">日英間の洋上風力や高温ガス炉、AI・防衛分野での協力合意は、再生可能エネルギー、次世代原子力技術、AI技術、防衛関連企業の成長を加速させる要因となり得ると考えられます。</div>
+        
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <div class="news-row">
+        <span class="news-badge">日経新聞</span>
+        <div class="news-headline"><a href="https://www.nikkei.com/article/DGXZQOUA12CBO0S6A610C2000000/" target="_blank" rel="noopener noreferrer">日英、洋上風力や高温ガス炉開発で協力　AI・防衛も首脳合意へ</a></div>
+        
+        <span class="news-badge-ai">AI分析</span>
+        <div class="news-comment">中東情勢のリスクがありながらも日経平均の高値見通しが維持されていることは、日本企業の底堅い業績や円安を背景とした海外投資家の日本株への期待を示唆しており、投資家の安心材料となる可能性があります。</div>
+        
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <div class="news-row">
+        <span class="news-badge">日経新聞</span>
+        <div class="news-headline"><a href="https://www.nikkei.com/article/DGXZQODH1418I0U6A610C2000000/" target="_blank" rel="noopener noreferrer">ヤクルト奥川恭伸、7年目での初完封　ソフトバンクに二塁を踏ませず</a></div>
+        
+        <span class="news-badge-ai">AI分析</span>
+        <div class="news-comment">企業が株主還元から成長投資へシフトする動きは、設備投資や研究開発の増加を通じて、企業の将来的な収益拡大に繋がり、中長期的に株価を押し上げる原動力となるだろうと予想されます。</div>
+        
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <div class="news-row">
+        <span class="news-badge">日経新聞</span>
+        <div class="news-headline"><a href="https://www.nikkei.com/article/DGXZQOKC141TC0U6A610C2000000/" target="_blank" rel="noopener noreferrer">陸上日本選手権、後藤大樹が男子400障害で初V　田中希実は7連覇</a></div>
+        
+        <span class="news-badge-ai">AI分析</span>
+        <div class="news-comment">スペースXのIPOは、宇宙産業や先端テクノロジー分野への新たな資金流入を促し、関連するサプライチェーンやサービスを提供する企業の株価にもポジティブな影響が及ぶ可能性があるでしょう。</div>
+        
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <div class="news-row">
+        <span class="news-badge">日経新聞</span>
+        <div class="news-headline"><a href="https://www.nikkei.com/article/DGXZQOKC141SX0U6A610C2000000/" target="_blank" rel="noopener noreferrer">マイユニバースが急性心不全で死ぬ　宝塚記念、競走を中止</a></div>
+        
+        <span class="news-badge-ai">AI分析</span>
+        <div class="news-comment">日経平均がITバブル時とは異なる堅調な経済背景で7万円も視野に入るとの見方は、日本株に対する長期的な投資魅力を高め、海外からの資金流入をさらに促進する可能性が考えられます。</div>
+        
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <div class="news-row">
+        <span class="news-badge">日経新聞</span>
+        <div class="news-headline"><a href="https://www.nikkei.com/article/DGXZQOUA141RS0U6A610C2000000/" target="_blank" rel="noopener noreferrer">林芳正総務相、将来の自民党総裁に意欲　「志持ち続ける」</a></div>
+        
+        <span class="news-badge-ai">AI分析</span>
+        <div class="news-comment">豪ドルが弱含みで推移する見通しは、日本の為替介入観測と併せて為替市場の動向に影響を与え、日本の輸入企業や輸出企業の業績に影響を及ぼす可能性があると推測されます。</div>
+        
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <div class="news-row">
+        <span class="news-badge">日経新聞</span>
+        <div class="news-headline"><a href="https://www.nikkei.com/article/DGXZQOKC141HB0U6A610C2000000/" target="_blank" rel="noopener noreferrer">柔道男子1部、旭化成が5連覇　全日本実業団体</a></div>
+        
+        <span class="news-badge-ai">AI分析</span>
+        <div class="news-comment">スペースXのIPOとAIの未来が結びつけられていることは、テクノロジーセクターへの継続的な注目と、宇宙開発・AI関連企業への資金流入が今後も加速することを示唆していると解釈できます。</div>
+        
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <div class="news-row">
+        <span class="news-badge">Google News 経済</span>
+        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE1kNW4ya1dVWjZKSll5d1plUWd5eFRRckItZXNQeWsxR25TbWc4YlMwTFA4S3VycXdkOHZXZ1h2bWtQS0VlU3REUlFTd1NtWnFKZEtfS3J6bnp6OTlBRk1V?oc=5" target="_blank" rel="noopener noreferrer">中東情勢不透明でも、日経平均株価2026年末60,000円見通しを維持 米国景気3つの楽観シグナルあり 野村證券・池田雄之輔 - nomura.co.jp</a></div>
+        
+        <span class="news-badge-ai">AI分析</span>
+        <div class="news-comment">AIバブル崩壊の可能性に関する議論は、投資家に対してテクノロジー株への過度な期待を抑制し、持続可能な成長を見極める重要性を示唆しており、市場の健全な調整を促す役割を果たすかもしれません。</div>
+        
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <div class="news-row">
+        <span class="news-badge">Google News 経済</span>
+        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTFAzZ3JfZDFIeFZLTmVjODl6dkhQV2dLOWRUU2pNRDlLUk5EWlBaVDhDT2JieEo0TzJtYnM1X1d3TFY5emhXVEd0Y3FVR1hYVnJ1Tk9ZaTB4QUtNLVU?oc=5" target="_blank" rel="noopener noreferrer">還元から投資へ 株高の原動力に注目 | 藤代 宏一 | 第一ライフ資産運用経済研究所 - 第一ライフ資産運用経済研究所</a></div>
+        
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <div class="news-row">
+        <span class="news-badge">Google News 経済</span>
+        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxOT3NzQV9qM1VhZU5mUkl3NnFZeHdDeGpaWWhld3JOLVl6a1JQbUtwNmZmRjFLcDF4M3YwMGE2M2Y5QjdtVXRFYnlGWGl5SE0tUllCT1EzS016QzJ0UUx4OGJoR3FmTlFLLTBlazBfTzV0eURzSHJpYnlQZ0ZxYVUzWWttWkJuQjA?oc=5" target="_blank" rel="noopener noreferrer">アジア株式市場サマリー：引け（12日）(ロイター) - Yahoo!ファイナンス</a></div>
+        
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <div class="news-row">
+        <span class="news-badge">Google News 経済</span>
+        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9VV1hibXhJZjdyZHdFQWctblU2ZTY2UV9xdEVfZmI2ckNRV0xwaGhPOG1ScmIyV0thRnFwZVktUlMzSUUydDdGT3VyaXJsMmpDRUM3NmZ6a0pGV3BYejBQc0J4X3J0M3BYRTBSRw?oc=5" target="_blank" rel="noopener noreferrer">株式の「大公開時代」号砲 スペースX上場、始まるバブルマネー争奪戦 - 日本経済新聞</a></div>
+        
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <div class="news-row">
+        <span class="news-badge">Google News 経済</span>
+        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE5LNDlwVFhsT1VINldsTXd3bUFuX29kNVl3Z1lSejBVdEtCQ3M4Y0cyRUdIcWxOSlRjRDdQT1RyRzlpV05KRDZtS2FsT3owY3d4eWhBbXF3V3dsU09fZmNnQw?oc=5" target="_blank" rel="noopener noreferrer">豪ドル週間見通し：弱含みか、豪経済の減速懸念や日本の介入観測で - 株探</a></div>
+        
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <div class="news-row">
+        <span class="news-badge">Google News 経済</span>
+        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMiTEFVX3lxTFBsNWQ4SjVzaUl1N04xOVNPWnlWUUhNcDRqSXAyU25mbVlPSkxYMG1BNHAwMzVMblpiY0lnYjNwdzVvdGY1dld6Yi1RTlbSAU9BVV95cUxPM0p6RFlWWjZYaVRabVBiSnVYbVVlY2l2SGN5alEtY284QzFoOFNZUzAtNkEtYUREcTNvcTFYT2ZNcWZRU0hhUTd6VEZoQWFF?oc=5" target="_blank" rel="noopener noreferrer">日経平均「26年度末7万円」も視野、ITバブル時とは大きく違う日米経済・株式市場 - ダイヤモンド・オンライン</a></div>
+        
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <div class="news-row">
+        <span class="news-badge">Google News 経済</span>
+        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMiV0FVX3lxTFAyTFBuMW1pU0Z3U0djOUVwSkNhaHRyeGpwbTN6blZtcVVPNkhRY0VrZ3RPR1RZYlZ5TVJVcThYSmFEanhjTjEwR1JPWU5qS005T1JvVlNlZw?oc=5" target="_blank" rel="noopener noreferrer">ついにスペースX上場､これから起きることを予想する - 四季報オンライン</a></div>
+        
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <div class="news-row">
+        <span class="news-badge">Google News 経済</span>
+        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE40Ykd2RENleTlKZjNsRjU5eGF4UVluY3ZSdzVEYTBES3NkSGd5RVhheEtBVmhSbjhuQUNhNDlvSThjTjdRLXVJY0ZMSXJZWE8yeEFMbzRRbjFXc2VmdkRV?oc=5" target="_blank" rel="noopener noreferrer">スペースX空前のIPO！市場にもたらすものは【経済コラム】 - NHKニュース</a></div>
+        
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <div class="news-row">
+        <span class="news-badge">Google News 経済</span>
+        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE1rZl9DSmNxNzVSSTVLRElrOHc2N2J6anhXMUtlZ3c2QlRab1JhRXlXX3Z0OGtGUWNvUFpqczR3eW5MWEJsN24yRXZEbVJHbHBBeEx2UmMzZEdJZw?oc=5" target="_blank" rel="noopener noreferrer">【銘柄】「良品計画」に株式市場が驚いた…決算で見えた「海外で稼げる無印良品」への進化 - ニューズウィーク日本版</a></div>
+        
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <div class="news-row">
+        <span class="news-badge">Google News 経済</span>
+        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMiV0FVX3lxTE1vdmx0MGdickd4UExJZkRSQ3F3MGg0VkpHM3lLM040S1daT2VRUXdBNXQ1WEdaSmxZbjE1UXJ2X1p6R1I4WUYyRmc0LW9PMzNHbzhtbmhPQQ?oc=5" target="_blank" rel="noopener noreferrer">高橋洋一・政治経済ホントのところ【高市政権下の株高】成長後押し円安の副産物｜政治｜石川のニュース - 北國新聞</a></div>
+        
+      </div>
+    </div>
+    
+    <div class="news-disclaimer">AI分析はGeminiによる自動生成です。投資判断の参考情報であり、推奨ではありません。</div>
   </section>
 
 </div>
 
 <footer class="footer">
   <span>Economic Dashboard — Auto-generated via GitHub Actions</span>
-  <span>Data: Yahoo Finance / RSS | AI: fallback | Not investment advice</span>
+  <span>Data: Yahoo Finance / RSS | AI: Gemini | Not investment advice</span>
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+(function(){
+  var labels = ["東映アニメーション","安川電機","ファナック","コマツ","三菱UFJ","ソニーグループ"];
+  var values = [-0.25,5.3,2.54,1.87,0.67,-2.29];
+  var colors = values.map(function(v){ return v >= 0 ? '#34D399' : '#F87171'; });
+  var bgColors = values.map(function(v){ return v >= 0 ? 'rgba(52,211,153,0.2)' : 'rgba(248,113,113,0.2)'; });
+
+  new Chart(document.getElementById('wlChart'), {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        data: values,
+        backgroundColor: bgColors,
+        borderColor: colors,
+        borderWidth: 1,
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: {
+          ticks: { color: 'rgba(255,255,255,0.35)', font: { size: 11 }, autoSkip: false },
+          grid: { display: false },
+          border: { display: false }
+        },
+        y: {
+          ticks: {
+            color: 'rgba(255,255,255,0.35)',
+            font: { size: 11 },
+            callback: function(v){ return (v >= 0 ? '+' : '') + v.toFixed(1) + '%'; }
+          },
+          grid: { color: 'rgba(255,255,255,0.05)' },
+          border: { display: false }
+        }
+      }
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
