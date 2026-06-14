@@ -1,0 +1,58 @@
+# ============================================
+# 経済動向ダッシュボード 設定ファイル
+# ============================================
+# 銘柄の追加・削除はこのファイルを編集するだけでOK
+# code: Yahoo Financeのティッカー（日本株は末尾に.T）
+
+watchlist:
+  - {code: "4816.T", name: "東映アニメーション", theme: "アニメ・IP"}
+  - {code: "6506.T", name: "安川電機", theme: "フィジカルAI・ロボット"}
+  - {code: "6954.T", name: "ファナック", theme: "産業ロボット"}
+  - {code: "6301.T", name: "コマツ", theme: "建設機械の自動化"}
+  - {code: "8306.T", name: "三菱UFJ", theme: "銀行・金利"}
+  - {code: "6758.T", name: "ソニーグループ", theme: "エンタメ・アニメ配信"}
+
+# 固定で追跡するテーマ（毎回必ず分析に含まれる）
+fixed_themes:
+  - "フィジカルAI × 建設"
+  - "アニメ・コンテンツ"
+  - "AI全般"
+
+# 「今日の学び」の難易度レベル
+# beginner → intermediate → advanced に手動で変更可
+learning_level: "beginner"
+
+# 主要指数（変更不要）
+indices:
+  - {code: "^N225", name: "日経平均"}
+  - {code: "^TPX", name: "TOPIX"}
+  - {code: "JPY=X", name: "ドル円"}
+  - {code: "^GSPC", name: "S&P 500"}
+  - {code: "^IXIC", name: "NASDAQ"}
+
+# RSSフィード（無料・制限なし）
+rss_feeds:
+  - {url: "https://assets.wor.jp/rss/rdf/nikkei/news.rdf", name: "日経新聞", category: "japan"}
+  - {url: "https://news.google.com/rss/search?q=経済+株式+市場&hl=ja&gl=JP&ceid=JP:ja", name: "Google News 経済", category: "japan"}
+  - {url: "https://news.google.com/rss/search?q=economy+stock+market&hl=en&gl=US&ceid=US:en", name: "Google News Economy", category: "global"}
+  - {url: "https://feeds.finance.yahoo.co.jp/rss/2ch/news", name: "Yahoo!ファイナンス", category: "japan"}
+
+# セクターETF（業種別ヒートマップ用・日本株ETF）
+sector_etfs:
+  - {code: "1617.T", name: "食品"}
+  - {code: "1618.T", name: "エネルギー"}
+  - {code: "1619.T", name: "建設・資材"}
+  - {code: "1620.T", name: "素材・化学"}
+  - {code: "1621.T", name: "医薬品"}
+  - {code: "1622.T", name: "自動車・輸送機"}
+  - {code: "1623.T", name: "鉄鋼・非鉄"}
+  - {code: "1624.T", name: "機械"}
+  - {code: "1625.T", name: "電機・精密"}
+  - {code: "1626.T", name: "情報通信・サービス"}
+  - {code: "1627.T", name: "電力・ガス"}
+  - {code: "1628.T", name: "運輸・物流"}
+  - {code: "1629.T", name: "商社・卸売"}
+  - {code: "1630.T", name: "小売"}
+  - {code: "1631.T", name: "銀行"}
+  - {code: "1632.T", name: "金融（除く銀行）"}
+  - {code: "1633.T", name: "不動産"}

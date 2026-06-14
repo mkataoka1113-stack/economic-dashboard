@@ -1,0 +1,55 @@
+# ============================================
+# 経済動向ダッシュボード 自動更新ワークフロー
+# ============================================
+# UTC基準のcron → JSTとのズレに注意
+#   JST 07:00 = UTC 22:00（前日）
+#   JST 12:30 = UTC 03:30
+#   JST 18:00 = UTC 09:00
+
+name: Update Economic Dashboard
+
+on:
+  schedule:
+    - cron: '0 22 * * *'    # 毎日 JST 07:00（朝の市況チェック）
+    - cron: '30 3 * * *'    # 毎日 JST 12:30（昼の更新）
+    - cron: '0 9 * * *'     # 毎日 JST 18:00（夕方まとめ）
+  workflow_dispatch:         # 手動実行ボタン（テスト用）
+
+# セキュリティ: 最小権限の原則
+permissions:
+  contents: write
+
+jobs:
+  update-dashboard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate dashboard
+        env:
+          # APIキーはGitHub Secretsから安全に読み込む
+          # リポジトリ Settings → Secrets → Actions で登録
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+        run: python scripts/generate_dashboard.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/
+          git diff --staged --quiet || git commit -m "📊 ダッシュボード更新: $(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M JST')"
+          git push
