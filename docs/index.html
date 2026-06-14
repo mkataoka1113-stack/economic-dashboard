@@ -447,8 +447,8 @@ body {
     <h1>ECONOMIC <span>DASHBOARD</span></h1>
     <div class="header-meta">
       <span class="pulse"></span>
-      <span>2026-06-14 12:08 JST</span>
-      <span>via fallback</span>
+      <span>2026-06-14 12:15 JST</span>
+      <span>via Gemini</span>
     </div>
   </div>
 </header>
@@ -461,7 +461,7 @@ body {
       <span class="card-icon">📊</span>
       <h2>Market Summary</h2>
     </div>
-    <p class="summary-text">AI分析は現在利用できません。指数データとニュース見出しをご確認ください。</p>
+    <p class="summary-text">本日の日本株式市場は、日経平均株価が大幅に2.81%上昇し66,000円台を回復、TOPIXも堅調に推移しました。米国市場もS&P 500、NASDAQ共に上昇しており、グローバルな株高基調が見られます。特に鉄鋼・非鉄や機械セクターが市場を牽引し、素材・化学、電機・精密、銀行なども大きく上昇しました。</p>
   </section>
 
   <!-- 主要指数 -->
@@ -487,8 +487,12 @@ body {
       <div class="ticker-item">
         <div class="ticker-name">TOPIX</div>
         
-        <div class="ticker-price flat">--</div>
-        <div class="ticker-change flat">N/A</div>
+        <div class="ticker-price up">
+          412.20
+        </div>
+        <div class="ticker-change up">
+          +1.45%
+        </div>
         
       </div>
       
@@ -719,7 +723,7 @@ body {
         <span class="card-icon">🌐</span>
         <h2>Macro Environment</h2>
       </div>
-      <p class="macro-text">AI分析サービスに接続できませんでした。次回更新時に再試行します。</p>
+      <p class="macro-text">ドル円は160円台を維持し、わずかに円安方向へ推移しています。米国市場は主要指数が堅調に上昇しているものの、中東情勢の不透明感が残るほか、米国での消費減速を示す調査結果も出ており、今後の経済指標に注目が集まります。AIを巡る「バブル」への警戒感も一部で指摘されています。</p>
     </section>
   </div>
 
@@ -730,19 +734,34 @@ body {
       <h2>Focus Themes</h2>
     </div>
     
-    <div class="theme-item neutral">
+    <div class="theme-item positive">
       <div class="theme-title">フィジカルAI × 建設</div>
-      <div class="theme-desc">データ取得中...</div>
+      <div class="theme-desc">建設・資材セクターが堅調に推移しており、インフラ投資や労働力不足を背景に、建設現場でのAI活用やロボティクス導入への期待が高まっています。DX推進による効率化や安全性向上が注目されています。</div>
     </div>
     
     <div class="theme-item neutral">
       <div class="theme-title">アニメ・コンテンツ</div>
-      <div class="theme-desc">データ取得中...</div>
+      <div class="theme-desc">日本のソフトパワーであるアニメやゲーム、音楽といったコンテンツ産業は、国内外での需要が根強く、関連企業の業績に注目が集まります。特に海外市場でのIP展開が成長ドライバーとなりえます。</div>
     </div>
     
-    <div class="theme-item neutral">
+    <div class="theme-item positive">
       <div class="theme-title">AI全般</div>
-      <div class="theme-desc">データ取得中...</div>
+      <div class="theme-desc">米国でのスペースXのIPO報道や「テクノロジー株の優位」といった見出しが示す通り、AI技術は引き続き株式市場の最大の関心事です。AIを巡る投資熱は高く、新たなイノベーションと産業構造の変化への期待が背景にあります。</div>
+    </div>
+    
+    <div class="theme-item positive">
+      <div class="theme-title">鉄鋼・非鉄 / 機械</div>
+      <div class="theme-desc">本日のセクター動向で特に鉄鋼・非鉄が5.15%、機械が2.69%と大幅に上昇しました。これはグローバルな景気回復期待やインフラ投資の需要、または特定の製品分野での受注増加が背景にあると考えられます。</div>
+    </div>
+    
+    <div class="theme-item positive">
+      <div class="theme-title">新エネルギー・先端技術協力</div>
+      <div class="theme-desc">日英首脳合意に見られるように、洋上風力や高温ガス炉といった新エネルギー開発、AI・量子技術など未来を担う先端技術分野での国際協力が進んでいます。脱炭素化と技術競争力の強化が資金流入の背景となっています。</div>
+    </div>
+    
+    <div class="theme-item positive">
+      <div class="theme-title">宇宙関連産業・テクノロジーIPO</div>
+      <div class="theme-desc">スペースXのIPOに関する報道が多数見られ、宇宙開発といった未開拓分野への資金流入や、新たなテクノロジー企業の大型上場への期待が高まっています。これは、テクノロジー株全般への関心と市場のバブルマネーの動きを示唆しています。</div>
     </div>
     
   </section>
@@ -755,7 +774,39 @@ body {
         <h2>Upcoming Events</h2>
       </div>
       
-      <p style="color:var(--text-muted);font-size:0.85rem;">データ取得中...</p>
+      
+      <div class="event-item">
+        <div class="event-date">来週</div>
+        <div>
+          <div class="event-name">日銀金融政策決定会合</div>
+          <div class="event-impact">金融政策の据え置きか、追加利上げの示唆が円相場や日本株に影響を与える可能性があります。</div>
+        </div>
+      </div>
+      
+      <div class="event-item">
+        <div class="event-date">近日中</div>
+        <div>
+          <div class="event-name">米国消費者物価指数（CPI）発表</div>
+          <div class="event-impact">インフレ動向が米連邦準備制度理事会（FRB）の金融政策判断に直結し、世界経済に影響を及ぼします。</div>
+        </div>
+      </div>
+      
+      <div class="event-item">
+        <div class="event-date">来週〜再来週</div>
+        <div>
+          <div class="event-name">主要企業の四半期決算発表</div>
+          <div class="event-impact">企業の業績見通しやガイダンスが、個別銘柄および市場全体のセンチメントを左右します。</div>
+        </div>
+      </div>
+      
+      <div class="event-item">
+        <div class="event-date">近日中</div>
+        <div>
+          <div class="event-name">米国製造業PMI</div>
+          <div class="event-impact">製造業の景況感を示す指標であり、米国の経済成長の勢いを測る上で重要です。</div>
+        </div>
+      </div>
+      
       
     </section>
 
@@ -765,8 +816,8 @@ body {
         <span class="card-icon">💡</span>
         <h2>Daily Learning</h2>
       </div>
-      <div class="learning-term">—</div>
-      <div class="learning-text">AI分析サービス復旧後に生成されます。</div>
+      <div class="learning-term">AIバブル</div>
+      <div class="learning-text">AIバブルとは、人工知能（AI）関連技術や企業への期待が過度に高まり、その株価が企業の実態価値以上に膨れ上がっている状態を指す言葉です。過去のITバブルのように、期待先行で価格が上昇し、その後実態との乖離が顕在化すると急落するリスクが指摘されます。例えば、まだ収益化が難しい段階にあるAI関連スタートアップの株価が、将来の成長期待だけで非常に高値で取引されているような状況がこれに当たります。</div>
     </section>
   </div>
 
@@ -808,6 +859,8 @@ body {
           </td>
           <td class="stock-comment">
             
+              
+            
           </td>
         </tr>
         
@@ -829,6 +882,8 @@ body {
             
           </td>
           <td class="stock-comment">
+            
+              
             
           </td>
         </tr>
@@ -852,6 +907,8 @@ body {
           </td>
           <td class="stock-comment">
             
+              
+            
           </td>
         </tr>
         
@@ -873,6 +930,8 @@ body {
             
           </td>
           <td class="stock-comment">
+            
+              
             
           </td>
         </tr>
@@ -896,6 +955,8 @@ body {
           </td>
           <td class="stock-comment">
             
+              
+            
           </td>
         </tr>
         
@@ -918,6 +979,8 @@ body {
           </td>
           <td class="stock-comment">
             
+              
+            
           </td>
         </tr>
         
@@ -931,48 +994,6 @@ body {
     <div class="card-header">
       <span class="card-icon">📰</span>
       <h2>Latest News</h2>
-    </div>
-    
-    <div class="news-item">
-      <span class="news-source">日経新聞</span>
-      <div class="news-title">
-        <a href="https://www.nikkei.com/article/DGXZQOKC141SX0U6A610C2000000/" target="_blank" rel="noopener noreferrer">マイユニバースが急性心不全で死ぬ　宝塚記念、競走を中止</a>
-      </div>
-    </div>
-    
-    <div class="news-item">
-      <span class="news-source">日経新聞</span>
-      <div class="news-title">
-        <a href="https://www.nikkei.com/article/DGXZQOUA141RS0U6A610C2000000/" target="_blank" rel="noopener noreferrer">林芳正総務相、将来の自民党総裁に意欲　「志持ち続ける」</a>
-      </div>
-    </div>
-    
-    <div class="news-item">
-      <span class="news-source">日経新聞</span>
-      <div class="news-title">
-        <a href="https://www.nikkei.com/article/DGXZQOKC141HB0U6A610C2000000/" target="_blank" rel="noopener noreferrer">柔道男子1部、旭化成が5連覇　全日本実業団体</a>
-      </div>
-    </div>
-    
-    <div class="news-item">
-      <span class="news-source">日経新聞</span>
-      <div class="news-title">
-        <a href="https://www.nikkei.com/article/DGXZQOUA12CBO0S6A610C2000000/" target="_blank" rel="noopener noreferrer">日英、洋上風力や高温ガス炉開発で協力　AI・量子も首脳合意へ</a>
-      </div>
-    </div>
-    
-    <div class="news-item">
-      <span class="news-source">日経新聞</span>
-      <div class="news-title">
-        <a href="https://www.nikkei.com/article/DGXZQOKC141F90U6A610C2000000/" target="_blank" rel="noopener noreferrer">SC軽井沢ク、男女ともに優勝　カーリング日本選手権</a>
-      </div>
-    </div>
-    
-    <div class="news-item">
-      <span class="news-source">日経新聞</span>
-      <div class="news-title">
-        <a href="https://www.nikkei.com/article/DGXZQOGM141NH0U6A610C2000000/" target="_blank" rel="noopener noreferrer">モンゴル外相「台湾統一の実現支持」　中国・王毅外相と会談</a>
-      </div>
     </div>
     
     <div class="news-item">
@@ -1000,6 +1021,48 @@ body {
       <span class="news-source">日経新聞</span>
       <div class="news-title">
         <a href="https://www.nikkei.com/article/DGXZQOKC141K00U6A610C2000000/" target="_blank" rel="noopener noreferrer">パラ陸上、吉田彩乃が日本新で2冠　日本選手権</a>
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-source">日経新聞</span>
+      <div class="news-title">
+        <a href="https://www.nikkei.com/article/DGXZQOGN141900U6A610C2000000/" target="_blank" rel="noopener noreferrer">米国とイラン、双方主張曲げず「合意」か　残る認識のズレ</a>
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-source">日経新聞</span>
+      <div class="news-title">
+        <a href="https://www.nikkei.com/article/DGXZQOUA12CBO0S6A610C2000000/" target="_blank" rel="noopener noreferrer">日英、洋上風力や高温ガス炉開発で協力　AI・量子も首脳合意へ</a>
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-source">日経新聞</span>
+      <div class="news-title">
+        <a href="https://www.nikkei.com/article/DGXZQOCC141H90U6A610C2000000/" target="_blank" rel="noopener noreferrer">京都府宮津市長選挙、城崎雅文氏が3選</a>
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-source">日経新聞</span>
+      <div class="news-title">
+        <a href="https://www.nikkei.com/article/DGXZQOKC141HB0U6A610C2000000/" target="_blank" rel="noopener noreferrer">柔道男子1部、旭化成が5連覇　全日本実業団体</a>
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-source">日経新聞</span>
+      <div class="news-title">
+        <a href="https://www.nikkei.com/article/DGXZQOKC141E20U6A610C2000000/" target="_blank" rel="noopener noreferrer">全日本大学野球、関大が優勝　54年ぶり3度目</a>
+      </div>
+    </div>
+    
+    <div class="news-item">
+      <span class="news-source">日経新聞</span>
+      <div class="news-title">
+        <a href="https://www.nikkei.com/article/DGXZQOKC141630U6A610C2000000/" target="_blank" rel="noopener noreferrer">14日のプロ野球　結果と戦評</a>
       </div>
     </div>
     
@@ -1041,14 +1104,14 @@ body {
     <div class="news-item">
       <span class="news-source">Google News 経済</span>
       <div class="news-title">
-        <a href="https://news.google.com/rss/articles/CBMiV0FVX3lxTFAyTFBuMW1pU0Z3U0djOUVwSkNhaHRyeGpwbTN6blZtcVVPNkhRY0VrZ3RPR1RZYlZ5TVJVcThYSmFEanhjTjEwR1JPWU5qS005T1JvVlNlZw?oc=5" target="_blank" rel="noopener noreferrer">ついにスペースX上場､これから起きることを予想する - 四季報オンライン</a>
+        <a href="https://news.google.com/rss/articles/CBMiTEFVX3lxTFBsNWQ4SjVzaUl1N04xOVNPWnlWUUhNcDRqSXAyU25mbVlPSkxYMG1BNHAwMzVMblpiY0lnYjNwdzVvdGY1dld6Yi1RTlbSAU9BVV95cUxPM0p6RFlWWjZYaVRabVBiSnVYbVVlY2l2SGN5alEtY284QzFoOFNZUzAtNkEtYUREcTNvcTFYT2ZNcWZRU0hhUTd6VEZoQWFF?oc=5" target="_blank" rel="noopener noreferrer">日経平均「26年度末7万円」も視野、ITバブル時とは大きく違う日米経済・株式市場 - ダイヤモンド・オンライン</a>
       </div>
     </div>
     
     <div class="news-item">
       <span class="news-source">Google News 経済</span>
       <div class="news-title">
-        <a href="https://news.google.com/rss/articles/CBMiTEFVX3lxTFBsNWQ4SjVzaUl1N04xOVNPWnlWUUhNcDRqSXAyU25mbVlPSkxYMG1BNHAwMzVMblpiY0lnYjNwdzVvdGY1dld6Yi1RTlbSAU9BVV95cUxPM0p6RFlWWjZYaVRabVBiSnVYbVVlY2l2SGN5alEtY284QzFoOFNZUzAtNkEtYUREcTNvcTFYT2ZNcWZRU0hhUTd6VEZoQWFF?oc=5" target="_blank" rel="noopener noreferrer">日経平均「26年度末7万円」も視野、ITバブル時とは大きく違う日米経済・株式市場 - ダイヤモンド・オンライン</a>
+        <a href="https://news.google.com/rss/articles/CBMiV0FVX3lxTFAyTFBuMW1pU0Z3U0djOUVwSkNhaHRyeGpwbTN6blZtcVVPNkhRY0VrZ3RPR1RZYlZ5TVJVcThYSmFEanhjTjEwR1JPWU5qS005T1JvVlNlZw?oc=5" target="_blank" rel="noopener noreferrer">ついにスペースX上場､これから起きることを予想する - 四季報オンライン</a>
       </div>
     </div>
     
@@ -1079,7 +1142,7 @@ body {
 
 <footer class="footer">
   <p>Economic Dashboard — Auto-generated via GitHub Actions</p>
-  <p>Data: Yahoo Finance / RSS Feeds | AI: fallback | This is not investment advice.</p>
+  <p>Data: Yahoo Finance / RSS Feeds | AI: Gemini | This is not investment advice.</p>
 </footer>
 
 </body>
