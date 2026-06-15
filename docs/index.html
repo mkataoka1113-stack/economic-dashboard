@@ -149,7 +149,7 @@ body {
 .news-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
 .news-item:last-child { border-bottom: none; padding-bottom: 0; }
 .news-item:first-child { padding-top: 0; }
-.news-row { display: grid; grid-template-columns: 56px 1fr; row-gap: 6px; }
+.news-row { display: grid; grid-template-columns: 60px 1fr; column-gap: 10px; row-gap: 6px; }
 .news-badge { font-size: 9px; font-weight: 500; color: var(--text-3); background: rgba(255,255,255,0.05); padding: 2px 6px; border-radius: 3px; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.05em; justify-self: start; align-self: baseline; }
 .news-badge-ai { font-size: 9px; font-weight: 500; color: var(--gold); background: rgba(201,169,110,0.1); padding: 2px 6px; border-radius: 3px; white-space: nowrap; justify-self: start; align-self: baseline; }
 .news-headline a { font-size: 13px; color: var(--text-2); text-decoration: none; line-height: 1.5; transition: color 0.2s; }
@@ -192,8 +192,8 @@ body {
   </div>
   <div class="header-meta">
     <span class="dot"></span>
-    <span>2026-06-15 09:44 JST</span>
-    <span>Gemini</span>
+    <span>2026-06-15 15:14 JST</span>
+    <span>fallback</span>
   </div>
 </header>
 
@@ -202,7 +202,7 @@ body {
   <!-- Market Summary -->
   <section class="summary gap">
     <div class="label">Market summary</div>
-    <p>本日の日本株式市場は大幅に続伸し、日経平均株価は史上最高値を大幅に更新、69,000円台を突破しました。TOPIXも大きく上昇し、市場は強いリスク選好ムードに包まれました。米イラン合意による地政学リスクの後退が市場の追い風となり、特に電機・精密、建設・資材、機械などのセクターが市場全体を牽引しました。海外市場も堅調に推移し、グローバルな株高の流れが継続しています。</p>
+    <p>AI分析は現在利用できません。指数データとニュース見出しをご確認ください。</p>
   </section>
 
   <!-- Indices with Sparklines -->
@@ -212,10 +212,10 @@ body {
       <div class="idx">
         <div class="idx-name">日経平均</div>
         
-        <div class="idx-price">69,317.50</div>
+        <div class="idx-price">66,020.04</div>
         <div class="idx-change up">
           <span class="arrow-up"></span>
-          +4.99%
+          +2.81%
         </div>
         
         <svg class="sparkline" viewBox="0 0 120 32" preserveAspectRatio="none">
@@ -225,8 +225,8 @@ body {
               <stop offset="100%" stop-color="#34D399" stop-opacity="0" />
             </linearGradient>
           </defs>
-          <path d="M0.0,27.8 L6.3,30.0 L12.6,24.5 L18.9,19.6 L25.3,14.2 L31.6,14.7 L37.9,14.7 L44.2,15.6 L50.5,10.8 L56.8,9.0 L63.2,9.6 L69.5,4.7 L75.8,7.4 L82.1,10.0 L88.4,17.6 L94.7,13.5 L101.1,17.1 L107.4,17.0 L113.7,11.7 L120.0,2.0" fill="none" stroke="#34D399" stroke-width="1.5" stroke-linecap="round" />
-          <path d="M0.0,27.8 L6.3,30.0 L12.6,24.5 L18.9,19.6 L25.3,14.2 L31.6,14.7 L37.9,14.7 L44.2,15.6 L50.5,10.8 L56.8,9.0 L63.2,9.6 L69.5,4.7 L75.8,7.4 L82.1,10.0 L88.4,17.6 L94.7,13.5 L101.1,17.1 L107.4,17.0 L113.7,11.7 L120.0,2.0 L120,32 L0,32Z" fill="url(#sg1)" opacity="0.12" />
+          <path d="M0.0,26.7 L6.3,27.6 L12.6,30.0 L18.9,23.9 L25.3,18.5 L31.6,12.6 L37.9,13.1 L44.2,13.1 L50.5,14.1 L56.8,8.7 L63.2,6.8 L69.5,7.4 L75.8,2.0 L82.1,5.0 L88.4,7.9 L94.7,16.3 L101.1,11.7 L107.4,15.8 L113.7,15.6 L120.0,9.8" fill="none" stroke="#34D399" stroke-width="1.5" stroke-linecap="round" />
+          <path d="M0.0,26.7 L6.3,27.6 L12.6,30.0 L18.9,23.9 L25.3,18.5 L31.6,12.6 L37.9,13.1 L44.2,13.1 L50.5,14.1 L56.8,8.7 L63.2,6.8 L69.5,7.4 L75.8,2.0 L82.1,5.0 L88.4,7.9 L94.7,16.3 L101.1,11.7 L107.4,15.8 L113.7,15.6 L120.0,9.8 L120,32 L0,32Z" fill="url(#sg1)" opacity="0.12" />
         </svg>
         
         
@@ -258,10 +258,10 @@ body {
       <div class="idx">
         <div class="idx-name">ドル円</div>
         
-        <div class="idx-price">160.13</div>
+        <div class="idx-price">160.14</div>
         <div class="idx-change up">
           <span class="arrow-up"></span>
-          +-0.00%
+          +0.01%
         </div>
         
         <svg class="sparkline" viewBox="0 0 120 32" preserveAspectRatio="none">
@@ -271,8 +271,8 @@ body {
               <stop offset="100%" stop-color="#34D399" stop-opacity="0" />
             </linearGradient>
           </defs>
-          <path d="M0.0,30.0 L6.3,27.1 L12.6,29.5 L18.9,27.4 L25.3,28.6 L31.6,28.4 L37.9,23.6 L44.2,18.1 L50.5,23.1 L56.8,21.7 L63.2,17.0 L69.5,11.4 L75.8,11.9 L82.1,11.0 L88.4,5.4 L94.7,7.9 L101.1,4.4 L107.4,2.0 L113.7,8.7 L120.0,8.7" fill="none" stroke="#34D399" stroke-width="1.5" stroke-linecap="round" />
-          <path d="M0.0,30.0 L6.3,27.1 L12.6,29.5 L18.9,27.4 L25.3,28.6 L31.6,28.4 L37.9,23.6 L44.2,18.1 L50.5,23.1 L56.8,21.7 L63.2,17.0 L69.5,11.4 L75.8,11.9 L82.1,11.0 L88.4,5.4 L94.7,7.9 L101.1,4.4 L107.4,2.0 L113.7,8.7 L120.0,8.7 L120,32 L0,32Z" fill="url(#sg3)" opacity="0.12" />
+          <path d="M0.0,30.0 L6.3,27.1 L12.6,29.5 L18.9,27.4 L25.3,28.6 L31.6,28.4 L37.9,23.6 L44.2,18.1 L50.5,23.1 L56.8,21.7 L63.2,17.0 L69.5,11.4 L75.8,11.9 L82.1,11.0 L88.4,5.4 L94.7,7.9 L101.1,4.4 L107.4,2.0 L113.7,8.7 L120.0,8.5" fill="none" stroke="#34D399" stroke-width="1.5" stroke-linecap="round" />
+          <path d="M0.0,30.0 L6.3,27.1 L12.6,29.5 L18.9,27.4 L25.3,28.6 L31.6,28.4 L37.9,23.6 L44.2,18.1 L50.5,23.1 L56.8,21.7 L63.2,17.0 L69.5,11.4 L75.8,11.9 L82.1,11.0 L88.4,5.4 L94.7,7.9 L101.1,4.4 L107.4,2.0 L113.7,8.7 L120.0,8.5 L120,32 L0,32Z" fill="url(#sg3)" opacity="0.12" />
         </svg>
         
         
@@ -281,10 +281,10 @@ body {
       <div class="idx">
         <div class="idx-name">S&P 500</div>
         
-        <div class="idx-price">7,431.46</div>
+        <div class="idx-price">7,557.21</div>
         <div class="idx-change up">
           <span class="arrow-up"></span>
-          +0.50%
+          +1.69%
         </div>
         
         <svg class="sparkline" viewBox="0 0 120 32" preserveAspectRatio="none">
@@ -294,8 +294,8 @@ body {
               <stop offset="100%" stop-color="#34D399" stop-opacity="0" />
             </linearGradient>
           </defs>
-          <path d="M0.0,18.4 L6.3,18.9 L12.6,22.9 L18.9,16.4 L25.3,15.4 L31.6,13.1 L37.9,9.4 L44.2,9.3 L50.5,5.8 L56.8,4.4 L63.2,2.8 L69.5,2.0 L75.8,6.6 L82.1,4.1 L88.4,20.5 L94.7,18.7 L101.1,20.2 L107.4,30.0 L113.7,19.6 L120.0,16.6" fill="none" stroke="#34D399" stroke-width="1.5" stroke-linecap="round" />
-          <path d="M0.0,18.4 L6.3,18.9 L12.6,22.9 L18.9,16.4 L25.3,15.4 L31.6,13.1 L37.9,9.4 L44.2,9.3 L50.5,5.8 L56.8,4.4 L63.2,2.8 L69.5,2.0 L75.8,6.6 L82.1,4.1 L88.4,20.5 L94.7,18.7 L101.1,20.2 L107.4,30.0 L113.7,19.6 L120.0,16.6 L120,32 L0,32Z" fill="url(#sg4)" opacity="0.12" />
+          <path d="M0.0,18.9 L6.3,22.9 L12.6,16.4 L18.9,15.4 L25.3,13.1 L31.6,9.4 L37.9,9.3 L44.2,5.8 L50.5,4.4 L56.8,2.8 L63.2,2.0 L69.5,6.6 L75.8,4.1 L82.1,20.5 L88.4,18.7 L94.7,20.2 L101.1,30.0 L107.4,19.6 L113.7,16.6 L120.0,6.3" fill="none" stroke="#34D399" stroke-width="1.5" stroke-linecap="round" />
+          <path d="M0.0,18.9 L6.3,22.9 L12.6,16.4 L18.9,15.4 L25.3,13.1 L31.6,9.4 L37.9,9.3 L44.2,5.8 L50.5,4.4 L56.8,2.8 L63.2,2.0 L69.5,6.6 L75.8,4.1 L82.1,20.5 L88.4,18.7 L94.7,20.2 L101.1,30.0 L107.4,19.6 L113.7,16.6 L120.0,6.3 L120,32 L0,32Z" fill="url(#sg4)" opacity="0.12" />
         </svg>
         
         
@@ -304,10 +304,10 @@ body {
       <div class="idx">
         <div class="idx-name">NASDAQ</div>
         
-        <div class="idx-price">25,888.84</div>
+        <div class="idx-price">26,567.47</div>
         <div class="idx-change up">
           <span class="arrow-up"></span>
-          +0.31%
+          +2.62%
         </div>
         
         <svg class="sparkline" viewBox="0 0 120 32" preserveAspectRatio="none">
@@ -317,8 +317,8 @@ body {
               <stop offset="100%" stop-color="#34D399" stop-opacity="0" />
             </linearGradient>
           </defs>
-          <path d="M0.0,14.6 L6.3,16.6 L12.6,19.8 L18.9,14.0 L25.3,13.7 L31.6,12.9 L37.9,8.4 L44.2,8.1 L50.5,4.6 L56.8,3.8 L63.2,2.1 L69.5,2.0 L75.8,5.5 L82.1,5.8 L88.4,22.1 L94.7,18.9 L101.1,22.6 L107.4,30.0 L113.7,20.7 L120.0,19.5" fill="none" stroke="#34D399" stroke-width="1.5" stroke-linecap="round" />
-          <path d="M0.0,14.6 L6.3,16.6 L12.6,19.8 L18.9,14.0 L25.3,13.7 L31.6,12.9 L37.9,8.4 L44.2,8.1 L50.5,4.6 L56.8,3.8 L63.2,2.1 L69.5,2.0 L75.8,5.5 L82.1,5.8 L88.4,22.1 L94.7,18.9 L101.1,22.6 L107.4,30.0 L113.7,20.7 L120.0,19.5 L120,32 L0,32Z" fill="url(#sg5)" opacity="0.12" />
+          <path d="M0.0,16.6 L6.3,19.8 L12.6,14.0 L18.9,13.7 L25.3,12.9 L31.6,8.4 L37.9,8.1 L44.2,4.6 L50.5,3.8 L56.8,2.1 L63.2,2.0 L69.5,5.5 L75.8,5.8 L82.1,22.1 L88.4,18.9 L94.7,22.6 L101.1,30.0 L107.4,20.7 L113.7,19.5 L120.0,9.7" fill="none" stroke="#34D399" stroke-width="1.5" stroke-linecap="round" />
+          <path d="M0.0,16.6 L6.3,19.8 L12.6,14.0 L18.9,13.7 L25.3,12.9 L31.6,8.4 L37.9,8.1 L44.2,4.6 L50.5,3.8 L56.8,2.1 L63.2,2.0 L69.5,5.5 L75.8,5.8 L82.1,22.1 L88.4,18.9 L94.7,22.6 L101.1,30.0 L107.4,20.7 L113.7,19.5 L120.0,9.7 L120,32 L0,32Z" fill="url(#sg5)" opacity="0.12" />
         </svg>
         
         
@@ -508,7 +508,7 @@ body {
 
     <section class="card">
       <div class="label">Macro environment</div>
-      <p class="macro-text">本日の日本市場は、日経平均株価が史上最高値を更新し、海外市場も米S&P 500、NASDAQが堅調に推移するなど、グローバルな株高基調が鮮明です。ドル円は160円台で横ばいでしたが、円安水準は日本企業の業績には引き続きプラス要因と考えられます。米イラン合意による地政学リスクの後退は、原油価格の安定と市場全体のリスクオン心理を促進しており、当面は株高のモメンタムが維持される可能性がありますが、今後のG7サミットや米国の重要経済指標発表には引き続き注目が必要です。</p>
+      <p class="macro-text">AI分析サービスに接続できませんでした。次回更新時に再試行します。</p>
     </section>
   </div>
 
@@ -519,56 +519,29 @@ body {
       
       <div class="theme-card">
         <div class="theme-dot">
-          <span class="dot-color" style="background:var(--positive);"></span>
-          <span class="dot-label">positive</span>
+          <span class="dot-color" style="background:var(--text-3);"></span>
+          <span class="dot-label">neutral</span>
         </div>
         <div class="theme-title">フィジカルAI × 建設</div>
-        <div class="theme-desc">建設・資材および機械セクターが大幅上昇しており、これは老朽化するインフラ更新や労働力不足を補うためのAIを活用した自動化・効率化への期待を反映していると考えられます。現場でのロボット導入やAIによる設計・管理の最適化が進むことで、企業の生産性向上とコスト削減に寄与すると見込まれます。</div>
+        <div class="theme-desc">データ取得中...</div>
       </div>
       
       <div class="theme-card">
         <div class="theme-dot">
-          <span class="dot-color" style="background:var(--positive);"></span>
-          <span class="dot-label">positive</span>
+          <span class="dot-color" style="background:var(--text-3);"></span>
+          <span class="dot-label">neutral</span>
         </div>
         <div class="theme-title">アニメ・コンテンツ</div>
-        <div class="theme-desc">直接的な最新ニュースはありませんが、日本の文化輸出産業としてアニメ・コンテンツへの期待は引き続き高いです。グローバルな需要増加や、インバウンド回復による関連グッズ販売の拡大、新たな配信プラットフォームへの展開などが、中長期的な成長ドライバーとなる可能性があります。</div>
+        <div class="theme-desc">データ取得中...</div>
       </div>
       
       <div class="theme-card">
         <div class="theme-dot">
-          <span class="dot-color" style="background:var(--positive);"></span>
-          <span class="dot-label">positive</span>
+          <span class="dot-color" style="background:var(--text-3);"></span>
+          <span class="dot-label">neutral</span>
         </div>
         <div class="theme-title">AI全般</div>
-        <div class="theme-desc">TOPPANが半導体基板材料の探索にAIを活用するニュースは、AIが産業界のあらゆる分野に浸透していることを示しています。電機・精密セクターの急騰もAI関連技術の需要拡大を強く示唆しており、AI技術開発やその応用を進める企業への資金流入が続くと予想されます。</div>
-      </div>
-      
-      <div class="theme-card">
-        <div class="theme-dot">
-          <span class="dot-color" style="background:var(--positive);"></span>
-          <span class="dot-label">positive</span>
-        </div>
-        <div class="theme-title">半導体関連</div>
-        <div class="theme-desc">電機・精密セクターが6%を超える大幅高となり、AI関連技術の発展を背景とした半導体需要の急拡大が追い風となっています。TOPPANの半導体基板材料AI探索のニュースもこの流れを補強しており、半導体製造装置や材料、設計関連企業への継続的な注目が予想されます。</div>
-      </div>
-      
-      <div class="theme-card">
-        <div class="theme-dot">
-          <span class="dot-color" style="background:var(--positive);"></span>
-          <span class="dot-label">positive</span>
-        </div>
-        <div class="theme-title">地政学リスク緩和</div>
-        <div class="theme-desc">米イラン合意に関するニュースが複数報じられ、中東情勢の不透明感が後退したことで、市場はリスクオンムードに転換しました。これにより、安全資産からリスク資産への資金シフトが見られ、株式市場全体を押し上げる要因となっています。原油価格の安定化も経済活動へのポジティブな影響が期待されます。</div>
-      </div>
-      
-      <div class="theme-card">
-        <div class="theme-dot">
-          <span class="dot-color" style="background:var(--positive);"></span>
-          <span class="dot-label">positive</span>
-        </div>
-        <div class="theme-title">インフラ・資材投資</div>
-        <div class="theme-desc">建設・資材、鉄鋼・非鉄、機械セクターが大幅に上昇しており、国内外でのインフラ投資の活発化や、原材料価格の安定化・上昇期待が背景にあると見られます。国内では老朽化対策や脱炭素関連の投資、海外では経済回復に伴う需要増が追い風となる可能性があります。</div>
+        <div class="theme-desc">データ取得中...</div>
       </div>
       
     </div>
@@ -579,38 +552,14 @@ body {
     <section class="card">
       <div class="label">Upcoming events</div>
       
-      
-      <div class="ev-item">
-        <div class="ev-date">来週</div>
-        <div>
-          <div class="ev-name">G7サミット</div>
-          <div class="ev-impact">国際的な経済政策や地政学に関する声明が発表され、市場の方向性に影響を与える可能性があると予想されます。</div>
-        </div>
-      </div>
-      
-      <div class="ev-item">
-        <div class="ev-date">今週後半</div>
-        <div>
-          <div class="ev-name">米国重要経済指標発表（CPI、小売売上高など）</div>
-          <div class="ev-impact">米国の景気動向やインフレ圧力の現状が明らかになり、FRBの金融政策見通しに影響を与える可能性があるため、市場は注目すると考えられます。</div>
-        </div>
-      </div>
-      
-      <div class="ev-item">
-        <div class="ev-date">来週前半</div>
-        <div>
-          <div class="ev-name">日銀・内田副総裁の会見</div>
-          <div class="ev-impact">米イラン合意など地政学情勢の変化を踏まえた金融政策に関する見解が示される可能性があり、市場の金利や為替に影響を与えると見られます。</div>
-        </div>
-      </div>
-      
+      <p style="color:var(--text-3); font-size:0.875rem;">No upcoming events available.</p>
       
     </section>
 
     <section class="card">
       <div class="label">Daily learning</div>
-      <div class="learn-term">リスクオン</div>
-      <div class="learn-text">リスクオンとは、投資家が経済や金融市場の先行きに楽観的になり、リスクの高い資産（株式や新興国通貨など）に積極的に投資する傾向のことです。地政学的な不安が後退したり、景気回復の兆しが見えたりすると、投資家の心理がリスクオンに傾き、株式市場全体が上昇することがよくあります。例えば、今回の「米イラン合意」のように、これまで懸念されていた地政学リスクが解消されると、投資家はより積極的に株式投資を行うようになります。</div>
+      <div class="learn-term">—</div>
+      <div class="learn-text">AI分析サービス復旧後に生成されます。</div>
     </section>
   </div>
 
@@ -640,10 +589,10 @@ body {
           </td>
           <td style="padding-right:1rem;"><span class="s-theme">アニメ・IP</span></td>
           <td class="s-price" style="text-align:right;padding-right:1rem;">
-            ¥2,407
+            ¥nan
           </td>
-          <td class="s-change up" style="text-align:right;padding-right:1rem;">
-            +0.04%
+          <td class="s-change down" style="text-align:right;padding-right:1rem;">
+            nan%
           </td>
           <td class="s-comment">
             
@@ -657,10 +606,10 @@ body {
           </td>
           <td style="padding-right:1rem;"><span class="s-theme">フィジカルAI・ロボット</span></td>
           <td class="s-price" style="text-align:right;padding-right:1rem;">
-            ¥6,655
+            ¥nan
           </td>
-          <td class="s-change up" style="text-align:right;padding-right:1rem;">
-            +5.05%
+          <td class="s-change down" style="text-align:right;padding-right:1rem;">
+            nan%
           </td>
           <td class="s-comment">
             
@@ -674,10 +623,10 @@ body {
           </td>
           <td style="padding-right:1rem;"><span class="s-theme">産業ロボット</span></td>
           <td class="s-price" style="text-align:right;padding-right:1rem;">
-            ¥7,344
+            ¥nan
           </td>
-          <td class="s-change up" style="text-align:right;padding-right:1rem;">
-            +5.67%
+          <td class="s-change down" style="text-align:right;padding-right:1rem;">
+            nan%
           </td>
           <td class="s-comment">
             
@@ -691,10 +640,10 @@ body {
           </td>
           <td style="padding-right:1rem;"><span class="s-theme">建設機械の自動化</span></td>
           <td class="s-price" style="text-align:right;padding-right:1rem;">
-            ¥6,817
+            ¥nan
           </td>
-          <td class="s-change up" style="text-align:right;padding-right:1rem;">
-            +4.48%
+          <td class="s-change down" style="text-align:right;padding-right:1rem;">
+            nan%
           </td>
           <td class="s-comment">
             
@@ -708,10 +657,10 @@ body {
           </td>
           <td style="padding-right:1rem;"><span class="s-theme">銀行・金利</span></td>
           <td class="s-price" style="text-align:right;padding-right:1rem;">
-            ¥3,242
+            ¥nan
           </td>
-          <td class="s-change up" style="text-align:right;padding-right:1rem;">
-            +2.53%
+          <td class="s-change down" style="text-align:right;padding-right:1rem;">
+            nan%
           </td>
           <td class="s-comment">
             
@@ -725,10 +674,10 @@ body {
           </td>
           <td style="padding-right:1rem;"><span class="s-theme">エンタメ・アニメ配信</span></td>
           <td class="s-price" style="text-align:right;padding-right:1rem;">
-            ¥3,320
+            ¥nan
           </td>
-          <td class="s-change up" style="text-align:right;padding-right:1rem;">
-            +0.85%
+          <td class="s-change down" style="text-align:right;padding-right:1rem;">
+            nan%
           </td>
           <td class="s-comment">
             
@@ -746,184 +695,160 @@ body {
     
     <div class="news-item">
       <div class="news-row">
-        <span class="news-badge">日経新聞</span>
-        <div class="news-headline"><a href="https://www.nikkei.com/article/DGXZQOUC155WV0V10C26A6000000/" target="_blank" rel="noopener noreferrer">メルシャン、原料用アルコール9%値上げ　全製品対象に</a></div>
-        
-        <span class="news-badge-ai">AI分析</span>
-        <div class="news-comment">食品セクターのコスト増を示唆しており、関連企業の利益率や製品価格への転嫁動向が注目されると予想されます。</div>
+        <span class="news-badge">日経</span>
+        <div class="news-headline"><a href="https://www.nikkei.com/article/DGXZQOUA151SC0V10C26A6000000/" target="_blank" rel="noopener noreferrer">4〜6月GDP、実質0.52%増に上方修正　日経センター予測</a></div>
         
       </div>
     </div>
     
     <div class="news-item">
       <div class="news-row">
-        <span class="news-badge">日経新聞</span>
-        <div class="news-headline"><a href="https://www.nikkei.com/article/DGXZQOUF1531V0V10C26A6000000/" target="_blank" rel="noopener noreferrer">播州そうめん、兵庫県たつの市出身歌手が応援歌　市長もコーラス参加</a></div>
+        <span class="news-badge">日経</span>
+        <div class="news-headline"><a href="https://www.nikkei.com/article/DGXZQOUB102QT0Q6A610C2000000/" target="_blank" rel="noopener noreferrer">金融庁、VC投資に事前の外部チェック推奨　不正会計問題受け再発防止</a></div>
         
       </div>
     </div>
     
     <div class="news-item">
       <div class="news-row">
-        <span class="news-badge">日経新聞</span>
-        <div class="news-headline"><a href="https://www.nikkei.com/article/DGXZQOUC155TL0V10C26A6000000/" target="_blank" rel="noopener noreferrer">森永乳業、白桃の甘味楽しめるリプトン紅茶　「白桃烏龍ティーエード」</a></div>
+        <span class="news-badge">日経</span>
+        <div class="news-headline"><a href="https://www.nikkei.com/article/DGXZQOUA092HH0Z00C26A6000000/" target="_blank" rel="noopener noreferrer">ナフサに補助金は必要か　複雑な供給網、ガソリンとは流通に差</a></div>
         
       </div>
     </div>
     
     <div class="news-item">
       <div class="news-row">
-        <span class="news-badge">日経新聞</span>
-        <div class="news-headline"><a href="https://www.nikkei.com/article/DGXZQOCC1549C0V10C26A6000000/" target="_blank" rel="noopener noreferrer">海保、水産物の賠償金5億円を支払いへ　宮城・塩釜の重油流出</a></div>
+        <span class="news-badge">日経</span>
+        <div class="news-headline"><a href="https://www.nikkei.com/article/DGXZQOUA054G70V00C26A6000000/" target="_blank" rel="noopener noreferrer">「グレーゾーン民泊」に国がメス　投資うまみで違法建築横行</a></div>
         
       </div>
     </div>
     
     <div class="news-item">
       <div class="news-row">
-        <span class="news-badge">日経新聞</span>
-        <div class="news-headline"><a href="https://www.nikkei.com/article/DGXZQOUB151D70V10C26A6000000/" target="_blank" rel="noopener noreferrer">亜鉛建値9000円上げ、鉛は6000円下げ</a></div>
-        
-        <span class="news-badge-ai">AI分析</span>
-        <div class="news-comment">素材・化学、建設・資材セクターの一部に影響を及ぼすと見られ、亜鉛を扱う企業にはポジティブ、鉛関連にはネガティブな影響が出る可能性があると推測されます。</div>
+        <span class="news-badge">日経</span>
+        <div class="news-headline"><a href="https://www.nikkei.com/article/DGXZQOUA131I90T10C26A6000000/" target="_blank" rel="noopener noreferrer">片山財務相「日米間の了解に変化なし」　米先端AIの提供停止巡り投稿</a></div>
         
       </div>
     </div>
     
     <div class="news-item">
       <div class="news-row">
-        <span class="news-badge">日経新聞</span>
-        <div class="news-headline"><a href="https://www.nikkei.com/article/DGXZQOUC123M10S6A610C2000000/" target="_blank" rel="noopener noreferrer">TOPPAN、半導体基板材料をAIで探索　需要急拡大支える日本の印刷</a></div>
-        
-        <span class="news-badge-ai">AI分析</span>
-        <div class="news-comment">AI技術と半導体関連への投資拡大を示しており、電機・精密セクターやAI関連銘柄にポジティブな影響が見込まれるでしょう。</div>
+        <span class="news-badge">Google</span>
+        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE9kcUlCRlRUZEFEbVZITUJpNWM5TDF6aEhTT0lNSkhMMzdVT3J6eHJuREljNWRDNXlha1lUR2FuWjM3bERWVTBFZWtCVWhHcHphZ1piMFN0dU5TeXdweDUw?oc=5" target="_blank" rel="noopener noreferrer">波乱の中東情勢で迎える決算 今の株価が高すぎるとは言えない理由 野村證券・小髙貴久 - nomura.co.jp</a></div>
         
       </div>
     </div>
     
     <div class="news-item">
       <div class="news-row">
-        <span class="news-badge">日経新聞</span>
-        <div class="news-headline"><a href="https://www.nikkei.com/article/DGXZQOCC154B80V10C26A6000000/" target="_blank" rel="noopener noreferrer">広島銀行、サンフレ応援の定期預金　戦績次第で最大2%金利上乗せ</a></div>
+        <span class="news-badge">Google</span>
+        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE51UVN4bklxTWdWanNXeVhoZUFaLXJwblo2QWZUSW9FSFJhOEh4WlZiZk1NSm9MOW5hRy1WeHcwUUpFdTI3eThpanFISjRmOFBiY2g5cEVMY3dLZmlNMEszV09xdVpWTWJmQnM1dw?oc=5" target="_blank" rel="noopener noreferrer">日経平均終値931円安、スピード調整 米ブロードコム決算が冷や水 - 日本経済新聞</a></div>
         
       </div>
     </div>
     
     <div class="news-item">
       <div class="news-row">
-        <span class="news-badge">日経新聞</span>
-        <div class="news-headline"><a href="https://www.nikkei.com/article/DGXZQODH151F90V10C26A6000000/" target="_blank" rel="noopener noreferrer">中村敬斗、得意の一撃で反撃の号砲　股下からニアを射抜く</a></div>
-        
-        <span class="news-badge-ai">AI分析</span>
-        <div class="news-comment">市場全体の強いトレンドを示唆しており、幅広い銘柄への買いが継続する可能性が考えられます。</div>
+        <span class="news-badge">Google</span>
+        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMiU0FVX3lxTE1SeXJQRFUxVUpsUlZnUjdIZE53RmNIbEE4SzRQM3Mtb3otUG9MSEJNRFBXay1IUm9YODZEV1laT2VTdG5XSG5zblo5anNVY2UwQ1dZ?oc=5" target="_blank" rel="noopener noreferrer">来週（6/15～6/19）の日経平均株価の予想レンジは6万4000～6万8000円！ 米国とイランの戦闘終結に向けた動き、FOMC、スペースX上場後の動向に注目 - ダイヤモンド・オンライン</a></div>
         
       </div>
     </div>
     
     <div class="news-item">
       <div class="news-row">
-        <span class="news-badge">日経新聞</span>
-        <div class="news-headline"><a href="https://www.nikkei.com/article/DGXZQOFL154YZ0V10C26A6000000/" target="_blank" rel="noopener noreferrer">JPX日経400大引け　続伸　1126ポイント高の3万6241</a></div>
+        <span class="news-badge">Google</span>
+        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE5WZTQ3dzA3TjE5WTAyUEEzUm51S2d2eUFKSk55d200clZlYTExZ3JQYzhwX1NNbmJHTXcxeDlYVzQxcl8tUGhFbGJRX3FDV19tVmc?oc=5" target="_blank" rel="noopener noreferrer">日経平均は「1,802.77円高」と続伸。好決算でストップ高〈東証プライム・値上がり率1位〉の半導体銘柄とは【6月12日の国内株式市場概況】 - ゴールドオンライン</a></div>
         
       </div>
     </div>
     
     <div class="news-item">
       <div class="news-row">
-        <span class="news-badge">日経新聞</span>
-        <div class="news-headline"><a href="https://www.nikkei.com/article/DGXZQOFL150YJ0V10C26A6000000/" target="_blank" rel="noopener noreferrer">韓国株15日　大幅に3日続伸、米イラン合意受け　テック大手に買い</a></div>
+        <span class="news-badge">Google</span>
+        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE05T2hjc2J3aVRqV0JYbm1zSW93cnl4T1ktNk9TUS13eWloaWZZX0ZCWTVTVmhWNUxDakI2eWZSNjYtVG1kdklMRVJqcEFrMXZza01rbE5uSFh1LXJRcmhKVTE4N1ZnRnFBZzJ2ZA?oc=5" target="_blank" rel="noopener noreferrer">「日経平均は7万円」が視野に？決算一巡、上値余地を探る - SBI証券</a></div>
         
       </div>
     </div>
     
     <div class="news-item">
       <div class="news-row">
-        <span class="news-badge">Google News 経済</span>
-        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxNN19yajI0SUFMeTZBUkdPNmhsVmZGZzJBNmlBREwxanVSU0QzTUZJcW9uM0ZCOE1xYUFCM2F2ZndCUGlhQmxYRWVvdVU2N1JSLTR3UGcxaEdFNFRWZ1I2Q3ExUnRUTzFSWm5ndEYzYzBsWW1JU0JtZTNxU0xmVU00MktkMTlTeEE?oc=5" target="_blank" rel="noopener noreferrer">アジア株式市場サマリー：引け（15日）(ロイター) - Yahoo!ファイナンス</a></div>
+        <span class="news-badge">Google</span>
+        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMisgFBVV95cUxPNm5FSUJHRlRlUjltSlp0QTNmY3VndGVzcEVDNFBYc3BEY1lIbXRFNXRYWFpNeC1ZOVlPZWNWWlFfTEVVYWpCSFVNeHJTd0lzYXlLa0xDRFI5QXRmTFZYWjhwZHM1clhaSDJZeGVBMWhJX3pqOTgwQ3NLanQ5anFUM1JFOERfYmxvejlIamFKSjRDc0Jmd18xVmdpaW1PWUIyNTVIU2JiOGgtTEozR0NEQ2JB?oc=5" target="_blank" rel="noopener noreferrer">日経平均株価 見通し：金利上昇懸念とエヌビディア決算で週後半に乱高下も - ig.com</a></div>
         
       </div>
     </div>
     
     <div class="news-item">
       <div class="news-row">
-        <span class="news-badge">Google News 経済</span>
-        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE1kNW4ya1dVWjZKSll5d1plUWd5eFRRckItZXNQeWsxR25TbWc4YlMwTFA4S3VycXdkOHZXZ1h2bWtQS0VlU3REUlFTd1NtWnFKZEtfS3J6bnp6OTlBRk1V?oc=5" target="_blank" rel="noopener noreferrer">中東情勢不透明でも、日経平均株価2026年末60,000円見通しを維持 米国景気3つの楽観シグナルあり 野村證券・池田雄之輔 - nomura.co.jp</a></div>
+        <span class="news-badge">Google</span>
+        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE9PTjZhLWhrYUJuN1lVeS0tSkE0SHpnUEVfTDBkVVo0c2VYV2R1RlJ5eFVIdXZxenQtZ3R6MVNOTWxISXlReE5pWDVSeWE0VHNtbVpMMGZBODl1dw?oc=5" target="_blank" rel="noopener noreferrer">日経平均、最高値から急反落。キオクシア決算の市場評価は？エヌビディア決算で意外高？ - トウシル</a></div>
         
       </div>
     </div>
     
     <div class="news-item">
       <div class="news-row">
-        <span class="news-badge">Google News 経済</span>
-        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMiU0FVX3lxTFBZNzRTTDZDUEd4SmZLSWhhdk9SdnRJZVd1U0VjNDhBaHZWTmY2aEJLMFE2OVNMaHhQeGxfOWhWTDk3WmFuYUhCVXhtUER2RFJoalh3?oc=5" target="_blank" rel="noopener noreferrer">東証最高値、７万円に迫る ３２９７円高、過去２番目 - 東京新聞デジタル</a></div>
-        
-        <span class="news-badge-ai">AI分析</span>
-        <div class="news-comment">市場の歴史的活況を裏付けるニュースであり、投資家のリスク選好姿勢が非常に高いことが伺えると予想されます。</div>
+        <span class="news-badge">Google</span>
+        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMif0FVX3lxTFBWVmFXZW91MElOT2F0U3lFUmVqejdSbzBBaGJLZE1majZaTHRLaDNkS2R1RFJtdi1jOHdyc05ibmlFTHJWT3RWbXV1cE5aaDYwVEJpM0EtcWJ6ZF9lajR5T3dEeFZMa1lBeGJUaU0wLURuZVk1bjhFbzlTa05HX2c?oc=5" target="_blank" rel="noopener noreferrer">太陽誘電に東エレク、三越伊勢丹やりそな…波乱相場で年初来高値/日経平均急伸【今日の注目株＆日本株市場見通し】「デイリーZAi」6月12日号（ダイヤモンド・ザイ） - Yahoo!ニュース</a></div>
         
       </div>
     </div>
     
     <div class="news-item">
       <div class="news-row">
-        <span class="news-badge">Google News 経済</span>
-        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMifEFVX3lxTE5DbHlINjhSMW9xZWNvSXFTRF8ybzhZc3Bwd0xLQ0NibUx6Y09QaHZrb3FmTVhXVXRhUzJmdWJmZ29rYUNteHRVWG96RkRZNWIyMXFzdTNROHlEVmlzWTRzeXJUbkpPU3ZaRGg5UEl5c1hDSUYtY2NxcDVZU28?oc=5" target="_blank" rel="noopener noreferrer">【速報】日経平均、史上最高値を更新 一時6万9682円まで上昇（2026年6月14日掲載） - 日テレNEWS NNN</a></div>
-        
-        <span class="news-badge-ai">AI分析</span>
-        <div class="news-comment">市場の強いモメンタムを示し、一段高への期待感を高める可能性があると推測されます。</div>
+        <span class="news-badge">Google</span>
+        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE1IV0NsQ2VRUkVYX2MyYml2NXNIRktwSFptenBuQ1h1OFh1SHA3aUxfZ1h0V1d2QUFWR1BiLVVtT081Z2l2N0JxTDRRdkR4ZU9MemRZREQ1c01wdUxRWHYtTg?oc=5" target="_blank" rel="noopener noreferrer">来週の株式相場に向けて＝日経平均７万円は射程圏か、ＰＥＲ１７倍と一段高余地 - かぶたん</a></div>
         
       </div>
     </div>
     
     <div class="news-item">
       <div class="news-row">
-        <span class="news-badge">Google News 経済</span>
-        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMiWEFVX3lxTE1PRVlRZWRjRURRYmlzOTNTamVTajRVOTM0cGhCTER0RTRWQ3I5NUp0enN1aUo5OTRuT2NwUFBmbkdHcVZvMFQ3c0dDVUp6TEVQLVVaNmRNeVQ?oc=5" target="_blank" rel="noopener noreferrer">2026年下半期、米株式市場を左右する「3つの要因」と注目セクター - Forbes JAPAN</a></div>
+        <span class="news-badge">Google</span>
+        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMiU0FVX3lxTE5RUG1GaVhzWHk3NE5yLXAybHJNTy1FbV9lWTVRUUdwc1NDOFhvVW1Ia2wyNm1IUWtnLUoxTk5yRzNScUhoeW9BanFzT1JuQkJMUzdj?oc=5" target="_blank" rel="noopener noreferrer">今週は米5月CPI・米オラクル決算/キオクシアはまだ上がる？/日経平均急落【今日の注目株＆日本株市場見通し】「デイリーZAi」6月8日号 - ダイヤモンド・オンライン</a></div>
         
       </div>
     </div>
     
     <div class="news-item">
       <div class="news-row">
-        <span class="news-badge">Google News 経済</span>
-        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE5nNnVjUkVOVnlPeVU4ekotbUdPdk1zUVJ5VWJYQUlDQl9WNEZMNHljMkxIUkJsNEZvVXhtam1Jb3E3UEJuVVlQNXV2d3QwQ2FTYkh4YlpfSkZPZHc?oc=5" target="_blank" rel="noopener noreferrer">正念場を迎える半導体牽引株式市場 - 第一ライフ資産運用経済研究所</a></div>
+        <span class="news-badge">Google</span>
+        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTFBLZ2hBX3VlMWI0a08xbW9pV0lnaGZlcnluN0xScW9wMHZTT1VRNmNDbXJ4RjZoNkZBeGE4dUIwckRGanhaQ3I4YjBWd0dqOUkxWlpCanRLeGEweWpRQU1IQ2NaeDRqS3ljRnVENQ?oc=5" target="_blank" rel="noopener noreferrer">日経平均初の6万円 市場の見方「決算で上昇余地」「一部に割高感」 - 日本経済新聞</a></div>
         
       </div>
     </div>
     
     <div class="news-item">
       <div class="news-row">
-        <span class="news-badge">Google News 経済</span>
-        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9sUHFObEp0Q1F3VTlNRWRFNDRKenJJTE5kT1U1VXQxcjJyNTZ5NjI0MzVrMDJfQzJnMUp2a1dQS3BoaTFYU3FNUFpMRHNERFJneEk0VS12R1A0WnZqbHpDUGxlV1ZFZjg?oc=5" target="_blank" rel="noopener noreferrer">日経平均は3111円、G7サミットや米経済指標に関心 執筆： Fisco - Investing.com - FX | 株式市場 | ファイナンス | 金融ニュース</a></div>
+        <span class="news-badge">Google</span>
+        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE9WdkR6MWUtZldIUHF4VFdRdHB5NE5zT1l4Nk5uVFVpSk5keTFiVkNXN1NjVV96TmlBcF9BU0tmakk3YW9IcDk4SjZjaldXMWVxTGl1WUtKTkpzSTRpWU9CTnlUdFpLVzJ2eVlXSzRUZnNzd2VkNEktdVVtTENwTG8?oc=5" target="_blank" rel="noopener noreferrer">日経平均が一時6万円！好業績・株価上昇期待の11銘柄 - SBI証券</a></div>
         
       </div>
     </div>
     
     <div class="news-item">
       <div class="news-row">
-        <span class="news-badge">Google News 経済</span>
-        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE82X2VBdi0zT3pPeWVoTGlJTmNFZDZLSVc0bDdwdnFmQXN6SmxVbkUtNkt2bnA4M00xRU9ZZWZlaW9URTlNNXV4RGhiRkhXaGRUS3c?oc=5" target="_blank" rel="noopener noreferrer">週明けの日経平均株価は6万9000円台に突入､｢イラン停戦｣｢ホルムズ開放｣｢スペースX上場｣がハリケーン級の追い風に - 東洋経済オンライン</a></div>
-        
-        <span class="news-badge-ai">AI分析</span>
-        <div class="news-comment">地政学リスク緩和が市場の主要な上昇要因と認識されていることを示しており、エネルギー価格の安定にも期待が持たれるでしょう。</div>
+        <span class="news-badge">Google</span>
+        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE5Rd19tSG9ZYk9EdnZXTFhOUlk4VnF6M0htWmozVGlGT2tjS1FEeXE4M1lvRXE3aU13ZDNzTFBTNUl5Y3Ficzc3bERNVF9aQWlwa2JvMzdCX1pldWtlSFRRVA?oc=5" target="_blank" rel="noopener noreferrer">来週の株式相場に向けて＝日経平均６万円近辺の高止まり続くか、トヨタ決算など注目 - かぶたん</a></div>
         
       </div>
     </div>
     
     <div class="news-item">
       <div class="news-row">
-        <span class="news-badge">Google News 経済</span>
-        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMidEFVX3lxTE1ZbDBGd3dqWDhNeWVIRDlFa1JEWVloWnF2SElmVDluQWd3aFkxZElSUnB6cU9BZ1Y1X0FNcFdBajdaT1JOUmF6aWcxaV9kY3pSODJkaWEtd20wRTNnNENidkdSb0ttampmRXVUM241RHktVkVF?oc=5" target="_blank" rel="noopener noreferrer">米・イランの合意の影響を見極めるため、日銀・内田副総裁の会見は慎重化するか - TBS NEWS DIG</a></div>
-        
-        <span class="news-badge-ai">AI分析</span>
-        <div class="news-comment">地政学リスク緩和が日銀の金融政策判断にも影響を与える可能性を示唆しており、市場は政策スタンスに注目するだろうと見られます。</div>
+        <span class="news-badge">Google</span>
+        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE5pWGR3YVp3NG9xLWVlVnJvbEpTVXViUENRUmVsTEpyc3hnUnN3aTZWM0FNVG0wd2pRZ3JDOGR4di1idG1BSVc1cERJLVB6TExDZUczdmR3ZFJqTWNYaVB4allZRnlFWEJ6ZHVVVg?oc=5" target="_blank" rel="noopener noreferrer">NVIDIA決算、市場「合格点で日本株上げ」「強気・弱気派の評価混在」 - 日本経済新聞</a></div>
         
       </div>
     </div>
     
     <div class="news-item">
       <div class="news-row">
-        <span class="news-badge">Google News 経済</span>
-        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMiTEFVX3lxTFBsNWQ4SjVzaUl1N04xOVNPWnlWUUhNcDRqSXAyU25mbVlPSkxYMG1BNHAwMzVMblpiY0lnYjNwdzVvdGY1dld6Yi1RTlbSAU9BVV95cUxPM0p6RFlWWjZYaVRabVBiSnVYbVVlY2l2SGN5alEtY284QzFoOFNZUzAtNkEtYUREcTNvcTFYT2ZNcWZRU0hhUTd6VEZoQWFF?oc=5" target="_blank" rel="noopener noreferrer">日経平均「26年度末7万円」も視野、ITバブル時とは大きく違う日米経済・株式市場 - ダイヤモンド・オンライン</a></div>
+        <span class="news-badge">Google</span>
+        <div class="news-headline"><a href="https://news.google.com/rss/articles/CBMif0FVX3lxTFBpb050YkxyVDItS19KdW93ZThFUjAxbG9pX00yZmV0RkVNeDQwVFktNHpsMm5UZ0JRbW1VZkIxV1JMVXpQbUt2XzRWN19MOVRhVk5QdE5WckRzdjYtb0oyaUY4YlVzMmFMQzhmSmxpSzlfeWk3bk5yNWRSX3ZHUEU?oc=5" target="_blank" rel="noopener noreferrer">キオクシア・太陽誘電etc・・大幅増益期待8銘柄、意外な半導体関連も？ - SBI証券</a></div>
         
       </div>
     </div>
@@ -935,14 +860,14 @@ body {
 
 <footer class="footer">
   <span>Economic Dashboard — Auto-generated via GitHub Actions</span>
-  <span>Data: Yahoo Finance / RSS | AI: Gemini | Not investment advice</span>
+  <span>Data: Yahoo Finance / RSS | AI: fallback | Not investment advice</span>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script>
 (function(){
   var labels = ["東映アニメーション","安川電機","ファナック","コマツ","三菱UFJ","ソニーグループ"];
-  var values = [0.04,5.05,5.67,4.48,2.53,0.85];
+  var values = [nan,nan,nan,nan,nan,nan];
   var colors = values.map(function(v){ return v >= 0 ? '#34D399' : '#F87171'; });
   var bgColors = values.map(function(v){ return v >= 0 ? 'rgba(52,211,153,0.2)' : 'rgba(248,113,113,0.2)'; });
 
