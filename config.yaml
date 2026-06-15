@@ -32,10 +32,10 @@ indices:
 
 # RSSフィード（無料・制限なし）
 rss_feeds:
-  - {url: "https://assets.wor.jp/rss/rdf/nikkei/news.rdf", name: "日経新聞", category: "japan"}
-  - {url: "https://news.google.com/rss/search?q=経済+株式+市場&hl=ja&gl=JP&ceid=JP:ja", name: "Google News 経済", category: "japan"}
-  - {url: "https://news.google.com/rss/search?q=economy+stock+market&hl=en&gl=US&ceid=US:en", name: "Google News Economy", category: "global"}
-  - {url: "https://feeds.finance.yahoo.co.jp/rss/2ch/news", name: "Yahoo!ファイナンス", category: "japan"}
+  - {url: "https://assets.wor.jp/rss/rdf/nikkei/economy.rdf", name: "日経", category: "japan"}
+  - {url: "https://news.google.com/rss/search?q=日経平均+株価+市場+決算&hl=ja&gl=JP&ceid=JP:ja", name: "Google", category: "japan"}
+  - {url: "https://news.google.com/rss/search?q=stock+market+economy+Fed&hl=en&gl=US&ceid=US:en", name: "Global", category: "global"}
+  - {url: "https://feeds.finance.yahoo.co.jp/rss/2ch/news", name: "Yahoo", category: "japan"}
 
 # セクターETF（業種別ヒートマップ用・日本株ETF）
 sector_etfs:

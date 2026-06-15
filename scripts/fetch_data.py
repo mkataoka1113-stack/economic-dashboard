@@ -19,13 +19,36 @@ def load_config():
         return yaml.safe_load(f)
 
 
+FINANCE_KEYWORDS = [
+    "株", "市場", "日経", "TOPIX", "指数", "金利", "為替", "円安", "円高",
+    "ドル", "債券", "利回り", "FRB", "日銀", "金融", "決算", "業績",
+    "投資", "ファンド", "ETF", "IPO", "上場", "配当", "増収", "減収",
+    "景気", "GDP", "インフレ", "デフレ", "利上げ", "利下げ", "緩和",
+    "半導体", "AI", "セクター", "銘柄", "株価", "売買", "相場",
+    "economy", "stock", "market", "Fed", "rate", "inflation", "GDP",
+    "earnings", "bond", "yield", "trade", "tariff", "S&P", "Nasdaq",
+    "鉄鋼", "エネルギー", "原油", "PMI", "雇用", "失業",
+    "輸出", "輸入", "貿易", "関税", "規制", "補助金",
+]
+
+
+def _is_finance_related(title):
+    """ニュース見出しが投資・経済に関連するか判定"""
+    title_lower = title.lower()
+    return any(kw.lower() in title_lower for kw in FINANCE_KEYWORDS)
+
+
 def fetch_rss_feeds(config):
-    """RSSフィードからニュースを取得"""
+    """RSSフィードからニュースを取得（投資関連のみフィルタ）"""
     all_news = []
     for feed_info in config.get("rss_feeds", []):
         try:
             feed = feedparser.parse(feed_info["url"])
-            for entry in feed.entries[:10]:  # 各フィードから最大10件
+            for entry in feed.entries[:15]:
+                title = entry.get("title", "")
+                if not _is_finance_related(title):
+                    continue
+
                 published = ""
                 if hasattr(entry, "published"):
                     published = entry.published
@@ -33,7 +56,7 @@ def fetch_rss_feeds(config):
                     published = entry.updated
 
                 all_news.append({
-                    "title": entry.get("title", ""),
+                    "title": title,
                     "link": entry.get("link", ""),
                     "source": feed_info["name"],
                     "category": feed_info["category"],
