@@ -9,7 +9,7 @@ import feedparser
 import yfinance as yf
 import yaml
 import os
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 import traceback
 
 
@@ -285,13 +285,14 @@ def fetch_all_data():
     print("[INFO] セクターデータ取得中...")
     sectors = fetch_sector_data(config)
 
+    JST = timezone(timedelta(hours=9))
     return {
         "news": news,
         "indices": indices,
         "watchlist": watchlist,
         "sectors": sectors,
         "config": config,
-        "updated_at": datetime.now().strftime("%Y-%m-%d %H:%M JST"),
+        "updated_at": datetime.now(JST).strftime("%Y-%m-%d %H:%M JST"),
     }
 
 
