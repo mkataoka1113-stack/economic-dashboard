@@ -188,13 +188,22 @@ def analyze_market(data):
       "index": 0,
       "comment": "このニュースから予想される値動きや影響を1〜2文で簡潔に"
     }}
+  ],
+  "trending_sectors": [
+    {{
+      "sector": "セクター名や業界テーマ",
+      "direction": "up/down",
+      "reason": "なぜ今この業界に注目が集まっているか2〜3文で",
+      "representative_stocks": "関連する代表的な銘柄名を2〜3個"
+    }}
   ]
 }}
 
 注意事項:
 - テーマは固定テーマ（{themes_text}）を必ず含め、加えてトレンドテーマを2〜3個追加し、合計5〜6個にする
 - upcoming_eventsは今後1〜2週間の重要イベントを3〜5個
-- news_commentsはニュース見出しのうち重要な上位10件程度にindex（0始まり）を対応させ、予想される値動き・影響を記述する。これはAI分析であり事実ではないことが明確になるよう、推測・予想の表現を使う
+- news_commentsは全てのニュース見出し（index 0〜{len(news_titles)-1}）に対してコメントを付ける。indexはニュース見出しの順番に対応させる。予想される値動き・影響を記述する。これはAI分析であり事実ではないことが明確になるよう、推測・予想の表現を使う。明らかに経済・投資と無関係なニュースの場合は「市場への直接的な影響は限定的です」と記述する
+- trending_sectorsはウォッチリスト銘柄に限らず、本日のセクター動向・ニュースから注目すべき業界を3〜5個選び、上昇・下落の両方を含める
 - 客観的な事実ベースで記述し、投資推奨は行わない
 - JSON形式のみ出力。```json などのマークダウン記法は不要
 """
@@ -242,5 +251,6 @@ def _fallback_analysis(data):
         },
         "watchlist_comments": [],
         "news_comments": [],
+        "trending_sectors": [],
         "_provider": "fallback",
     }
