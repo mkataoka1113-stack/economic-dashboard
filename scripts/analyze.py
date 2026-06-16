@@ -7,7 +7,11 @@ AI分析モジュール
 
 import os
 import json
+import time
 import traceback
+
+MAX_RETRIES = 3
+RETRY_DELAY = 10  # 秒
 
 
 def _call_gemini(prompt):
@@ -77,7 +81,7 @@ def _call_cerebras(prompt):
 
 
 def call_llm(prompt):
-    """LLMをフォールバック付きで呼び出す"""
+    """LLMをリトライ＋フォールバック付きで呼び出す"""
     providers = [
         ("Gemini", _call_gemini),
         ("Groq", _call_groq),
@@ -85,14 +89,23 @@ def call_llm(prompt):
     ]
 
     for name, func in providers:
-        try:
-            print(f"[INFO] {name} に問い合わせ中...")
-            result = func(prompt)
-            print(f"[INFO] {name} から応答取得成功")
-            return result, name
-        except Exception as e:
-            print(f"[WARN] {name} 失敗: {e}")
-            continue
+        for attempt in range(1, MAX_RETRIES + 1):
+            try:
+                print(f"[INFO] {name} に問い合わせ中... (試行 {attempt}/{MAX_RETRIES})")
+                result = func(prompt)
+                print(f"[INFO] {name} から応答取得成功")
+                return result, name
+            except ValueError:
+                # APIキー未設定 → リトライしても無意味なので次のプロバイダーへ
+                print(f"[WARN] {name}: APIキー未設定、スキップ")
+                break
+            except Exception as e:
+                print(f"[WARN] {name} 失敗 (試行 {attempt}/{MAX_RETRIES}): {e}")
+                if attempt < MAX_RETRIES:
+                    print(f"[INFO] {RETRY_DELAY}秒後にリトライ...")
+                    time.sleep(RETRY_DELAY)
+                else:
+                    print(f"[WARN] {name}: {MAX_RETRIES}回失敗、次のプロバイダーへ")
 
     print("[ERROR] 全LLMプロバイダーが失敗しました")
     return None, None
