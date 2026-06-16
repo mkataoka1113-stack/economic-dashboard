@@ -4,12 +4,23 @@
 - yfinance で株価・指数データ取得
 """
 
+import math
 import feedparser
 import yfinance as yf
 import yaml
 import os
 from datetime import datetime, timedelta
 import traceback
+
+
+def _safe_float(val):
+    """NaN/Inf を None に変換する"""
+    if val is None:
+        return None
+    f = float(val)
+    if math.isnan(f) or math.isinf(f):
+        return None
+    return f
 
 
 def load_config():
@@ -106,23 +117,40 @@ def fetch_index_data(config):
                 continue
 
             latest = hist.iloc[-1]
-            price = latest["Close"]
+            price = _safe_float(latest["Close"])
+
+            if price is None:
+                print(f"[WARN] 指数データがNaN: {idx_info['name']}")
+                indices.append({
+                    "name": idx_info["name"],
+                    "code": idx_info["code"],
+                    "price": None,
+                    "change": None,
+                    "change_pct": None,
+                    "sparkline": "",
+                })
+                continue
 
             if len(hist) >= 2:
-                prev = hist.iloc[-2]["Close"]
-                change = price - prev
-                change_pct = (change / prev) * 100
+                prev = _safe_float(hist.iloc[-2]["Close"])
+                if prev and prev != 0:
+                    change = price - prev
+                    change_pct = (change / prev) * 100
+                else:
+                    change = 0
+                    change_pct = 0
             else:
                 change = 0
                 change_pct = 0
 
-            spark_prices = [float(row["Close"]) for _, row in hist.tail(20).iterrows()]
+            spark_prices = [float(row["Close"]) for _, row in hist.tail(20).iterrows()
+                           if _safe_float(row["Close"]) is not None]
             sparkline = _make_sparkline_svg(spark_prices)
 
             indices.append({
                 "name": idx_info["name"],
                 "code": idx_info["code"],
-                "price": round(float(price), 2),
+                "price": round(price, 2),
                 "change": round(float(change), 2),
                 "change_pct": round(float(change_pct), 2),
                 "sparkline": sparkline,
@@ -159,12 +187,27 @@ def fetch_watchlist_data(config):
                 continue
 
             latest = hist.iloc[-1]
-            price = latest["Close"]
+            price = _safe_float(latest["Close"])
+
+            if price is None:
+                stocks.append({
+                    "name": stock_info["name"],
+                    "code": stock_info["code"],
+                    "theme": stock_info["theme"],
+                    "price": None,
+                    "change": None,
+                    "change_pct": None,
+                })
+                continue
 
             if len(hist) >= 2:
-                prev = hist.iloc[-2]["Close"]
-                change = price - prev
-                change_pct = (change / prev) * 100
+                prev = _safe_float(hist.iloc[-2]["Close"])
+                if prev and prev != 0:
+                    change = price - prev
+                    change_pct = (change / prev) * 100
+                else:
+                    change = 0
+                    change_pct = 0
             else:
                 change = 0
                 change_pct = 0
@@ -204,9 +247,12 @@ def fetch_sector_data(config):
                 })
                 continue
 
-            latest = hist.iloc[-1]["Close"]
-            prev = hist.iloc[-2]["Close"]
-            change_pct = ((latest - prev) / prev) * 100
+            latest = _safe_float(hist.iloc[-1]["Close"])
+            prev = _safe_float(hist.iloc[-2]["Close"])
+            if latest is None or prev is None or prev == 0:
+                change_pct = 0
+            else:
+                change_pct = ((latest - prev) / prev) * 100
 
             sectors.append({
                 "name": sector_info["name"],
