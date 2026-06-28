@@ -1,16 +1,10 @@
 # ============================================
 # 経済動向ダッシュボード 設定ファイル
 # ============================================
-# 銘柄の追加・削除はこのファイルを編集するだけでOK
-# code: Yahoo Financeのティッカー（日本株は末尾に.T）
 
-watchlist:
-  - {code: "4816.T", name: "東映アニメーション", theme: "アニメ・IP"}
-  - {code: "6506.T", name: "安川電機", theme: "フィジカルAI・ロボット"}
-  - {code: "6954.T", name: "ファナック", theme: "産業ロボット"}
-  - {code: "6301.T", name: "コマツ", theme: "建設機械の自動化"}
-  - {code: "8306.T", name: "三菱UFJ", theme: "銀行・金利"}
-  - {code: "6758.T", name: "ソニーグループ", theme: "エンタメ・アニメ配信"}
+# 「今日の学び」の難易度レベル
+# beginner → intermediate → advanced に手動で変更可
+learning_level: "beginner"
 
 # 固定で追跡するテーマ（毎回必ず分析に含まれる）
 fixed_themes:
@@ -18,26 +12,116 @@ fixed_themes:
   - "アニメ・コンテンツ"
   - "AI全般"
 
-# 「今日の学び」の難易度レベル
-# beginner → intermediate → advanced に手動で変更可
-learning_level: "beginner"
-
-# 主要指数（変更不要）
+# ============================================
+# 主要指数（ヘッダー表示用）
+# ============================================
 indices:
-  - {code: "^N225", name: "日経平均"}
+  - {code: "^N225",  name: "日経平均"}
   - {code: "1306.T", name: "TOPIX"}
-  - {code: "JPY=X", name: "ドル円"}
-  - {code: "^GSPC", name: "S&P 500"}
-  - {code: "^IXIC", name: "NASDAQ"}
+  - {code: "JPY=X",  name: "ドル円"}
+  - {code: "^GSPC",  name: "S&P 500"}
+  - {code: "^IXIC",  name: "NASDAQ"}
 
-# RSSフィード（無料・制限なし）
-rss_feeds:
-  - {url: "https://assets.wor.jp/rss/rdf/nikkei/economy.rdf", name: "日経", category: "japan"}
-  - {url: "https://news.google.com/rss/search?q=日経平均+株価+市場+決算&hl=ja&gl=JP&ceid=JP:ja", name: "Google", category: "japan"}
-  - {url: "https://news.google.com/rss/search?q=stock+market+economy+Fed&hl=en&gl=US&ceid=US:en", name: "Global", category: "global"}
-  - {url: "https://feeds.finance.yahoo.co.jp/rss/2ch/news", name: "Yahoo", category: "japan"}
+# ============================================
+# NISAで積立できるファンドが連動する指数
+# ============================================
+nisa_indices:
+  - ticker: "ACWI"
+    name: "全世界株式"
+    fund_example: "eMAXIS Slim 全世界株式（オール・カントリー）"
+    description: "世界約50カ国・3,000銘柄以上に分散投資。最も広く分散された指数の一つ。"
+    currency: "USD"
+  - ticker: "^GSPC"
+    name: "S&P 500"
+    fund_example: "eMAXIS Slim 米国株式（S&P500）"
+    description: "米国を代表する大企業500社に投資。過去30年で世界最高水準のリターンを記録。"
+    currency: "USD"
+  - ticker: "QQQ"
+    name: "NASDAQ-100"
+    fund_example: "iFreeNEXT NASDAQ100インデックス"
+    description: "NASDAQ上場のテクノロジー大手100社。Apple・Microsoft・NVIDIAなどが主要構成銘柄。"
+    currency: "USD"
+  - ticker: "VEA"
+    name: "先進国株（除く日本）"
+    fund_example: "eMAXIS Slim 先進国株式インデックス"
+    description: "欧州・英国・カナダ・豪州など日本を除く先進国株式に投資。"
+    currency: "USD"
+  - ticker: "VWO"
+    name: "新興国株式"
+    fund_example: "eMAXIS Slim 新興国株式インデックス"
+    description: "中国・インド・ブラジルなど新興国の株式に投資。高成長が期待されるが変動も大きい。"
+    currency: "USD"
 
+# ============================================
+# NYSE FANG+ 構成銘柄
+# ============================================
+fang_plus:
+  - {ticker: "META",  name: "Meta"}
+  - {ticker: "AAPL",  name: "Apple"}
+  - {ticker: "AMZN",  name: "Amazon"}
+  - {ticker: "NFLX",  name: "Netflix"}
+  - {ticker: "GOOGL", name: "Alphabet"}
+  - {ticker: "MSFT",  name: "Microsoft"}
+  - {ticker: "TSLA",  name: "Tesla"}
+  - {ticker: "NVDA",  name: "Nvidia"}
+  - {ticker: "AVGO",  name: "Broadcom"}
+  - {ticker: "SNOW",  name: "Snowflake"}
+
+# ============================================
+# 世界の投資テーマ（勉強用）
+# ============================================
+investment_themes:
+  - category: "commodities"
+    label: "コモディティ"
+    description: "金・銀・原油などの実物資産。インフレや地政学リスクへのヘッジとして機能する。"
+    items:
+      - {ticker: "GC=F",  name: "金（Gold）",   unit: "$/oz"}
+      - {ticker: "SI=F",  name: "銀（Silver）",  unit: "$/oz"}
+      - {ticker: "PL=F",  name: "プラチナ",     unit: "$/oz"}
+      - {ticker: "CL=F",  name: "原油（WTI）",  unit: "$/bbl"}
+  - category: "crypto"
+    label: "仮想通貨"
+    description: "ビットコイン・イーサリアムなど。高リスク・高リターンの新興資産クラス。"
+    items:
+      - {ticker: "BTC-USD", name: "ビットコイン", unit: "USD"}
+      - {ticker: "ETH-USD", name: "イーサリアム", unit: "USD"}
+  - category: "emerging"
+    label: "新興国株"
+    description: "高い経済成長が期待される新興国の株式市場。インド・ブラジル・中国など。"
+    items:
+      - {ticker: "INDA", name: "インド株（INDA）",  unit: "USD"}
+      - {ticker: "EWZ",  name: "ブラジル株（EWZ）", unit: "USD"}
+      - {ticker: "MCHI", name: "中国株（MCHI）",    unit: "USD"}
+  - category: "bonds"
+    label: "債券"
+    description: "米国国債・社債など。景気後退局面で価値が上がりやすい安全資産。"
+    items:
+      - {ticker: "TLT", name: "米国長期国債（TLT）",    unit: "USD"}
+      - {ticker: "AGG", name: "米国総合債券（AGG）",    unit: "USD"}
+      - {ticker: "HYG", name: "ハイイールド債（HYG）",  unit: "USD"}
+  - category: "forex"
+    label: "為替"
+    description: "主要通貨の動向。輸出企業の業績や輸入コスト、インバウンドなどに直結する。"
+    items:
+      - {ticker: "JPY=X",    name: "ドル/円",     unit: "円"}
+      - {ticker: "EURUSD=X", name: "ユーロ/ドル", unit: "USD"}
+      - {ticker: "GBPUSD=X", name: "ポンド/ドル", unit: "USD"}
+      - {ticker: "CNY=X",    name: "人民元/ドル", unit: "USD"}
+
+# ============================================
+# 日本株ウォッチリスト
+# ============================================
+watchlist:
+  - {code: "4816.T", name: "東映アニメーション", theme: "アニメ・IP"}
+  - {code: "6506.T", name: "安川電機",           theme: "フィジカルAI・ロボット"}
+  - {code: "6954.T", name: "ファナック",          theme: "産業ロボット"}
+  - {code: "6301.T", name: "コマツ",             theme: "建設機械の自動化"}
+  - {code: "8306.T", name: "三菱UFJ",            theme: "銀行・金利"}
+  - {code: "6758.T", name: "ソニーグループ",      theme: "エンタメ・アニメ配信"}
+
+# ============================================
 # セクターETF（業種別ヒートマップ用・日本株ETF）
+# ============================================
 sector_etfs:
   - {code: "1617.T", name: "食品"}
   - {code: "1618.T", name: "エネルギー"}
@@ -56,3 +140,12 @@ sector_etfs:
   - {code: "1631.T", name: "銀行"}
   - {code: "1632.T", name: "金融（除く銀行）"}
   - {code: "1633.T", name: "不動産"}
+
+# ============================================
+# RSSフィード
+# ============================================
+rss_feeds:
+  - {url: "https://assets.wor.jp/rss/rdf/nikkei/economy.rdf", name: "日経", category: "japan"}
+  - {url: "https://news.google.com/rss/search?q=日経平均+株価+市場+決算&hl=ja&gl=JP&ceid=JP:ja", name: "Google", category: "japan"}
+  - {url: "https://news.google.com/rss/search?q=stock+market+economy+Fed&hl=en&gl=US&ceid=US:en", name: "Global", category: "global"}
+  - {url: "https://feeds.finance.yahoo.co.jp/rss/2ch/news", name: "Yahoo", category: "japan"}
