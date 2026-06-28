@@ -291,7 +291,7 @@ body::before{
     <div class="card nc clickable"
          data-name="{{ n.name }}" data-ticker="{{ n.ticker }}"
          data-price="{{ n.price }}" data-change="{{ n.change_pct }}"
-         data-description="{{ n.description }}"
+         data-description="{{ n.description | e }}"
          data-dates='{{ n.dates_json }}' data-prices='{{ n.prices_json }}' data-unit="USD">
       <div class="nc-name">{{ n.name }}</div>
       <div class="nc-fund">{{ n.fund_example }}</div>
@@ -339,7 +339,7 @@ body::before{
          data-name="{{ s.name }}" data-ticker="{{ s.ticker }}"
          data-price="{{ s.price }}" data-change="{{ s.change_pct }}"
          data-dates='{{ s.dates_json }}' data-prices='{{ s.prices_json }}'
-         data-unit="USD" data-description="{{ s.highlight }}">
+         data-unit="USD" data-description="{{ s.highlight | e }}">
       <div class="fc-ticker">{{ s.ticker }}</div>
       <div class="fc-name">{{ s.name }}</div>
       <div class="fc-price {% if s.change_pct >= 0 %}up{% else %}down{% endif %}">${{ "{:,.2f}".format(s.price) }}</div>
@@ -396,7 +396,7 @@ body::before{
            data-name="{{ item.name }}" data-ticker="{{ item.ticker }}"
            data-price="{{ item.price }}" data-change="{{ item.change_pct }}"
            data-dates='{{ item.dates_json }}' data-prices='{{ item.prices_json }}'
-           data-unit="{{ item.unit }}" data-description="{{ theme.description }}">
+           data-unit="{{ item.unit }}" data-description="{{ theme.description | e }}">
         <div>
           <div class="tic-name">{{ item.name }}</div>
           <div class="tic-code">{{ item.ticker }}</div>
