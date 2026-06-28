@@ -339,7 +339,7 @@ body::before{
          data-name="{{ s.name }}" data-ticker="{{ s.ticker }}"
          data-price="{{ s.price }}" data-change="{{ s.change_pct }}"
          data-dates='{{ s.dates_json }}' data-prices='{{ s.prices_json }}'
-         data-unit="USD" data-description="">
+         data-unit="USD" data-description="{{ s.highlight }}">
       <div class="fc-ticker">{{ s.ticker }}</div>
       <div class="fc-name">{{ s.name }}</div>
       <div class="fc-price {% if s.change_pct >= 0 %}up{% else %}down{% endif %}">${{ "{:,.2f}".format(s.price) }}</div>
@@ -572,7 +572,7 @@ body::before{
     <div class="modal-chart-wrap"><canvas id="mCanvas"></canvas></div>
     <div class="modal-stats" id="mStats"></div>
     <div class="modal-expl" id="mExpl" style="display:none;">
-      <div class="me-label">このアセットについて</div>
+      <div class="me-label" id="mExplLabel">このアセットについて</div>
       <div class="me-text" id="mExplText"></div>
     </div>
   </div>
@@ -629,6 +629,8 @@ function openModal(el){
   document.getElementById('mTitle').textContent=name+(ticker?' ('+ticker+')':'');
   document.getElementById('mSub').textContent='$'+price.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:4})+'  '+(change>=0?'+':'')+change.toFixed(2)+'%（前日比）';
   var expl=document.getElementById('mExpl');
+  var isStock = el.classList.contains('fc');
+  document.getElementById('mExplLabel').textContent = isStock ? '今日の注目ポイント' : 'このアセットについて';
   if(desc){ document.getElementById('mExplText').textContent=desc; expl.style.display='block'; }
   else { expl.style.display='none'; }
   document.querySelectorAll('.pb').forEach(function(b){ b.classList.remove('active'); });
