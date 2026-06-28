@@ -633,8 +633,8 @@ function openModal(el){
   else { expl.style.display='none'; }
   document.querySelectorAll('.pb').forEach(function(b){ b.classList.remove('active'); });
   document.querySelector('.pb[data-days="21"]').classList.add('active');
-  renderModal(21);
   document.getElementById('modal').classList.add('open');
+  setTimeout(function(){ renderModal(21); }, 30);
 }
 function renderModal(days){
   var n=Math.min(days,_dates.length);
