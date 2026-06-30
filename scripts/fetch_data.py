@@ -53,7 +53,7 @@ def _make_sparkline_svg(prices):
     w, h = 120, 32
     mn, mx = min(prices), max(prices)
     rng = mx - mn if mx != mn else 1
-    pad = 2
+    pad = 5
     points = []
     for i, p in enumerate(prices):
         x = round(i / (len(prices) - 1) * w, 1)
